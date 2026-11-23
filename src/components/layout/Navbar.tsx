@@ -17,8 +17,8 @@ export function Navbar() {
           <Link href="/pro/activate" className="text-sm font-medium text-white/90 hover:text-white">Activate Pro</Link>
         </div>
         <div className="flex items-center gap-2">
-          <Link href="/tools/service-report" className="btn-ghost hidden sm:inline-flex text-white border-white/40">Create Report</Link>
-          <Link href="/pro/activate" className="btn-ghost hidden sm:inline-flex text-white border-white/40">Activate Pro</Link>
+          <Link href="/tools/service-report" className="hidden sm:inline-flex items-center rounded-[10px] border border-white/40 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25">Create Report</Link>
+          <Link href="/pro/activate" className="hidden sm:inline-flex items-center rounded-[10px] border border-white/40 bg-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/25">Activate Pro</Link>
           <Link href="#pricing" className="btn-primary">Upgrade to Pro</Link>
         </div>
       </nav>
