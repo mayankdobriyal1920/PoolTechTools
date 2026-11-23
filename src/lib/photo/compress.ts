@@ -11,11 +11,42 @@ export interface CompressedPhoto {
   sizeBytes: number;
 }
 
+const MAGIC_BYTES: Record<string, number[]> = {
+  "image/jpeg": [0xff, 0xd8, 0xff],
+  "image/png": [0x89, 0x50, 0x4e, 0x47],
+  "image/webp": [], // RIFF....WEBP — checked separately
+};
+
+export async function checkMagicBytes(file: File): Promise<boolean> {
+  try {
+    const buf = await file.slice(0, 12).arrayBuffer();
+    const bytes = new Uint8Array(buf);
+    if (file.type === "image/jpeg") return bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
+    if (file.type === "image/png") return bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47;
+    if (file.type === "image/webp") {
+      // RIFF....WEBP
+      return bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46 &&
+        bytes[8] === 0x57 && bytes[9] === 0x45 && bytes[10] === 0x42 && bytes[11] === 0x50;
+    }
+    return true; // heic and others: skip magic check
+  } catch {
+    return true;
+  }
+}
+
 export function validatePhotoFile(file: File): string | null {
   if (file.size > MAX_PHOTO_BYTES) return "File too large (max 10 MB).";
   const allowed = ["image/jpeg", "image/png", "image/webp", "image/heic"];
   if (!allowed.includes(file.type) && !file.name.toLowerCase().endsWith(".heic")) return "Unsupported image type.";
   return null;
+}
+
+export async function checkStorageQuota(additionalBytes: number): Promise<boolean> {
+  if (!navigator.storage?.estimate) return true;
+  const est = await navigator.storage.estimate();
+  const used = est.usage || 0;
+  const quota = est.quota || 0;
+  return used + additionalBytes < quota * 0.95;
 }
 
 export async function compressPhoto(file: File, maxDim = 1024, quality = 0.75): Promise<CompressedPhoto> {

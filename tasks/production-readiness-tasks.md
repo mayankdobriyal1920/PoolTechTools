@@ -173,13 +173,13 @@
 
 ### 4.2 Photo Handling
 - [x] P0 Client-side canvas compression (max 1024px, quality 0.75, JPEG)
-- [ ] P0 MIME + magic bytes validation
+- [x] P0 MIME + magic bytes validation
 - [x] P0 Max 10 MB original, max 2 per report
-- [ ] P0 HEIC conversion (best-effort, browser-dependent)
-- [ ] P0 EXIF handling (orientation; full strip best-effort)
-- [ ] P0 Corrupt image handling
-- [ ] P0 Compression failure fallback
-- [ ] P0 Storage quota check before add
+- [x] P0 HEIC conversion (best-effort, browser-dependent)
+- [x] P0 EXIF handling (orientation; full strip best-effort)
+- [x] P0 Corrupt image handling
+- [x] P0 Compression failure fallback
+- [x] P0 Storage quota check before add
 - [x] P0 Attachment CRUD in IndexedDB (cascade on hard purge)
 
 ### 4.3 PDF Generation
@@ -263,11 +263,11 @@
 - [ ] P0 @serwist/next setup (verify Next.js 16 compat)
 - [x] P0 Web app manifest (name, icons, display, theme)
 - [x] P0 Service worker with caching strategies (Cache-First app shell, Network-Only API, SWR pages)
-- [ ] P0 Cache versioning via build hash + purge old
-- [ ] P0 Update notification banner (non-blocking)
+- [x] P0 Cache versioning via build hash + purge old
+- [x] P0 Update notification banner (non-blocking)
 - [x] P0 Safe SW activation (skipWaiting after confirm)
 - [x] P0 Failed install recovery (keep old SW)
-- [ ] P0 navigator.storage.persist() request + status in Settings
+- [x] P0 navigator.storage.persist() request + status in Settings
 - [ ] P0 Offline feature matrix verified (all 13 rows)
 - [x] P0 Offline indicator banner
 - [x] P0 First-visit requires internet (documented)
@@ -290,8 +290,8 @@
 - [x] P0 Event marked processed only after license commit
 - [ ] P0 Email enqueued independently (retry-safe)
 - [x] P0 Refund/chargeback handling
-- [ ] P0 Out-of-order + duplicate event handling
-- [ ] P0 Frontend redirect never creates license
+- [x] P0 Out-of-order + duplicate event handling
+- [x] P0 Frontend redirect never creates license
 
 ### 8.2 PostgreSQL
 - [ ] P0 Run migration in dev + prod
@@ -323,14 +323,14 @@
 - [x] P0 Document offline revocation limitation
 
 ### 8.5 Device Activation
-- [ ] P0 deviceHash generation (random UUID, SHA-256, stored in IDB + localStorage)
+- [x] P0 deviceHash generation (random UUID, SHA-256, stored in IDB + localStorage)
 - [x] P0 Atomic activation (SELECT FOR UPDATE, count check, insert/refresh)
 - [x] P0 Idempotent re-activation (same deviceHash)
 - [ ] P0 3-device limit enforcement (concurrency tested)
 - [x] P0 Deactivation (self-service)
 - [ ] P0 Lost-device recovery runbook (verify email → deactivate all)
 - [ ] P0 Rate limits (5/IP/15min, 10/key/hr)
-- [ ] P0 Honest documentation of fingerprint limitations
+- [x] P0 Honest documentation of fingerprint limitations
 
 ### 8.6 Email Delivery
 - [x] P0 EmailService interface (provider-abstracted)
@@ -355,14 +355,14 @@
 ### 9.1 SEO
 - [ ] P0 Keyword research + intent mapping
 - [ ] P0 Page hierarchy (Home → Tools → Guides → FAQ)
-- [ ] P0 URL strategy
+- [x] P0 URL strategy
 - [x] P0 Metadata (title, description, canonical, OG, Twitter) per page
 - [x] P0 XML sitemap
 - [x] P0 robots.txt
 - [ ] P0 Internal linking + breadcrumbs
 - [x] P0 Structured data (SoftwareApplication, FAQPage, HowTo)
-- [ ] P0 10+ indexable pages with original content (no thin pages)
-- [ ] P0 Calculation methodology pages
+- [x] P0 10+ indexable pages with original content (no thin pages)
+- [x] P0 Calculation methodology pages
 - [x] P0 noindex on private/app routes
 - [ ] P1 Core Web Vitals targets (LCP<2.5s, CLS<0.1, INP<200ms)
 - [ ] P1 Related tools sections
@@ -371,7 +371,7 @@
 - [ ] P0 Apply for AdSense (approval not guaranteed)
 - [ ] P0 Ad placements (below results on tool pages, mid-content in guides)
 - [ ] P0 Exclude ads from report forms, PDF previews, Pro screens, checkout
-- [ ] P0 Pro ad-free: do not load AdSense scripts when valid Pro token
+- [x] P0 Pro ad-free: do not load AdSense scripts when valid Pro token
 - [ ] P0 Google Consent Mode v2
 - [ ] P1 Certified CMP for EEA/UK (if serving)
 - [ ] P1 Verify current Google policies
@@ -446,7 +446,7 @@
 - [ ] P0 Database backups configured
 - [ ] P0 Rollback procedure documented + tested
 - [ ] P0 Env vars set in production
-- [ ] P0 Domain + HTTPS verified
+- [x] P0 Domain + HTTPS verified
 - [ ] P0 Production smoke test (Section 42 of spec)
 - [ ] P0 Launch checklist (spec Section 34) complete
 
@@ -457,24 +457,24 @@
 - [x] P0 Empty states (all screens)
 - [x] P0 Loading states (skeletons)
 - [x] P0 Error states (message + retry)
-- [ ] P0 Network failure states
+- [x] P0 Network failure states
 - [x] P0 Offline indicator banner
 - [ ] P0 Form autosave indicator
 - [ ] P0 Unsaved changes prompt
 - [ ] P0 Double-click protection
-- [ ] P0 Storage quota exhaustion handling
+- [x] P0 Storage quota exhaustion handling
 - [ ] P0 Invalid IndexedDB record handling
 - [ ] P0 App update while report open
-- [ ] P0 Data export before destructive ops
+- [x] P0 Data export before destructive ops
 - [ ] P0 Mobile touch behavior
-- [ ] P0 Responsive layouts (all breakpoints)
+- [x] P0 Responsive layouts (all breakpoints)
 - [ ] P0 Browser compatibility fallbacks
 
 ---
 
 ## Owner Decisions (block launch if unresolved)
 
-- [ ] P0 Final domain name
+- [x] P0 Final domain name
 - [ ] P1 Email provider selection
 - [ ] P1 Error monitoring provider (Sentry recommended)
 - [ ] P2 Trend charts in V1 water log
@@ -489,9 +489,9 @@
 
 - [ ] P0 Paddle Billing API event names + transaction status values + SDK version
 - [ ] P0 @serwist/next compatibility with Next.js 16
-- [ ] P0 idb current API
-- [ ] P0 @react-pdf/renderer current API
-- [ ] P0 Web Crypto Ed25519 browser support matrix
+- [x] P0 idb current API
+- [x] P0 @react-pdf/renderer current API
+- [x] P0 Web Crypto Ed25519 browser support matrix
 - [ ] P0 Neon/Supabase connection pooling guidance
 - [ ] P1 Google AdSense policy requirements
 - [ ] P1 Certified CMP requirements for target regions

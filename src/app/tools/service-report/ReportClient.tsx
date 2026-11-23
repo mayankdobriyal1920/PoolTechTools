@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getDB } from "@/lib/db";
 import type { Report, ReportDraft } from "@/lib/db/types";
-import { compressPhoto, validatePhotoFile, MAX_PHOTOS } from "@/lib/photo/compress";
+import { compressPhoto, validatePhotoFile, checkMagicBytes, checkStorageQuota, MAX_PHOTOS } from "@/lib/photo/compress";
 import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
@@ -126,6 +126,10 @@ export default function ReportClient() {
     for (const file of files) {
       const err = validatePhotoFile(file);
       if (err) { alert(err); continue; }
+      const magicOk = await checkMagicBytes(file);
+      if (!magicOk) { alert("File does not match its declared type."); continue; }
+      const quotaOk = await checkStorageQuota(file.size);
+      if (!quotaOk) { alert("Storage quota exceeded. Export and clean up first."); continue; }
       try {
         const c = await compressPhoto(file);
         const id = crypto.randomUUID();

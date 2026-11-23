@@ -9,11 +9,16 @@ import { Button } from "@/components/ui/Button";
 export default function SettingsPage() {
   const [status, setStatus] = useState("");
   const [quota, setQuota] = useState<{ used: number; total: number } | null>(null);
+  const [persisted, setPersisted] = useState<boolean | null>(null);
   useEffect(() => {
     (async () => {
       if (navigator.storage?.estimate) {
         const est = await navigator.storage.estimate();
         setQuota({ used: est.usage || 0, total: est.quota || 0 });
+      }
+      if (navigator.storage?.persist) {
+        const persisted = await navigator.storage.persist();
+        setPersisted(persisted);
       }
     })();
   }, []);
@@ -64,6 +69,7 @@ export default function SettingsPage() {
               <div className="h-full bg-brand-500" style={{ width: `${Math.min(100, (quota.used / quota.total) * 100)}%` }} />
             </div>
             {(quota.used / quota.total) > 0.8 && <p className="mt-2 text-xs text-amber-700">Storage is over 80% full. Consider exporting and cleaning up.</p>}
+            <p className="mt-2 text-xs text-brand-700/60">Persistent storage: {persisted === null ? "checking…" : persisted ? "granted ✅" : "not granted (browser may evict under pressure)"}</p>
           </div>
         ) : <p className="mt-2 text-sm text-brand-700/60">Storage estimate unavailable.</p>}
       </Card>
