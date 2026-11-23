@@ -4,6 +4,8 @@ import "./globals.css";
 import { SwRegister } from "@/components/layout/SwRegister";
 import { WaterBackground } from "@/components/layout/WaterBackground";
 import { OfflineBanner } from "@/components/states/OfflineBanner";
+import { ProLockBanner } from "@/components/ProLockBanner";
+import { TokenRefresh } from "@/components/TokenRefresh";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col"><WaterBackground /><SwRegister /><OfflineBanner />{children}</body>
+      <body className="min-h-full flex flex-col"><WaterBackground /><SwRegister /><OfflineBanner /><ProLockBanner /><TokenRefresh />{children}</body>
     </html>
   );
 }

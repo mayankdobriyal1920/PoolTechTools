@@ -166,9 +166,9 @@
 - [ ] P0 Duplicate report
 - [x] P0 Delete report (soft delete)
 - [x] P0 Reopen previous report
-- [ ] P0 Unsaved changes prompt on navigation
-- [ ] P0 Double-click protection on save/share
-- [ ] P0 Form autosave indicator ("Saved Xs ago")
+- [x] P0 Unsaved changes prompt on navigation
+- [x] P0 Double-click protection on save/share
+- [x] P0 Form autosave indicator ("Saved Xs ago")
 - [ ] P0 Empty/loading/error/offline states
 
 ### 4.2 Photo Handling
@@ -316,8 +316,8 @@
 - [x] P0 Token structure (iss, aud, sub, pro, iat, exp, ver, kid, dev, act, pid)
 - [x] P0 Client signature verification
 - [x] P0 14-day grace period
-- [ ] P0 Online validation refresh
-- [ ] P0 Graceful lock with banner after expiry
+- [x] P0 Online validation refresh
+- [x] P0 Graceful lock with banner after expiry
 - [x] P0 lastSeenAt clock-manipulation best-effort check
 - [ ] P0 Key rotation (multiple public keys by kid, 30-day overlap)
 - [x] P0 Document offline revocation limitation
@@ -343,10 +343,10 @@
 
 ### 8.7 Activation UI
 - [x] P0 /pro/activate page (key input, device name, flow)
-- [ ] P0 Status display + device list
-- [ ] P0 Deactivate device button
-- [ ] P0 Recovery link flow
-- [ ] P0 License expiration messaging
+- [x] P0 Status display + device list
+- [x] P0 Deactivate device button
+- [x] P0 Recovery link flow
+- [x] P0 License expiration messaging
 
 ---
 
