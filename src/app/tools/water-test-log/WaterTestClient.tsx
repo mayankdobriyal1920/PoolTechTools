@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const FIELDS = ["freeChlorine", "totalChlorine", "ph", "totalAlkalinity", "calciumHardness", "cya", "salt", "temperature"] as const;
 

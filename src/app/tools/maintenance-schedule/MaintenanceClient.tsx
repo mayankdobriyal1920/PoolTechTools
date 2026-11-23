@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Select } from "@/components/ui/Select";
 
 const CATEGORIES = ["daily", "weekly", "monthly", "seasonal", "opening", "closing", "custom"] as const;

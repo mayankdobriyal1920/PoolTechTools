@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Checkbox } from "@/components/ui/Checkbox";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const STANDARD_TASKS = [
   "Skimmed surface", "Brushed walls", "Brushed floor", "Vacuumed",
