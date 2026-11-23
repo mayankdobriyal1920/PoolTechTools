@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { exportJSON, exportZIP } from "@/lib/backup/export";
+import { createSnapshot, listSnapshots, restoreSnapshot, deleteSnapshot } from "@/lib/backup/snapshot";
+import type { Snapshot } from "@/lib/db/types";
 import { previewImport, performImport } from "@/lib/backup/import";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +12,10 @@ export default function SettingsPage() {
   const [status, setStatus] = useState("");
   const [quota, setQuota] = useState<{ used: number; total: number } | null>(null);
   const [persisted, setPersisted] = useState<boolean | null>(null);
+  const [snapshots, setSnapshots] = useState<Snapshot[]>([]);
+  const [snapStatus, setSnapStatus] = useState("");
+  useEffect(() => { loadSnapshots(); }, []);
+
   useEffect(() => {
     (async () => {
       if (navigator.storage?.estimate) {
@@ -28,6 +34,10 @@ export default function SettingsPage() {
 
   async function handleExportJSON() { setStatus("Exporting JSON…"); await exportJSON(); setStatus("JSON exported."); }
   async function handleExportZIP() { setStatus("Exporting ZIP…"); await exportZIP(); setStatus("ZIP exported."); }
+
+  async function loadSnapshots() {
+    try { const snaps = await listSnapshots(); setSnapshots(snaps); } catch {}
+  }
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0];
@@ -72,6 +82,30 @@ export default function SettingsPage() {
             <p className="mt-2 text-xs text-brand-700/60">Persistent storage: {persisted === null ? "checking…" : persisted ? "granted ✅" : "not granted (browser may evict under pressure)"}</p>
           </div>
         ) : <p className="mt-2 text-sm text-brand-700/60">Storage estimate unavailable.</p>}
+      </Card>
+
+      <Card className="mb-6">
+        <h2 className="text-lg font-bold text-brand-800">Recovery Snapshots (Pro)</h2>
+        <p className="mt-2 text-sm text-brand-700/70">Rolling local snapshots (max 5). Photos are not included in snapshots.</p>
+        <div className="mt-4 flex gap-3">
+          <Button variant="ghost" size="sm" onClick={async () => { setSnapStatus("Creating…"); await createSnapshot("milestone"); await loadSnapshots(); setSnapStatus("Snapshot created."); }}>Create Snapshot</Button>
+        </div>
+        {snapStatus && <p className="mt-2 text-xs text-brand-700/80">{snapStatus}</p>}
+        <div className="mt-4 space-y-2">
+          {snapshots.map((sn) => (
+            <div key={sn.id} className="glass flex items-center justify-between rounded-lg p-3 text-sm">
+              <div>
+                <div className="font-medium text-brand-800">{new Date(sn.createdAt).toLocaleString()}</div>
+                <div className="text-xs text-brand-700/60">{sn.reason} · {(sn.sizeBytes / 1024).toFixed(1)} KB</div>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="ghost" size="sm" onClick={async () => { if (confirm("Restore this snapshot? Current data will be replaced.")) { await restoreSnapshot(sn.id!); setSnapStatus("Restored."); } }}>Restore</Button>
+                <Button variant="ghost" size="sm" onClick={async () => { if (confirm("Delete this snapshot?")) { await deleteSnapshot(sn.id!); await loadSnapshots(); } }}>Delete</Button>
+              </div>
+            </div>
+          ))}
+          {snapshots.length === 0 && <p className="text-sm text-brand-700/60">No snapshots yet.</p>}
+        </div>
       </Card>
 
       <Card className="mb-6">
