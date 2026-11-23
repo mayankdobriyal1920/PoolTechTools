@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { useEffect, useState } from "react";
 import { getDB } from "@/lib/db";
 import type { Report, ReportDraft } from "@/lib/db/types";
@@ -10,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { useEntitlement } from "@/hooks/useEntitlement";
 
 const STANDARD_TASKS = [
   "Skimmed surface", "Brushed walls", "Brushed floor", "Vacuumed",
@@ -20,6 +23,7 @@ const STANDARD_TASKS = [
 const SERVICE_TYPES = ["Regular service", "Green-to-clean", "Filter backwash", "Pool opening", "Pool closing", "Repair visit", "Other"];
 
 export default function ReportClient() {
+  const { isPro } = useEntitlement();
   const [reportNumber, setReportNumber] = useState("");
   const [technician, setTechnician] = useState("");
   const [customerName, setCustomerName] = useState("");
@@ -435,13 +439,14 @@ export default function ReportClient() {
       <div className="mb-4 flex items-center gap-3 text-xs text-brand-800">
         {lastSavedAt && <span>Saved {lastSavedAt}</span>}
         {isDirty && <span className="text-amber-600">Unsaved changes</span>}
+        {isPro && <span className="inline-flex items-center rounded-full bg-brand-500/20 border border-brand-500/30 px-3 py-1 text-xs font-semibold text-brand-800">Pro user</span>}
       </div>
-      <div className="flex flex-wrap gap-3">
-        <Button onClick={handleSave} loading={saving} disabled={saving}>{savedId ? "Update Report" : "Save Report"}</Button>
-        <Button variant="ghost" onClick={handleDownloadPDF} disabled={busy}>Download PDF</Button>
-        <Button variant="ghost" onClick={handleSharePDF} disabled={busy}>Share PDF</Button>
-        <Button variant="ghost" onClick={handleCopySMS} disabled={busy}>Copy SMS Summary</Button>
-        <Button variant="ghost" onClick={resetForm}>New Report</Button>
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={handleSave} loading={saving} size="sm">{savedId ? "Update Report" : "Save Report"}</Button>
+        <Button variant="ghost" size="sm" onClick={handleDownloadPDF} disabled={busy}>Download PDF</Button>
+        <Button variant="ghost" size="sm" onClick={handleSharePDF} disabled={busy}>Share PDF</Button>
+        <Button variant="ghost" size="sm" onClick={handleCopySMS} disabled={busy}>Copy SMS Summary</Button>
+        <Button variant="ghost" size="sm" onClick={resetForm}>New Report</Button>
       </div>
 
       {/* Saved reports list */}
