@@ -10,14 +10,17 @@ export async function POST(req: NextRequest) {
   const sig = req.headers.get("paddle-signature") || "";
   const secret = process.env.PADDLE_WEBHOOK_SECRET || "";
 
-  console.log("[WEBHOOK] Received request", {
+  console.log("[WEBHOOK DEBUG] Received request", {
     method: req.method,
     url: req.url,
     hasSignature: !!sig,
+    signaturePrefix: sig ? sig.slice(0, 20) + "..." + sig.slice(-20) : "none",
     signatureLength: sig.length,
     hasSecret: !!secret,
+    secretPrefix: secret ? secret.slice(0, 20) + "..." + secret.slice(-20) : "none",
     secretLength: secret.length,
-    secretPrefix: secret ? secret.slice(0, 8) + "..." : "none",
+    hasPaddleApiKey: !!process.env.PADDLE_API_KEY,
+    paddleApiKeyPrefix: process.env.PADDLE_API_KEY ? process.env.PADDLE_API_KEY.slice(0, 10) + "..." : "none",
   });
 
   if (!secret) {
