@@ -18,10 +18,11 @@ async function fetchCustomerEmail(customerId: string): Promise<string | null> {
       },
     });
     if (!res.ok) {
-      console.error("[EMAIL] Failed to fetch customer", customerId, "status:", res.status);
+      console.error("[EMAIL] Failed to fetch customer", customerId, "status:", res.status, "body:", await res.text());
       return null;
     }
     const data = await res.json();
+    console.log("[EMAIL] Customer data from Paddle:", { customerId, customer_email: data.customer_email });
     return data.customer_email || null;
   } catch (err: any) {
     console.error("[EMAIL] Error fetching customer", customerId, ":", err?.message);
