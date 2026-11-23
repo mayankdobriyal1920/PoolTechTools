@@ -35,7 +35,10 @@ export default function ReportClient() {
   const [privateNotes, setPrivateNotes] = useState("");
   const [photos, setPhotos] = useState<Array<{ id: string; url: string; name: string }>>([]);
   const [saving, setSaving] = useState(false);
+  const [busy, setBusy] = useState(false);
   const [savedId, setSavedId] = useState<string | null>(null);
+  const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
+  const [isDirty, setIsDirty] = useState(false);
   const [reports, setReports] = useState<Report[]>([]);
   const [draftId, setDraftId] = useState<string | null>(null);
 
@@ -47,6 +50,16 @@ export default function ReportClient() {
     setReports(all.sort((a, b) => b.visitDate.localeCompare(a.visitDate)));
   }
   useEffect(() => { loadReports(); }, []);
+
+  // Unsaved changes prompt
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => { if (isDirty) { e.preventDefault(); e.returnValue = ""; } };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [isDirty]);
+
+  // Track dirty state
+  useEffect(() => { setIsDirty(true); }, [technician, customerName, tasks, readings, chemicals, customerSummary, privateNotes, photos, visitDate]);
 
   // Auto-save draft (debounced 2s)
   useEffect(() => {
@@ -161,6 +174,8 @@ export default function ReportClient() {
       setSavedId(id);
       setReportNumber(rn);
       setDraftId(null);
+      setLastSavedAt(new Date().toLocaleTimeString());
+      setIsDirty(false);
       await loadReports();
       alert("Report saved: " + rn);
     } catch (err: any) {
@@ -182,6 +197,8 @@ export default function ReportClient() {
   }
 
   async function handleDownloadPDF() {
+    if (busy) return;
+    setBusy(true);
     try {
       const { pdf } = await import("@react-pdf/renderer");
       const { ReportPDF } = await import("@/lib/pdf/ReportPDF");
@@ -209,10 +226,12 @@ export default function ReportClient() {
       URL.revokeObjectURL(url);
     } catch (err: any) {
       alert("PDF generation failed: " + (err.message || "unknown"));
-    }
+    } finally { setBusy(false); }
   }
 
   async function handleSharePDF() {
+    if (busy) return;
+    setBusy(true);
     try {
       const { pdf } = await import("@react-pdf/renderer");
       const { ReportPDF } = await import("@/lib/pdf/ReportPDF");
@@ -239,7 +258,7 @@ export default function ReportClient() {
       }
     } catch (err: any) {
       if (err?.name !== "AbortError") alert("Share failed: " + (err.message || "unknown"));
-    }
+    } finally { setBusy(false); }
   }
 
   function handleCopySMS() {
@@ -384,11 +403,15 @@ export default function ReportClient() {
         </div>
       </Card>
 
+      <div className="mb-4 flex items-center gap-3 text-xs text-brand-700/70">
+        {lastSavedAt && <span>Saved {lastSavedAt}</span>}
+        {isDirty && <span className="text-amber-600">Unsaved changes</span>}
+      </div>
       <div className="flex flex-wrap gap-3">
-        <Button onClick={handleSave} loading={saving}>{savedId ? "Update Report" : "Save Report"}</Button>
-        <Button variant="ghost" onClick={handleDownloadPDF}>Download PDF</Button>
-        <Button variant="ghost" onClick={handleSharePDF}>Share PDF</Button>
-        <Button variant="ghost" onClick={handleCopySMS}>Copy SMS Summary</Button>
+        <Button onClick={handleSave} loading={saving} disabled={saving}>{savedId ? "Update Report" : "Save Report"}</Button>
+        <Button variant="ghost" onClick={handleDownloadPDF} disabled={busy}>Download PDF</Button>
+        <Button variant="ghost" onClick={handleSharePDF} disabled={busy}>Share PDF</Button>
+        <Button variant="ghost" onClick={handleCopySMS} disabled={busy}>Copy SMS Summary</Button>
         <Button variant="ghost" onClick={resetForm}>New Report</Button>
       </div>
 
