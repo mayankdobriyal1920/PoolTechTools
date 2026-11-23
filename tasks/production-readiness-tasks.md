@@ -91,7 +91,7 @@
 - [x] P0 Inline validation errors
 - [x] P0 Handoff to chemical calculator via `?vol=` (full precision)
 - [x] P0 Display rounding (nearest 10 gal) with internal precision retained
-- [ ] P0 Print results view
+- [x] P0 Print results view
 - [x] P0 Accuracy disclaimer text
 - [x] P0 Kidney cross-section input UI (trapezoidal) + validation
 - [ ] P0 Kidney two-semicircle alternative method
@@ -183,23 +183,23 @@
 - [x] P0 Attachment CRUD in IndexedDB (cascade on hard purge)
 
 ### 4.3 PDF Generation
-- [ ] P0 @react-pdf/renderer setup
-- [ ] P0 Page size (Letter default, A4 option)
-- [ ] P0 Font handling (Helvetica + optional brand font fallback)
-- [ ] P0 Business header (Pro logo + brand color)
-- [ ] P0 Customer info, visit metadata, task checklist, water readings, chemicals, customer summary, photos, footer with page numbers
+- [x] P0 @react-pdf/renderer setup
+- [x] P0 Page size (Letter default, A4 option)
+- [x] P0 Font handling (Helvetica + optional brand font fallback)
+- [x] P0 Business header (Pro logo + brand color)
+- [x] P0 Customer info, visit metadata, task checklist, water readings, chemicals, customer summary, photos, footer with page numbers
 - [ ] P0 Pagination (auto page breaks, repeat header)
-- [ ] P0 Empty sections omitted
-- [ ] P0 Missing info → "—" or omit
-- [ ] P0 `PublicReportView` type excludes `privateNotes` (type-level guarantee)
-- [ ] P0 Error handling (try/catch, preserve data, toast + retry)
+- [x] P0 Empty sections omitted
+- [x] P0 Missing info → "—" or omit
+- [x] P0 `PublicReportView` type excludes `privateNotes` (type-level guarantee)
+- [x] P0 Error handling (try/catch, preserve data, toast + retry)
 
 ### 4.4 Sharing & Export
-- [ ] P0 Preview PDF
+- [x] P0 Preview PDF
 - [ ] P0 Share PDF via navigator.share (with canShare check)
-- [ ] P0 Download fallback
+- [x] P0 Download fallback
 - [ ] P0 AbortError handled silently
-- [ ] P0 Print
+- [x] P0 Print
 - [ ] P0 Copy SMS Summary (no private notes)
 - [ ] P0 Export JSON backup (report-level)
 - [ ] P1 Private note exclusion tests (PDF bytes, SMS, share payload, analytics)

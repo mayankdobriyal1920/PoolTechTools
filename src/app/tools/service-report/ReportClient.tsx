@@ -181,6 +181,37 @@ export default function ReportClient() {
     if (savedId === id) resetForm();
   }
 
+  async function handleDownloadPDF() {
+    try {
+      const { pdf } = await import("@react-pdf/renderer");
+      const { ReportPDF } = await import("@/lib/pdf/ReportPDF");
+      // build PublicReportView (excludes privateNotes)
+      const { privateNotes: _pn, ...publicReport } = (await (async () => {
+        const db = await getDB();
+        const r = await db.get("reports", savedId ?? "");
+        return r ?? {
+          id: "draft", customerNameSnapshot: customerName || "Walk-in", reportNumber: reportNumber || "DRAFT",
+          visitDate: new Date(visitDate).toISOString(), technician: technician || "Technician", tasks,
+          readings: Object.fromEntries(Object.entries(readings).map(([k,v])=>[k,parseFloat(v)]).filter(([,v])=>!isNaN(v as number))),
+          chemicals: chemicals.filter(c=>c.product.trim()).map(c=>({product:c.product,amount:parseFloat(c.amount)||0,unit:c.unit})),
+          customerSummary, privateNotes, photoIds: photos.map(p=>p.id),
+          createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(), version: 1,
+        };
+      })()) as any;
+      const photoDataUrls: string[] = [];
+      for (const ph of photos) {
+        photoDataUrls.push(ph.url);
+      }
+      const blob = await pdf(<ReportPDF report={publicReport} businessName="PoolTechTools" photoDataUrls={photoDataUrls} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = `${publicReport.reportNumber || "report"}.pdf`; a.click();
+      URL.revokeObjectURL(url);
+    } catch (err: any) {
+      alert("PDF generation failed: " + (err.message || "unknown"));
+    }
+  }
+
   function resetForm() {
     setReportNumber(""); setTechnician(""); setCustomerName(""); setServiceAddress("");
     setVisitDate(new Date().toISOString().slice(0, 16)); setServiceType("Regular service");
@@ -312,6 +343,7 @@ export default function ReportClient() {
 
       <div className="flex flex-wrap gap-3">
         <Button onClick={handleSave} loading={saving}>{savedId ? "Update Report" : "Save Report"}</Button>
+        <Button variant="ghost" onClick={handleDownloadPDF}>Download PDF</Button>
         <Button variant="ghost" onClick={resetForm}>New Report</Button>
       </div>
 
