@@ -81,6 +81,7 @@ export async function POST(req: NextRequest) {
       const customerId = txn?.customer_id;
       const customerEmail = txn?.customer?.email;
       const priceId = items?.[0]?.price?.id || items?.[0]?.price_id;
+      const productId = items?.[0]?.price?.product_id || items?.[0]?.product_id;
 
       if (status !== "completed") throw new Error("Transaction not completed");
       if (currency && currency !== "USD") throw new Error("Invalid currency");
@@ -90,9 +91,9 @@ export async function POST(req: NextRequest) {
         const key = generateLicenseKey();
         const hash = hashLicenseKey(key);
         await client.query(
-          `INSERT INTO licenses (license_key_hash, customer_email, paddle_transaction_id, paddle_customer_id, price_id, amount_cents, currency, status, email_delivery_status)
-           VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'active','pending')`,
-          [hash, customerEmail || "unknown", transactionId, customerId, priceId, parseInt(total || "2900", 10), currency || "USD"]
+          `INSERT INTO licenses (license_key_hash, customer_email, paddle_transaction_id, paddle_customer_id, product_id, price_id, amount_cents, currency, status, email_delivery_status)
+           VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+          [hash, customerEmail || "unknown", transactionId, customerId, productId, priceId, parseInt(total || "2900", 10), currency || "USD", "active", "pending"]
         );
         try {
           const { getEmailService } = await import("@/lib/server/email");
