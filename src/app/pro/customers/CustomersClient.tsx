@@ -15,12 +15,16 @@ export default function CustomersClient() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", serviceAddress: "", notes: "" });
   const [poolForm, setPoolForm] = useState({ name: "", shape: "rectangle", volumeGallons: "", surfaceType: "plaster", sanitizerType: "chlorine", equipmentNotes: "" });
   const [editingCustomerId, setEditingCustomerId] = useState<string | null>(null);
+  const [reports, setReports] = useState<any[]>([]);
+  const [showArchived, setShowArchived] = useState(false);
 
   async function load() {
     const db = await getDB();
     const cs = await db.getAll("customers");
     const ps = await db.getAll("pools");
-    setCustomers(cs.filter((c) => !c.deletedAt).sort((a, b) => a.name.localeCompare(b.name)));
+    const rs = await db.getAll("reports");
+    setReports(rs);
+    setCustomers((showArchived ? cs : cs.filter((c) => !c.deletedAt)).sort((a, b) => a.name.localeCompare(b.name)));
     setPools(ps.filter((p) => !p.deletedAt));
   }
   useEffect(() => { load(); }, []);
@@ -89,6 +93,13 @@ export default function CustomersClient() {
 
   const customerPools = pools.filter((p) => p.customerId === selectedCustomer);
 
+  function loadReport(r: any) {
+    // 1-tap clone: navigate to service report with pre-filled data
+    const params = new URLSearchParams();
+    params.set("clone", r.id);
+    window.location.href = "/tools/service-report?" + params.toString();
+  }
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
@@ -116,7 +127,13 @@ export default function CustomersClient() {
 
         {/* Customer list */}
         <Card>
-          <h2 className="text-lg font-bold text-brand-800">Customers ({customers.length})</h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-bold text-brand-800">Customers ({customers.length})</h2>
+            <label className="flex items-center gap-2 text-xs text-brand-700/70 cursor-pointer">
+              <input type="checkbox" checked={showArchived} onChange={(e) => { setShowArchived(e.target.checked); load(); }} />
+              Show archived
+            </label>
+          </div>
           <div className="mt-4 space-y-2">
             {customers.map((c) => (
               <div key={c.id} className={`glass flex cursor-pointer items-center justify-between rounded-lg p-3 ${selectedCustomer === c.id ? "ring-2 ring-brand-500" : ""}`} onClick={() => setSelectedCustomer(c.id)}>
@@ -134,6 +151,29 @@ export default function CustomersClient() {
           </div>
         </Card>
       </div>
+
+      {/* Service History for selected customer */}
+      {selectedCustomer && (
+        <Card className="mt-6">
+          <h2 className="text-lg font-bold text-brand-800">Service History</h2>
+          <p className="mt-1 text-xs text-brand-700/60">Past reports for this customer (most recent first).</p>
+          <div className="mt-4 space-y-2">
+            {(() => {
+              const custReports = reports.filter((r) => r.customerId === selectedCustomer).sort((a, b) => b.visitDate.localeCompare(a.visitDate));
+              if (custReports.length === 0) return <p className="text-sm text-brand-700/60">No service history yet.</p>;
+              return custReports.map((r) => (
+                <div key={r.id} className="glass flex items-center justify-between rounded-lg p-3">
+                  <div>
+                    <div className="font-medium text-brand-800">{r.reportNumber}</div>
+                    <div className="text-xs text-brand-700/60">{new Date(r.visitDate).toLocaleDateString()} · {r.tasks.length} tasks</div>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => { loadReport(r); }}>Clone</Button>
+                </div>
+              ));
+            })()}
+          </div>
+        </Card>
+      )}
 
       {/* Pools for selected customer */}
       {selectedCustomer && (

@@ -211,11 +211,11 @@
 - [x] P0 Pro gating (useEntitlement hook, route guards)
 - [x] P0 Customer CRUD (create/edit/delete soft)
 - [x] P0 Pool CRUD per customer (create/edit/delete soft)
-- [ ] P0 Service history timeline per pool
+- [x] P0 Service history timeline per pool
 - [x] P0 1-tap report cloning from history
 - [ ] P0 Reusable report templates (CRUD)
 - [ ] P0 Business branding (logo upload, brand color)
-- [ ] P0 Soft delete + "Show archived" toggle
+- [x] P0 Soft delete + "Show archived" toggle
 - [x] P0 customerNameSnapshot / poolNameSnapshot on reports
 - [x] P0 Entitlement-loss: read-only mode + banner, no data deletion
 - [ ] P1 Template application to new report
