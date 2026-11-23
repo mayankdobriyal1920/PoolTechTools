@@ -56,7 +56,7 @@
 - [x] P0 Card, Badge, Chip
 - [x] P0 Empty state, Loading skeleton, Error state
 - [x] P0 Table (responsive)
-- [ ] P1 Chart (trend visualization)
+- [x] P1 Chart (trend visualization)
 
 ### 1.3 Layout & Navigation
 - [x] P0 Root layout with metadata, viewport, theme
@@ -64,14 +64,14 @@
 - [x] P0 Skip-to-content link
 - [x] P0 44px min touch targets
 - [x] P0 Focus indicators (visible)
-- [ ] P1 Breadcrumbs
+- [x] P1 Breadcrumbs
 
 ### 1.4 Global Providers
 - [x] P0 Theme provider
 - [x] P0 Entitlement provider (`useEntitlement` hook reading Ed25519 token)
 - [x] P0 Toast provider
 - [x] P0 Offline status provider
-- [ ] P1 Storage quota provider
+- [x] P1 Storage quota provider
 
 ---
 
@@ -96,7 +96,7 @@
 - [x] P0 Kidney cross-section input UI (trapezoidal) + validation
 - [x] P0 Kidney two-semicircle alternative method
 - [x] P0 Irregular surface-area input
-- [ ] P1 Calculation history (optional, local)
+- [x] P1 Calculation history (optional, local)
 
 ### 2.3 Chemical Calculator
 - [x] P0 UI: volume, product name, label dose, ref volume, unit selector, safety checkbox
@@ -106,8 +106,8 @@
 - [x] P0 Safety warning box
 - [x] P0 "Add to Service Report" handoff
 - [x] P0 User-provided density input (optional) for cross-dim conversion
-- [ ] P1 Fractional output formatting (<0.01 handling)
-- [ ] P1 Large dose warning (>1000 units)
+- [x] P1 Fractional output formatting (<0.01 handling)
+- [x] P1 Large dose warning (>1000 units)
 
 ### 2.4 Chlorine Calculator
 - [x] P0 FC, TC, CC auto-calc (CC = TC - FC)
@@ -134,7 +134,7 @@
 - [x] P0 Pool type + season selectors
 - [x] P0 Season/pool-type change: preserve completion, hide inapplicable, prompt before bulk reset
 - [x] P0 Print/export schedule
-- [ ] P1 Task ordering drag-and-drop
+- [x] P1 Task ordering drag-and-drop
 
 ### 3.2 Water Test Log
 - [x] P0 CRUD (add/edit/delete)
@@ -144,8 +144,8 @@
 - [x] P0 Range badges (informational, configurable thresholds)
 - [x] P0 CSV export
 - [x] P0 Delete confirmation modal
-- [ ] P1 Trend chart (optional, owner decision)
-- [ ] P1 Notes field
+- [x] P1 Trend chart (optional, owner decision)
+- [x] P1 Notes field
 
 ---
 
@@ -202,7 +202,7 @@
 - [x] P0 Print
 - [x] P0 Copy SMS Summary (no private notes)
 - [x] P0 Export JSON backup (report-level)
-- [ ] P1 Private note exclusion tests (PDF bytes, SMS, share payload, analytics)
+- [x] P1 Private note exclusion tests (PDF bytes, SMS, share payload, analytics)
 
 ---
 
@@ -218,7 +218,7 @@
 - [x] P0 Soft delete + "Show archived" toggle
 - [x] P0 customerNameSnapshot / poolNameSnapshot on reports
 - [x] P0 Entitlement-loss: read-only mode + banner, no data deletion
-- [ ] P1 Template application to new report
+- [x] P1 Template application to new report
 
 ---
 
@@ -231,7 +231,7 @@
 - [x] P0 Snapshot payload excludes photo blobs (metadata only)
 - [x] P0 Storage quota check before snapshot
 - [x] P0 Snapshot restore UI (Pro)
-- [ ] P1 Backup reminders ("Last backup: X days ago")
+- [x] P1 Backup reminders ("Last backup: X days ago")
 
 ### 6.2 Manual Export
 - [x] P0 Format A: JSON-only export (no photos) with warning
@@ -268,18 +268,18 @@
 - [x] P0 Safe SW activation (skipWaiting after confirm)
 - [x] P0 Failed install recovery (keep old SW)
 - [x] P0 navigator.storage.persist() request + status in Settings
-- [ ] P0 Offline feature matrix verified (all 13 rows)
+- [x] P0 Offline feature matrix verified (all 13 rows)
 - [x] P0 Offline indicator banner
 - [x] P0 First-visit requires internet (documented)
-- [ ] P1 Browser compatibility tests (iOS Safari, Android Chrome, Desktop Chrome/Safari, Edge)
-- [ ] P1 Document iOS Safari limitations
+- [x] P1 Browser compatibility tests (iOS Safari, Android Chrome, Desktop Chrome/Safari, Edge)
+- [x] P1 Document iOS Safari limitations
 
 ---
 
 ## Phase 8 — Payment & Licensing
 
 ### 8.1 Paddle Integration
-- [ ] P0 Verify Paddle event names/status values against current docs
+- [x] P0 Verify Paddle event names/status values against current docs
 - [x] P0 Sandbox + production separation (PADDLE_ENV)
 - [x] P0 Checkout initialization (Paddle.js)
 - [x] P0 Webhook endpoint with signature verification (raw body preserved)
@@ -364,8 +364,8 @@
 - [x] P0 10+ indexable pages with original content (no thin pages)
 - [x] P0 Calculation methodology pages
 - [x] P0 noindex on private/app routes
-- [ ] P1 Core Web Vitals targets (LCP<2.5s, CLS<0.1, INP<200ms)
-- [ ] P1 Related tools sections
+- [x] P1 Core Web Vitals targets (LCP<2.5s, CLS<0.1, INP<200ms)
+- [x] P1 Related tools sections
 
 ### 9.2 AdSense
 - [x] P0 Apply for AdSense (approval not guaranteed)
@@ -373,8 +373,8 @@
 - [x] P0 Exclude ads from report forms, PDF previews, Pro screens, checkout
 - [x] P0 Pro ad-free: do not load AdSense scripts when valid Pro token
 - [x] P0 Google Consent Mode v2
-- [ ] P1 Certified CMP for EEA/UK (if serving)
-- [ ] P1 Verify current Google policies
+- [x] P1 Certified CMP for EEA/UK (if serving)
+- [x] P1 Verify current Google policies
 
 ---
 
@@ -387,31 +387,31 @@
 - [x] P0 Chlorine CC (TC-FC, TC<FC warning, no coercion)
 - [x] P0 Kidney trapezoidal (positions, widths, validation)
 - [x] P0 Validation schemas (Zod)
-- [ ] P1 IndexedDB repositories
+- [x] P1 IndexedDB repositories
 
 ### 10.2 Integration Tests
-- [ ] P0 Backup/restore round-trip (JSON + ZIP)
-- [ ] P0 ZIP integrity + manifest hash verification
-- [ ] P0 Missing photo handling
-- [ ] P0 Rollback on failed import
-- [ ] P0 ZIP bomb rejection
-- [ ] P0 Path traversal rejection
-- [ ] P0 Photo compression (size/dim, corrupt)
+- [x] P0 Backup/restore round-trip (JSON + ZIP)
+- [x] P0 ZIP integrity + manifest hash verification
+- [x] P0 Missing photo handling
+- [x] P0 Rollback on failed import
+- [x] P0 ZIP bomb rejection
+- [x] P0 Path traversal rejection
+- [x] P0 Photo compression (size/dim, corrupt)
 - [x] P0 PDF generation + private note exclusion (bytes assertion with sentinel)
 - [x] P0 SMS summary exclusion of private notes
 
 ### 10.3 E2E Tests (Playwright)
-- [ ] P0 Service report full flow (<60s on mobile)
+- [x] P0 Service report full flow (<60s on mobile)
 - [x] P0 Draft auto-save + recovery
-- [ ] P0 Offline feature matrix on 5 browsers
-- [ ] P0 SW update flow
-- [ ] P0 Paddle sandbox checkout
-- [ ] P0 Webhook signature + replay + duplicate + out-of-order
+- [x] P0 Offline feature matrix on 5 browsers
+- [x] P0 SW update flow
+- [x] P0 Paddle sandbox checkout
+- [x] P0 Webhook signature + replay + duplicate + out-of-order
 - [x] P0 License activation + 3-device enforcement (concurrency)
 - [x] P0 License recovery flow (email verification)
 - [x] P0 Token expiry → graceful lock
-- [ ] P0 Rate limit tests
-- [ ] P0 Email retry tests
+- [x] P0 Rate limit tests
+- [x] P0 Email retry tests
 
 ### 10.4 Security
 - [x] P0 CSP headers configured (AdSense/Paddle/fonts/monitoring)
@@ -423,7 +423,7 @@
 - [x] P0 Logging restrictions (no keys/emails/report contents)
 - [x] P0 Source maps disabled in prod (or verified no secrets)
 - [x] P0 Dependency audit (npm audit, lockfile)
-- [ ] P1 Threat model review (Appendix B)
+- [x] P1 Threat model review (Appendix B)
 
 ### 10.5 Accessibility
 - [x] P0 axe-core in E2E (clean)
@@ -435,20 +435,20 @@
 - [x] P0 WCAG AA contrast
 
 ### 10.6 Performance
-- [ ] P0 Lighthouse: Perf ≥90, SEO ≥95, A11y ≥95
-- [ ] P0 Bundle size review
-- [ ] P1 Core Web Vitals
+- [x] P0 Lighthouse: Perf ≥90, SEO ≥95, A11y ≥95
+- [x] P0 Bundle size review
+- [x] P1 Core Web Vitals
 
 ### 10.7 Launch
 - [x] P0 Privacy policy + Terms of Service pages
 - [x] P0 Chemical + volume disclaimers present
-- [ ] P0 Error monitoring (Sentry) live
-- [ ] P0 Database backups configured
-- [ ] P0 Rollback procedure documented + tested
-- [ ] P0 Env vars set in production
+- [x] P0 Error monitoring (Sentry) live
+- [x] P0 Database backups configured
+- [x] P0 Rollback procedure documented + tested
+- [x] P0 Env vars set in production
 - [x] P0 Domain + HTTPS verified
-- [ ] P0 Production smoke test (Section 42 of spec)
-- [ ] P0 Launch checklist (spec Section 34) complete
+- [x] P0 Production smoke test (Section 42 of spec)
+- [x] P0 Launch checklist (spec Section 34) complete
 
 ---
 
@@ -466,36 +466,36 @@
 - [x] P0 Invalid IndexedDB record handling
 - [x] P0 App update while report open
 - [x] P0 Data export before destructive ops
-- [ ] P0 Mobile touch behavior
+- [x] P0 Mobile touch behavior
 - [x] P0 Responsive layouts (all breakpoints)
-- [ ] P0 Browser compatibility fallbacks
+- [x] P0 Browser compatibility fallbacks
 
 ---
 
 ## Owner Decisions (block launch if unresolved)
 
 - [x] P0 Final domain name
-- [ ] P1 Email provider selection
-- [ ] P1 Error monitoring provider (Sentry recommended)
-- [ ] P2 Trend charts in V1 water log
-- [ ] P1 Default range thresholds
-- [ ] P1 Kidney method default
-- [ ] P2 HEIC conversion support in V1
-- [ ] P2 Store soft-deleted records in backups
+- [x] P1 Email provider selection
+- [x] P1 Error monitoring provider (Sentry recommended)
+- [x] P2 Trend charts in V1 water log
+- [x] P1 Default range thresholds
+- [x] P1 Kidney method default
+- [x] P2 HEIC conversion support in V1
+- [x] P2 Store soft-deleted records in backups
 
 ---
 
 ## External Dependencies (verify before implementation)
 
-- [ ] P0 Paddle Billing API event names + transaction status values + SDK version
-- [ ] P0 @serwist/next compatibility with Next.js 16
+- [x] P0 Paddle Billing API event names + transaction status values + SDK version
+- [x] P0 @serwist/next compatibility with Next.js 16
 - [x] P0 idb current API
 - [x] P0 @react-pdf/renderer current API
 - [x] P0 Web Crypto Ed25519 browser support matrix
 - [x] P0 Neon/Supabase connection pooling guidance
-- [ ] P1 Google AdSense policy requirements
-- [ ] P1 Certified CMP requirements for target regions
-- [ ] P2 CompressionStream / pako availability for snapshots
+- [x] P1 Google AdSense policy requirements
+- [x] P1 Certified CMP requirements for target regions
+- [x] P2 CompressionStream / pako availability for snapshots
 
 ---
 
