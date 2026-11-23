@@ -17,12 +17,22 @@ async function fetchCustomerEmail(customerId: string): Promise<string | null> {
         "Content-Type": "application/json",
       },
     });
+    const resText = await res.text();
+    console.log("[PADDLE API] GET /customers/" + customerId, {
+      status: res.status,
+      statusText: res.statusText,
+      body: resText,
+    });
     if (!res.ok) {
-      console.error("[EMAIL] Failed to fetch customer", customerId, "status:", res.status, "body:", await res.text());
+      console.error("[EMAIL] Failed to fetch customer", customerId, "status:", res.status);
       return null;
     }
-    const data = await res.json();
-    console.log("[EMAIL] Customer data from Paddle:", { customerId, customer_email: data.customer_email });
+    const data = JSON.parse(resText);
+    console.log("[EMAIL] Customer data parsed:", {
+      customerId,
+      customer_email: data.customer_email,
+      raw: data,
+    });
     return data.customer_email || null;
   } catch (err: any) {
     console.error("[EMAIL] Error fetching customer", customerId, ":", err?.message);
