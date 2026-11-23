@@ -1,8 +1,11 @@
+"use client";
+
 import { Logo } from "@/components/layout/Logo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AdSlot } from "@/components/AdSlot";
 import { UpgradeButton } from "@/components/UpgradeButton";
+import { useEntitlement } from "@/hooks/useEntitlement";
 
 const features = [
   { icon: "📐", title: "Pool Volume Calculator", desc: "Rectangular, round, oval, kidney & irregular shapes in ft/in or m/cm." },
@@ -22,6 +25,8 @@ const faqs = [
 ];
 
 export default function Home() {
+  const { isPro, loading } = useEntitlement();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -122,7 +127,17 @@ export default function Home() {
               <li>✓ Automated recovery snapshots</li>
               <li>✓ 100% ad-free</li>
             </ul>
-            <div className="mt-8 w-full"><UpgradeButton /></div>
+            <div className="mt-8 w-full">
+              {loading || !isPro ? (
+                <UpgradeButton />
+              ) : (
+                <div className="flex items-center justify-center py-4">
+                  <span className="inline-flex items-center rounded-full bg-brand-500/20 border border-brand-500/30 px-4 py-2 text-sm font-semibold text-brand-800">
+                    Pro Active ✓
+                  </span>
+                </div>
+              )}
+            </div>
             <p className="mt-3 text-center text-xs text-brand-800">
               Already purchased? <a href="/pro/activate" className="font-semibold text-brand-700 underline">Activate your license</a>
             </p>

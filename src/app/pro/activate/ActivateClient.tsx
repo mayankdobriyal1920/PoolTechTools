@@ -51,6 +51,9 @@ export default function ActivateClient() {
       setStatus("Activated! Pro features unlocked.");
       setIsPro(true);
       await loadDevices();
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1500);
     } catch (err: any) {
       setStatus("Error: " + (err.message || "unknown"));
       setIsPro(false);
