@@ -57,8 +57,22 @@ export async function POST(req: NextRequest) {
     }
 
     await client.query("COMMIT");
-    // TODO: sign Ed25519 token here (server-side private key) and return
-    return NextResponse.json({ success: true, signedToken: "TODO_ED25519_TOKEN", expiresAt: new Date(Date.now() + 14 * 86400000).toISOString(), activationId });
+    const { signEntitlementToken } = await import("@/lib/server/license");
+    const now = Math.floor(Date.now() / 1000);
+    const token = signEntitlementToken({
+      sub: license.license_id,
+      iss: process.env.NEXT_PUBLIC_APP_URL || "pooltechtools",
+      aud: "ptt-client",
+      pro: true,
+      iat: now,
+      exp: now + 14 * 86400,
+      ver: 1,
+      kid: "key-1",
+      dev: deviceHash,
+      act: activationId,
+      pid: "pooltechtools-pro",
+    });
+    return NextResponse.json({ success: true, signedToken: token, expiresAt: new Date((now + 14 * 86400) * 1000).toISOString(), activationId });
   } catch (err: any) {
     await client.query("ROLLBACK").catch(() => {});
     return NextResponse.json({ error: { code: "SERVER_ERROR", message: err?.message || "Failed" } }, { status: 500 });

@@ -1,6 +1,7 @@
 import { Logo } from "@/components/layout/Logo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { UpgradeButton } from "@/components/UpgradeButton";
 
 const features = [
   { icon: "📐", title: "Pool Volume Calculator", desc: "Rectangular, round, oval, kidney & irregular shapes in ft/in or m/cm." },
@@ -104,7 +105,7 @@ export default function Home() {
               <li>✓ Automated recovery snapshots</li>
               <li>✓ 100% ad-free</li>
             </ul>
-            <a href="/pro/activate" className="btn-primary mt-8 w-full text-center">Upgrade to Pro</a>
+            <div className="mt-8 w-full"><UpgradeButton /></div>
           </div>
         </div>
       </section>
