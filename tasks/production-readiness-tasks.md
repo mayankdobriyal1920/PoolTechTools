@@ -368,7 +368,7 @@
 - [ ] P1 Related tools sections
 
 ### 9.2 AdSense
-- [ ] P0 Apply for AdSense (approval not guaranteed)
+- [x] P0 Apply for AdSense (approval not guaranteed)
 - [x] P0 Ad placements (below results on tool pages, mid-content in guides)
 - [x] P0 Exclude ads from report forms, PDF previews, Pro screens, checkout
 - [x] P0 Pro ad-free: do not load AdSense scripts when valid Pro token
