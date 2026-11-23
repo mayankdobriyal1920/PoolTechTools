@@ -280,8 +280,8 @@
 
 ### 8.1 Paddle Integration
 - [ ] P0 Verify Paddle event names/status values against current docs
-- [ ] P0 Sandbox + production separation (PADDLE_ENV)
-- [ ] P0 Checkout initialization (Paddle.js)
+- [x] P0 Sandbox + production separation (PADDLE_ENV)
+- [x] P0 Checkout initialization (Paddle.js)
 - [x] P0 Webhook endpoint with signature verification (raw body preserved)
 - [x] P0 Idempotency (processed_webhook_events)
 - [x] P0 Transaction verification (status, product/price, currency, amount)
