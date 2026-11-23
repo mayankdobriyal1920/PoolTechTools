@@ -126,23 +126,23 @@
 ## Phase 3 — Maintenance Schedule & Water Logs
 
 ### 3.1 Maintenance Schedule
-- [ ] P0 Task data model + seed tasks (daily/weekly/monthly/seasonal/opening/closing)
-- [ ] P0 Grouped checklist UI
-- [ ] P0 Completion toggle persists in IndexedDB
-- [ ] P0 Custom task add/edit/delete/reorder
+- [x] P0 Task data model + seed tasks (daily/weekly/monthly/seasonal/opening/closing)
+- [x] P0 Grouped checklist UI
+- [x] P0 Completion toggle persists in IndexedDB
+- [x] P0 Custom task add/edit/delete/reorder
 - [ ] P0 Reset completion (with confirmation)
 - [ ] P0 Pool type + season selectors
 - [ ] P0 Season/pool-type change: preserve completion, hide inapplicable, prompt before bulk reset
-- [ ] P0 Print/export schedule
+- [x] P0 Print/export schedule
 - [ ] P1 Task ordering drag-and-drop
 
 ### 3.2 Water Test Log
-- [ ] P0 CRUD (add/edit/delete)
-- [ ] P0 CC auto-calc with variance warning
+- [x] P0 CRUD (add/edit/delete)
+- [x] P0 CC auto-calc with variance warning
 - [ ] P0 Pool association (optional)
-- [ ] P0 Chronological table + date filter
+- [x] P0 Chronological table + date filter
 - [ ] P0 Range badges (informational, configurable thresholds)
-- [ ] P0 CSV export
+- [x] P0 CSV export
 - [ ] P0 Delete confirmation modal
 - [ ] P1 Trend chart (optional, owner decision)
 - [ ] P1 Notes field
