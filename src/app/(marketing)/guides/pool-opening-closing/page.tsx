@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Pool Opening & Closing Checklist — PoolTechTools",
@@ -20,6 +21,8 @@ export default function PoolOpeningClosingGuide() {
         <li>Balance water chemistry</li><li>Clean pool thoroughly</li><li>Lower water level below skimmer</li>
         <li>Drain equipment and blow out lines</li><li>Add winterizing chemicals</li><li>Install cover securely</li>
       </ul>
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
+
       <div className="mt-8"><a href="/tools/maintenance-schedule" className="btn-primary">Open Maintenance Schedule</a></div>
     </article>
   );

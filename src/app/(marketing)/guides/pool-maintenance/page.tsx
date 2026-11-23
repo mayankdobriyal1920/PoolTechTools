@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Pool Maintenance Schedule Guide — PoolTechTools",
@@ -18,6 +19,8 @@ export default function PoolMaintenanceGuide() {
       <ul className="mt-2 list-disc pl-5 text-brand-800"><li>Inspect equipment (pump, filter, heater)</li><li>Clean tile line</li><li>Check salt cell (if salt pool)</li></ul>
       <h2 className="mt-6 text-xl font-bold text-brand-800">Seasonal</h2>
       <ul className="mt-2 list-disc pl-5 text-brand-800"><li>Opening: remove cover, clean, balance water</li><li>Closing: winterize, lower water, cover</li></ul>
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
+
       <div className="mt-8"><a href="/tools/maintenance-schedule" className="btn-primary">Open Maintenance Schedule</a></div>
     </article>
   );

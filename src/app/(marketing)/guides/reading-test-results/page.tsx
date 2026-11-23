@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "How to Read Pool Water Test Results — PoolTechTools",
@@ -22,6 +23,8 @@ export default function ReadingTestResultsGuide() {
         <li><strong>Salt:</strong> For salt pools. Check manufacturer range.</li>
       </ul>
       <p className="mt-4 text-sm text-brand-800">Ranges are informational defaults. Follow product labels and professional advice.</p>
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
+
       <div className="mt-8"><a href="/tools/water-test-log" className="btn-primary">Open Water Test Log</a></div>
     </article>
   );

@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { AdSlot } from "@/components/AdSlot";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 export default function ChlorineClient() {
@@ -46,6 +47,8 @@ export default function ChlorineClient() {
           <Button onClick={validate}>Evaluate</Button>
         </div>
       </Card>
+
+      <div className="mb-6"><AdSlot slot="9214687527" /></div>
 
       {cc && (
         <Card className="mt-6">

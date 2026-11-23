@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { AdSlot } from "@/components/AdSlot";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 const FIELDS = ["freeChlorine", "totalChlorine", "ph", "totalAlkalinity", "calciumHardness", "cya", "salt", "temperature"] as const;
@@ -118,6 +119,8 @@ export default function WaterTestClient() {
           {editingId && <Button variant="ghost" onClick={() => { setForm({}); setEditingId(null); }}>Cancel</Button>}
         </div>
       </Card>
+
+      <div className="my-6"><AdSlot slot="9214687527" /></div>
 
       <div className="space-y-3">
         {tests.map((t) => (

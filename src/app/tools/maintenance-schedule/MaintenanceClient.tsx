@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
+import { AdSlot } from "@/components/AdSlot";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Select } from "@/components/ui/Select";
 
@@ -136,6 +137,8 @@ export default function MaintenanceClient() {
         ))}
         {filtered.length === 0 && <p className="text-center text-sm text-brand-700">No tasks in this category.</p>}
       </div>
+
+      <div className="my-6"><AdSlot slot="9214687527" /></div>
 
       <div className="mt-6 text-center">
         <Button variant="ghost" onClick={() => window.print()}>Print Schedule</Button>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Pool Chemical Calculator Guide — PoolTechTools",
@@ -19,6 +20,8 @@ export default function ChemicalGuide() {
         <li>You must verify against the physical product label before results show.</li>
         <li>The tool does not recommend chemical treatment — it scales your entered label instruction.</li>
       </ul>
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
+
       <div className="mt-8"><a href="/tools/chemical-calculator" className="btn-primary">Open Chemical Calculator</a></div>
       <p className="mt-8 text-xs text-brand-700">Always verify against the physical product label and consult a pool professional.</p>
     </article>

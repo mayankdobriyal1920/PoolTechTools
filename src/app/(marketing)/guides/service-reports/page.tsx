@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Professional Pool Service Reports — PoolTechTools",
@@ -27,6 +28,8 @@ export default function ServiceReportsGuide() {
         <li>Service history and 1-tap report cloning</li>
         <li>Reusable report templates</li>
       </ul>
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
+
       <div className="mt-8"><a href="/tools/service-report" className="btn-primary">Create Service Report</a></div>
     </article>
   );

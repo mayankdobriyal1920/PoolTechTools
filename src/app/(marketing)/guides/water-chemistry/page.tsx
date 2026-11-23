@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "Pool Water Chemistry Basics — PoolTechTools",
@@ -22,6 +23,8 @@ export default function WaterChemistryGuide() {
       <p className="mt-2 text-brand-800">Buffers pH changes. Typically 80–120 ppm.</p>
       <h2 className="mt-6 text-xl font-bold text-brand-800">Cyanuric Acid (CYA)</h2>
       <p className="mt-2 text-brand-800">Stabilizer that protects chlorine from UV. Too high reduces chlorine effectiveness.</p>
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
+
       <div className="mt-8"><a href="/tools/water-test-log" className="btn-primary">Open Water Test Log</a></div>
       <p className="mt-8 text-xs text-brand-700">Ranges are informational defaults and vary by pool type and conditions. Follow product labels and professional advice.</p>
     </article>
