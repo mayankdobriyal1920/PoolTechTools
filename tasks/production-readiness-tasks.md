@@ -334,9 +334,9 @@
 
 ### 8.6 Email Delivery
 - [x] P0 EmailService interface (provider-abstracted)
-- [ ] P0 Choose provider (Resend/Postmark/SendGrid) + verify docs
+- [x] P0 Choose provider (Resend/Postmark/SendGrid) + verify docs
 - [x] P0 Templates (purchase, activation, recovery, revocation) with variables
-- [ ] P0 Retry transient failures (backoff, max 5)
+- [x] P0 Retry transient failures (backoff, max 5)
 - [x] P0 Track delivery status in licenses table
 - [x] P0 Idempotent re-send
 - [x] P0 No key exposure in logs/analytics
