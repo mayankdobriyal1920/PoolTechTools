@@ -368,7 +368,7 @@ export default function ReportClient() {
           <div className="mt-3 flex flex-wrap gap-2">
             {tasks.filter((t) => !STANDARD_TASKS.includes(t)).map((t) => (
               <span key={t} className="inline-flex items-center gap-1 rounded-full bg-brand-100 px-3 py-1 text-xs text-brand-700">
-                {t} <button onClick={() => setTasks((p) => p.filter((x) => x !== t))} className="text-red-500">×</button>
+                {t} <button onClick={() => setTasks((p) => p.filter((x) => x !== t))} className="text-red-700 font-bold hover:text-red-900">×</button>
               </span>
             ))}
           </div>

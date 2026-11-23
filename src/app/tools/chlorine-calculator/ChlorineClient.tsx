@@ -65,7 +65,7 @@ export default function ChlorineClient() {
             <div>
               <div className="text-sm text-brand-800">Combined Chlorine</div>
               {cc.invalid ? (
-                <div className="text-2xl font-extrabold text-red-600">—</div>
+                <div className="text-2xl font-extrabold text-red-700 font-bold">—</div>
               ) : (
                 <div className="text-2xl font-extrabold text-brand-700">{cc.value!.toFixed(2)} ppm</div>
               )}

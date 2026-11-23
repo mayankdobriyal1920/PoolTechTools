@@ -143,7 +143,7 @@ export default function PoolVolumePage() {
           <Input label={`Average depth override (${dU})`} value={avgOverride} onChange={(e) => setAvgOverride(e.target.value)} error={errors.avgOverride} hint="If provided, overrides shallow/deep average." />
         </div>
 
-        {errors._form && <p className="mt-3 text-sm text-red-600">{errors._form}</p>}
+        {errors._form && <p className="mt-3 text-sm text-red-700 font-bold">{errors._form}</p>}
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Button onClick={handleCalculate}>Calculate Volume</Button>

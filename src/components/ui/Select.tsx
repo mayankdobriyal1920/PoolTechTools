@@ -15,7 +15,7 @@ export function Select({ label, error, options, className, id, ...rest }: Select
       <select id={selectId} className={cn("input", error && "border-red-500", className)} {...rest}>
         {options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
       </select>
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <p className="text-xs text-red-600 font-bold">{error}</p>}
     </div>
   );
 }
