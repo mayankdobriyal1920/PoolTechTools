@@ -17,6 +17,8 @@ export default function MaintenanceClient() {
   const [newTitle, setNewTitle] = useState("");
   const [newCategory, setNewCategory] = useState<(typeof CATEGORIES)[number]>("custom");
   const [filter, setFilter] = useState<string>("all");
+  const [poolType, setPoolType] = useState("chlorine");
+  const [season, setSeason] = useState("summer");
 
   async function load() {
     const db = await getDB();
@@ -76,6 +78,33 @@ export default function MaintenanceClient() {
       </div>
 
       <Card className="mb-6">
+        <div className="mb-4 flex flex-wrap gap-3">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-medium text-brand-800">Pool type</label>
+            <select className="input w-auto" value={poolType} onChange={(e) => setPoolType(e.target.value)}>
+              <option value="chlorine">Chlorine</option>
+              <option value="salt">Salt</option>
+              <option value="bromine">Bromine</option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-medium text-brand-800">Season</label>
+            <select className="input w-auto" value={season} onChange={(e) => setSeason(e.target.value)}>
+              <option value="spring">Spring</option>
+              <option value="summer">Summer</option>
+              <option value="fall">Fall</option>
+              <option value="winter">Winter</option>
+            </select>
+          </div>
+          <Button variant="ghost" size="sm" onClick={async () => {
+            if (!confirm("Reset all completion?")) return;
+            const db = await getDB();
+            for (const t of tasks) {
+              await db.put("maintenance_tasks", { ...t, completedAt: undefined, updatedAt: new Date().toISOString(), version: t.version + 1 });
+            }
+            load();
+          }}>Reset All</Button>
+        </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex-1">
             <Input label="New task" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} placeholder="e.g. Clean filter" />

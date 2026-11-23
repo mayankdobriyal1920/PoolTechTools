@@ -36,6 +36,7 @@ export default function WaterTestClient() {
     if (form.freeChlorine && form.totalChlorine) readings.combinedChlorine = tc >= fc ? tc - fc : NaN;
     const t: WaterTest = {
       id: editingId ?? crypto.randomUUID(),
+      poolId: form.poolId || undefined,
       recordedAt: form.recordedAt || now,
       readings,
       notes: form.notes || "",
@@ -86,6 +87,7 @@ export default function WaterTestClient() {
       <Card className="mb-6">
         <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
           <Input label="Date/Time" type="datetime-local" value={form.recordedAt || ""} onChange={(e) => setForm({ ...form, recordedAt: e.target.value })} />
+          <Input label="Pool ID (optional)" value={form.poolId || ""} onChange={(e) => setForm({ ...form, poolId: e.target.value })} />
           {FIELDS.map((f) => (
             <Input key={f} label={f.replace(/([A-Z])/g, " $1").trim()} type="number" step="0.01" value={form[f] || ""} onChange={(e) => setForm({ ...form, [f]: e.target.value })} />
           ))}
@@ -113,7 +115,7 @@ export default function WaterTestClient() {
               </div>
               <div className="flex gap-2">
                 <Button variant="ghost" size="sm" onClick={() => edit(t)}>Edit</Button>
-                <Button variant="ghost" size="sm" onClick={() => remove(t.id)}>Delete</Button>
+                <Button variant="ghost" size="sm" onClick={() => { if (confirm("Delete this reading?")) remove(t.id); }}>Delete</Button>
               </div>
             </div>
           </Card>

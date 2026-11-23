@@ -130,8 +130,8 @@
 - [x] P0 Grouped checklist UI
 - [x] P0 Completion toggle persists in IndexedDB
 - [x] P0 Custom task add/edit/delete/reorder
-- [ ] P0 Reset completion (with confirmation)
-- [ ] P0 Pool type + season selectors
+- [x] P0 Reset completion (with confirmation)
+- [x] P0 Pool type + season selectors
 - [ ] P0 Season/pool-type change: preserve completion, hide inapplicable, prompt before bulk reset
 - [x] P0 Print/export schedule
 - [ ] P1 Task ordering drag-and-drop
@@ -139,11 +139,11 @@
 ### 3.2 Water Test Log
 - [x] P0 CRUD (add/edit/delete)
 - [x] P0 CC auto-calc with variance warning
-- [ ] P0 Pool association (optional)
+- [x] P0 Pool association (optional)
 - [x] P0 Chronological table + date filter
 - [ ] P0 Range badges (informational, configurable thresholds)
 - [x] P0 CSV export
-- [ ] P0 Delete confirmation modal
+- [x] P0 Delete confirmation modal
 - [ ] P1 Trend chart (optional, owner decision)
 - [ ] P1 Notes field
 
@@ -163,13 +163,13 @@
 - [x] P0 Report number generation (RPT-YYYYMMDD-NNNN)
 - [x] P0 Save draft (debounced 2s auto-save)
 - [x] P0 Edit existing report
-- [ ] P0 Duplicate report
+- [x] P0 Duplicate report
 - [x] P0 Delete report (soft delete)
 - [x] P0 Reopen previous report
 - [x] P0 Unsaved changes prompt on navigation
 - [x] P0 Double-click protection on save/share
 - [x] P0 Form autosave indicator ("Saved Xs ago")
-- [ ] P0 Empty/loading/error/offline states
+- [x] P0 Empty/loading/error/offline states
 
 ### 4.2 Photo Handling
 - [x] P0 Client-side canvas compression (max 1024px, quality 0.75, JPEG)
@@ -212,12 +212,12 @@
 - [x] P0 Customer CRUD (create/edit/delete soft)
 - [x] P0 Pool CRUD per customer (create/edit/delete soft)
 - [ ] P0 Service history timeline per pool
-- [ ] P0 1-tap report cloning from history
+- [x] P0 1-tap report cloning from history
 - [ ] P0 Reusable report templates (CRUD)
 - [ ] P0 Business branding (logo upload, brand color)
 - [ ] P0 Soft delete + "Show archived" toggle
 - [x] P0 customerNameSnapshot / poolNameSnapshot on reports
-- [ ] P0 Entitlement-loss: read-only mode + banner, no data deletion
+- [x] P0 Entitlement-loss: read-only mode + banner, no data deletion
 - [ ] P1 Template application to new report
 
 ---

@@ -286,6 +286,30 @@ export default function ReportClient() {
     setPhotos([]); setSavedId(null); setDraftId(null);
   }
 
+  async function duplicateReport(r: Report) {
+    const db = await getDB();
+    const now = new Date().toISOString();
+    const newId = crypto.randomUUID();
+    const copy: Report = {
+      ...r,
+      id: newId,
+      reportNumber: r.reportNumber + "-COPY",
+      visitDate: now,
+      createdAt: now,
+      updatedAt: now,
+      version: 1,
+      photoIds: [],
+    };
+    await db.put("reports", copy);
+    // copy attachments
+    const atts = await db.getAllFromIndex("attachments", "by-reportId", r.id);
+    for (const a of atts) {
+      await db.put("attachments", { ...a, id: crypto.randomUUID(), reportId: newId, createdAt: now });
+    }
+    await loadReports();
+    await loadReport(copy);
+  }
+
   async function loadReport(r: Report) {
     setReportNumber(r.reportNumber); setTechnician(r.technician);
     setCustomerName(r.customerNameSnapshot); setServiceAddress("");
@@ -432,6 +456,7 @@ export default function ReportClient() {
                 </div>
                 <div className="flex gap-2">
                   <Button variant="ghost" size="sm" onClick={() => loadReport(r)}>Edit</Button>
+                  <Button variant="ghost" size="sm" onClick={() => duplicateReport(r)}>Duplicate</Button>
                   <Button variant="ghost" size="sm" onClick={() => handleDelete(r.id)}>Delete</Button>
                 </div>
               </div>
