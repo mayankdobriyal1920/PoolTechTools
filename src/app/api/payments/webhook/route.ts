@@ -4,6 +4,31 @@ import { getPool } from "@/lib/server/db";
 import crypto from "node:crypto";
 import { generateLicenseKey, hashLicenseKey } from "@/lib/server/license";
 
+async function fetchCustomerEmail(customerId: string): Promise<string | null> {
+  const paddleApiKey = process.env.PADDLE_API_KEY;
+  if (!paddleApiKey) {
+    console.error("[EMAIL] PADDLE_API_KEY not set, cannot fetch customer email");
+    return null;
+  }
+  try {
+    const res = await fetch(`https://api.paddle.com/customers/${customerId}`, {
+      headers: {
+        Authorization: `Bearer ${paddleApiKey}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) {
+      console.error("[EMAIL] Failed to fetch customer", customerId, "status:", res.status);
+      return null;
+    }
+    const data = await res.json();
+    return data.customer_email || null;
+  } catch (err: any) {
+    console.error("[EMAIL] Error fetching customer", customerId, ":", err?.message);
+    return null;
+  }
+}
+
 function verifyPaddleSignature(rawBody: string, signatureHeader: string | null, secret: string): boolean {
   if (!signatureHeader) return false;
   const trimmedSecret = secret.trim();
@@ -88,19 +113,31 @@ export async function POST(req: NextRequest) {
 
       const existing = await client.query("SELECT license_id FROM licenses WHERE paddle_transaction_id = $1", [transactionId]);
       if (existing.rowCount === 0) {
+        // Fetch customer email from Paddle API if not provided in webhook payload
+        let customerEmailFinal = customerEmail;
+        if (!customerEmail && customerId) {
+          console.log("[EMAIL] Fetching customer email from Paddle API for customer:", customerId);
+          customerEmailFinal = await fetchCustomerEmail(customerId);
+          if (customerEmailFinal) {
+            console.log("[EMAIL] Fetched customer email:", customerEmailFinal);
+          } else {
+            console.log("[EMAIL] Could not fetch customer email for:", customerId);
+          }
+        }
+
         const key = generateLicenseKey();
         const hash = hashLicenseKey(key);
         await client.query(
           `INSERT INTO licenses (license_key_hash, customer_email, paddle_transaction_id, paddle_customer_id, product_id, price_id, amount_cents, currency, status, email_delivery_status)
            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
-          [hash, customerEmail || "unknown", transactionId, customerId, productId, priceId, parseInt(total || "2900", 10), currency || "USD", "active", "pending"]
+          [hash, customerEmailFinal || "unknown", transactionId, customerId, productId, priceId, parseInt(total || "2900", 10), currency || "USD", "active", "pending"]
         );
         try {
-          if (customerEmail) {
+          if (customerEmailFinal) {
             const { getEmailService } = await import("@/lib/server/email");
             const emailSvc = getEmailService();
             const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "";
-            const res = await emailSvc.sendPurchaseConfirmation(customerEmail, { licenseKey: key, activationUrl: `${appUrl}/pro/activate` });
+            const res = await emailSvc.sendPurchaseConfirmation(customerEmailFinal, { licenseKey: key, activationUrl: `${appUrl}/pro/activate` });
             console.log("[EMAIL] Send result:", JSON.stringify(res));
             await client.query("UPDATE licenses SET email_delivery_status=$2, email_sent_at=NOW(), email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1",
               [transactionId, res.success ? "sent" : "failed"]);
