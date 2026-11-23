@@ -19,7 +19,7 @@ self.addEventListener("fetch", (event) => {
   if (req.method !== "GET") return;
   // Network-first for API
   if (req.url.includes("/api/")) {
-    event.respondWith(fetch(req).catch(() => caches.match(req) as Promise<Response>));
+    event.respondWith(fetch(req).catch(() => caches.match(req)));
     return;
   }
   // Cache-first for app shell & assets
@@ -28,6 +28,6 @@ self.addEventListener("fetch", (event) => {
       const clone = res.clone();
       caches.open(CACHE_NAME).then((c) => c.put(req, clone)).catch(() => {});
       return res;
-    }).catch(() => cached as Response))
+    }).catch(() => cached))
   );
 });
