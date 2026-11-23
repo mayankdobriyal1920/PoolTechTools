@@ -152,35 +152,35 @@
 ## Phase 4 — Service Report Creation & PDF
 
 ### 4.1 Report Form
-- [ ] P0 Business header (auto from profile; Pro branding)
-- [ ] P0 Visit metadata (customer, address, date/time, service type, water temp, weather)
-- [ ] P0 Quick-tap chips (10 standard + custom adder)
-- [ ] P0 Water readings grid (FC, TC, pH, TA, CH, CYA, salt, PSI)
-- [ ] P0 Chemicals repeater (product, amount, unit, 1-tap import)
-- [ ] P0 Customer summary box
-- [ ] P0 Private notes box (lock icon, "Never shown to customer")
-- [ ] P0 Photo upload (max 2) with compression
-- [ ] P0 Report number generation (RPT-YYYYMMDD-NNNN)
-- [ ] P0 Save draft (debounced 2s auto-save)
-- [ ] P0 Edit existing report
+- [x] P0 Business header (auto from profile; Pro branding)
+- [x] P0 Visit metadata (customer, address, date/time, service type, water temp, weather)
+- [x] P0 Quick-tap chips (10 standard + custom adder)
+- [x] P0 Water readings grid (FC, TC, pH, TA, CH, CYA, salt, PSI)
+- [x] P0 Chemicals repeater (product, amount, unit, 1-tap import)
+- [x] P0 Customer summary box
+- [x] P0 Private notes box (lock icon, "Never shown to customer")
+- [x] P0 Photo upload (max 2) with compression
+- [x] P0 Report number generation (RPT-YYYYMMDD-NNNN)
+- [x] P0 Save draft (debounced 2s auto-save)
+- [x] P0 Edit existing report
 - [ ] P0 Duplicate report
-- [ ] P0 Delete report (soft delete)
-- [ ] P0 Reopen previous report
+- [x] P0 Delete report (soft delete)
+- [x] P0 Reopen previous report
 - [ ] P0 Unsaved changes prompt on navigation
 - [ ] P0 Double-click protection on save/share
 - [ ] P0 Form autosave indicator ("Saved Xs ago")
 - [ ] P0 Empty/loading/error/offline states
 
 ### 4.2 Photo Handling
-- [ ] P0 Client-side canvas compression (max 1024px, quality 0.75, JPEG)
+- [x] P0 Client-side canvas compression (max 1024px, quality 0.75, JPEG)
 - [ ] P0 MIME + magic bytes validation
-- [ ] P0 Max 10 MB original, max 2 per report
+- [x] P0 Max 10 MB original, max 2 per report
 - [ ] P0 HEIC conversion (best-effort, browser-dependent)
 - [ ] P0 EXIF handling (orientation; full strip best-effort)
 - [ ] P0 Corrupt image handling
 - [ ] P0 Compression failure fallback
 - [ ] P0 Storage quota check before add
-- [ ] P0 Attachment CRUD in IndexedDB (cascade on hard purge)
+- [x] P0 Attachment CRUD in IndexedDB (cascade on hard purge)
 
 ### 4.3 PDF Generation
 - [ ] P0 @react-pdf/renderer setup
