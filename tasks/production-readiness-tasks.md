@@ -414,15 +414,15 @@
 - [ ] P0 Email retry tests
 
 ### 10.4 Security
-- [ ] P0 CSP headers configured (AdSense/Paddle/fonts/monitoring)
-- [ ] P0 Security headers (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS)
-- [ ] P0 Input validation (Zod client + server)
+- [x] P0 CSP headers configured (AdSense/Paddle/fonts/monitoring)
+- [x] P0 Security headers (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS)
+- [x] P0 Input validation (Zod client + server)
 - [ ] P0 File validation (MIME + magic bytes + size)
 - [ ] P0 Rate limiting on license endpoints
-- [ ] P0 Secret management (env vars, .gitignore, no NEXT_PUBLIC_ secrets)
-- [ ] P0 Logging restrictions (no keys/emails/report contents)
+- [x] P0 Secret management (env vars, .gitignore, no NEXT_PUBLIC_ secrets)
+- [x] P0 Logging restrictions (no keys/emails/report contents)
 - [ ] P0 Source maps disabled in prod (or verified no secrets)
-- [ ] P0 Dependency audit (npm audit, lockfile)
+- [x] P0 Dependency audit (npm audit, lockfile)
 - [ ] P1 Threat model review (Appendix B)
 
 ### 10.5 Accessibility
@@ -441,7 +441,7 @@
 
 ### 10.7 Launch
 - [ ] P0 Privacy policy + Terms of Service pages
-- [ ] P0 Chemical + volume disclaimers present
+- [x] P0 Chemical + volume disclaimers present
 - [ ] P0 Error monitoring (Sentry) live
 - [ ] P0 Database backups configured
 - [ ] P0 Rollback procedure documented + tested
