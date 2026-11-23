@@ -359,7 +359,7 @@
 - [x] P0 Metadata (title, description, canonical, OG, Twitter) per page
 - [x] P0 XML sitemap
 - [x] P0 robots.txt
-- [ ] P0 Internal linking + breadcrumbs
+- [x] P0 Internal linking + breadcrumbs
 - [x] P0 Structured data (SoftwareApplication, FAQPage, HowTo)
 - [x] P0 10+ indexable pages with original content (no thin pages)
 - [x] P0 Calculation methodology pages
@@ -369,10 +369,10 @@
 
 ### 9.2 AdSense
 - [ ] P0 Apply for AdSense (approval not guaranteed)
-- [ ] P0 Ad placements (below results on tool pages, mid-content in guides)
-- [ ] P0 Exclude ads from report forms, PDF previews, Pro screens, checkout
+- [x] P0 Ad placements (below results on tool pages, mid-content in guides)
+- [x] P0 Exclude ads from report forms, PDF previews, Pro screens, checkout
 - [x] P0 Pro ad-free: do not load AdSense scripts when valid Pro token
-- [ ] P0 Google Consent Mode v2
+- [x] P0 Google Consent Mode v2
 - [ ] P1 Certified CMP for EEA/UK (if serving)
 - [ ] P1 Verify current Google policies
 
