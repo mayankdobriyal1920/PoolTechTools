@@ -1,6 +1,7 @@
 import { Logo } from "@/components/layout/Logo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AdSlot } from "@/components/AdSlot";
 import { UpgradeButton } from "@/components/UpgradeButton";
 
 const features = [
@@ -66,6 +67,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6"><AdSlot slot="6070930694" /></div>
 
       {/* Features */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">

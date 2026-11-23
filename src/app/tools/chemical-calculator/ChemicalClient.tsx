@@ -9,8 +9,8 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Checkbox } from "@/components/ui/Checkbox";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const MASS_UNITS: MassUnit[] = ["oz", "lbs", "g", "kg"];
 const FLUID_UNITS: FluidUnit[] = ["floz", "cups", "qt", "gal", "mL", "L"];
@@ -95,6 +95,8 @@ export default function ChemicalClient() {
         </div>
       </Card>
 
+      <div className="mt-6"><AdSlot slot="9214687527" /></div>
+
       {result && (
         <Card className="mt-6">
           <div className="flex items-center justify-between">
@@ -121,7 +123,6 @@ export default function ChemicalClient() {
           </div>
         </Card>
       )}
-      <AdSlot slot="tool-result-banner" className="mt-6" />
     </div>
   );
 }

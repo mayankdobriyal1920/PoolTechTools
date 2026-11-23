@@ -186,7 +186,7 @@ export default function PoolVolumePage() {
           </p>
         </Card>
       )}
-      <AdSlot slot="tool-result-banner" className="mt-6" />
+      <div className="mt-6"><AdSlot slot="9214687527" /></div>
     </div>
   );
 }

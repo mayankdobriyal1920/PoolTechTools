@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
   title: "How to Calculate Pool Volume (Gallons) — PoolTechTools",
@@ -22,6 +23,8 @@ export default function PoolVolumeGuide() {
 
       <h2 className="mt-6 text-xl font-bold text-brand-800">Oval</h2>
       <p className="mt-2 text-brand-800">Volume (gal) = (π / 4) × length × width × average depth × 7.48052.</p>
+
+      <div className="my-6"><AdSlot slot="9592081145" /></div>
 
       <h2 className="mt-6 text-xl font-bold text-brand-800">Kidney / Irregular</h2>
       <p className="mt-2 text-brand-800">

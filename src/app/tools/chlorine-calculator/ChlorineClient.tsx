@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { AdSlot } from "@/components/AdSlot";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 export default function ChlorineClient() {
@@ -86,7 +85,6 @@ export default function ChlorineClient() {
           </p>
         </Card>
       )}
-      <AdSlot slot="tool-result-banner" className="mt-6" />
     </div>
   );
 }

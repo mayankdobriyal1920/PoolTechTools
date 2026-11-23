@@ -9,8 +9,8 @@ import { TokenRefresh } from "@/components/TokenRefresh";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { OfflineStatusProvider } from "@/components/OfflineStatusProvider";
 import { UpdateBanner } from "@/components/UpdateBanner";
-import { AdSenseScript } from "@/components/AdSenseScript";
 import { NetworkStatus } from "@/components/NetworkStatus";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { ToastProvider } from "@/components/ui/Toast";
 import Script from "next/script";
 
