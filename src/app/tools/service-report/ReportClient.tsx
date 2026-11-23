@@ -331,10 +331,11 @@ export default function ReportClient() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-brand-800">Service Report Maker</h1>
-        <p className="mt-2 text-brand-800">Build a professional service report in seconds.</p>
-      </div>
+        <PageHeader title="Service Report Maker" subtitle="Build a professional service report in seconds." breadcrumbs={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Service Report", href: "/tools/service-report" }]} />
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-brand-800">Service Report Maker</h1>
+          <p className="mt-2 text-brand-800">Build a professional service report in seconds.</p>
+        </div>
 
       <Card className="mb-6">
         <h2 className="text-lg font-bold text-brand-800">Business &amp; Visit</h2>

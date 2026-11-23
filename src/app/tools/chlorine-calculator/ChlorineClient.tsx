@@ -30,6 +30,7 @@ export default function ChlorineClient() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <PageHeader title="Chlorine Calculator" subtitle="Combined chlorine from free & total chlorine readings." breadcrumbs={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Chlorine Calculator", href: "/tools/chlorine-calculator" }]} />
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Chlorine Calculator</h1>
         <p className="mt-2 text-brand-800">Combined chlorine from free &amp; total chlorine readings.</p>

@@ -90,7 +90,7 @@ export default function PoolVolumePage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Pool Volume Calculator" }]} />
+      <PageHeader title="Pool Volume Calculator" subtitle="Estimate U.S. gallons for any pool shape." breadcrumbs={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Pool Volume", href: "/tools/pool-volume" }]} />
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Pool Volume Calculator</h1>
         <p className="mt-2 text-brand-800">Estimate U.S. gallons for any pool shape.</p>

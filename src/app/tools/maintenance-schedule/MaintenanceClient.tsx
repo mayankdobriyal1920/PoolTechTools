@@ -74,8 +74,9 @@ export default function MaintenanceClient() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-brand-800">Maintenance Schedule</h1>
+        <PageHeader title="Maintenance Schedule" subtitle="Daily, weekly, monthly & seasonal tasks." breadcrumbs={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Maintenance Schedule", href: "/tools/maintenance-schedule" }]} />
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-brand-800">Maintenance Schedule</h1>
         <p className="mt-2 text-brand-800">Track daily, weekly, monthly &amp; seasonal tasks.</p>
       </div>
 

@@ -62,6 +62,7 @@ export default function ChemicalClient() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <PageHeader title="Chemical Calculator" subtitle="Label-rate scaling — scale a product label dose to your pool." breadcrumbs={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Chemical Calculator", href: "/tools/chemical-calculator" }]} />
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Chemical Calculator</h1>
         <p className="mt-2 text-brand-800">Label-rate scaling — mathematically scale a product label dose to your pool.</p>

@@ -96,6 +96,7 @@ export default function WaterTestClient() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+      <PageHeader title="Water Test Log" subtitle="Record and track water chemistry readings." breadcrumbs={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Water Test Log", href: "/tools/water-test-log" }]} />
       <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
         <div>
           <h1 className="text-3xl font-bold text-brand-800">Water Test Log</h1>
