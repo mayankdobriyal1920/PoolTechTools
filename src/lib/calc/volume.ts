@@ -132,6 +132,6 @@ export function calculateVolume(input: VolumeInput): VolumeResult {
 
 // Display helpers
 export function displayGallons(g: number): string {
-  if (g >= 100) return Math.round(g / 10) * 10 + ' gal';
-  return Math.round(g) + ' gal';
+  if (g >= 100) return (Math.round(g / 10) * 10).toLocaleString("en-US") + " gal";
+  return Math.round(g).toLocaleString("en-US") + " gal";
 }

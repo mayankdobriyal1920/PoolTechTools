@@ -381,12 +381,12 @@
 ## Phase 10 — Testing, Security, Launch
 
 ### 10.1 Unit Tests (Vitest)
-- [ ] P0 Pool volume (all shapes, fixtures, boundaries, invalid inputs)
-- [ ] P0 Unit conversions (round-trip 1e-9)
-- [ ] P0 Chemical scaling (label-rate, dimension enforcement, zero ref, missing checkbox)
-- [ ] P0 Chlorine CC (TC-FC, TC<FC warning, no coercion)
-- [ ] P0 Kidney trapezoidal (positions, widths, validation)
-- [ ] P0 Validation schemas (Zod)
+- [x] P0 Pool volume (all shapes, fixtures, boundaries, invalid inputs)
+- [x] P0 Unit conversions (round-trip 1e-9)
+- [x] P0 Chemical scaling (label-rate, dimension enforcement, zero ref, missing checkbox)
+- [x] P0 Chlorine CC (TC-FC, TC<FC warning, no coercion)
+- [x] P0 Kidney trapezoidal (positions, widths, validation)
+- [x] P0 Validation schemas (Zod)
 - [ ] P1 IndexedDB repositories
 
 ### 10.2 Integration Tests
