@@ -196,11 +196,11 @@
 
 ### 4.4 Sharing & Export
 - [x] P0 Preview PDF
-- [ ] P0 Share PDF via navigator.share (with canShare check)
+- [x] P0 Share PDF via navigator.share (with canShare check)
 - [x] P0 Download fallback
-- [ ] P0 AbortError handled silently
+- [x] P0 AbortError handled silently
 - [x] P0 Print
-- [ ] P0 Copy SMS Summary (no private notes)
+- [x] P0 Copy SMS Summary (no private notes)
 - [ ] P0 Export JSON backup (report-level)
 - [ ] P1 Private note exclusion tests (PDF bytes, SMS, share payload, analytics)
 
@@ -440,7 +440,7 @@
 - [ ] P1 Core Web Vitals
 
 ### 10.7 Launch
-- [ ] P0 Privacy policy + Terms of Service pages
+- [x] P0 Privacy policy + Terms of Service pages
 - [x] P0 Chemical + volume disclaimers present
 - [ ] P0 Error monitoring (Sentry) live
 - [ ] P0 Database backups configured

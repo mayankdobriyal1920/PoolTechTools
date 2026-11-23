@@ -212,6 +212,49 @@ export default function ReportClient() {
     }
   }
 
+  async function handleSharePDF() {
+    try {
+      const { pdf } = await import("@react-pdf/renderer");
+      const { ReportPDF } = await import("@/lib/pdf/ReportPDF");
+      const db = await getDB();
+      const r = savedId ? await db.get("reports", savedId) : null;
+      const publicReport = r ? (({ privateNotes: _pn, ...rest }) => rest)(r) : {
+        id: "draft", customerNameSnapshot: customerName || "Walk-in", reportNumber: reportNumber || "DRAFT",
+        visitDate: new Date(visitDate).toISOString(), technician: technician || "Technician", tasks,
+        readings: Object.fromEntries(Object.entries(readings).map(([k, v]) => [k, parseFloat(v)]).filter(([, v]) => !isNaN(v as number))),
+        chemicals: chemicals.filter((c) => c.product.trim()).map((c) => ({ product: c.product, amount: parseFloat(c.amount) || 0, unit: c.unit })),
+        customerSummary, photoIds: photos.map((p) => p.id),
+        createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(), version: 1,
+      };
+      const photoDataUrls = photos.map((p) => p.url);
+      const blob = await pdf(<ReportPDF report={publicReport as any} businessName="PoolTechTools" photoDataUrls={photoDataUrls} />).toBlob();
+      const file = new File([blob], `${publicReport.reportNumber || "report"}.pdf`, { type: "application/pdf" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: publicReport.reportNumber, text: "Pool service report" });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = `${publicReport.reportNumber || "report"}.pdf`; a.click();
+        URL.revokeObjectURL(url);
+      }
+    } catch (err: any) {
+      if (err?.name !== "AbortError") alert("Share failed: " + (err.message || "unknown"));
+    }
+  }
+
+  function handleCopySMS() {
+    const lines = [
+      `PoolTechTools Service Report`,
+      customerName ? `Customer: ${customerName}` : "",
+      `Date: ${new Date(visitDate).toLocaleDateString()}`,
+      tasks.length ? `Tasks: ${tasks.join(", ")}` : "",
+      Object.keys(readings).length ? `Readings: ${Object.entries(readings).map(([k, v]) => `${k}=${v}`).join(", ")}` : "",
+      chemicals.length ? `Chemicals: ${chemicals.filter((c) => c.product.trim()).map((c) => `${c.product} ${c.amount}${c.unit}`).join(", ")}` : "",
+      customerSummary ? `Notes: ${customerSummary}` : "",
+    ].filter(Boolean).join("\n");
+    navigator.clipboard.writeText(lines).then(() => alert("SMS summary copied to clipboard.")).catch(() => alert("Copy failed."));
+  }
+
   function resetForm() {
     setReportNumber(""); setTechnician(""); setCustomerName(""); setServiceAddress("");
     setVisitDate(new Date().toISOString().slice(0, 16)); setServiceType("Regular service");
@@ -344,6 +387,8 @@ export default function ReportClient() {
       <div className="flex flex-wrap gap-3">
         <Button onClick={handleSave} loading={saving}>{savedId ? "Update Report" : "Save Report"}</Button>
         <Button variant="ghost" onClick={handleDownloadPDF}>Download PDF</Button>
+        <Button variant="ghost" onClick={handleSharePDF}>Share PDF</Button>
+        <Button variant="ghost" onClick={handleCopySMS}>Copy SMS Summary</Button>
         <Button variant="ghost" onClick={resetForm}>New Report</Button>
       </div>
 
