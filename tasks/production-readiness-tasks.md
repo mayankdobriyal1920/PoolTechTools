@@ -289,7 +289,7 @@
 - [x] P0 Webhook state machine (received→processing→processed/failed/skipped)
 - [x] P0 Event marked processed only after license commit
 - [ ] P0 Email enqueued independently (retry-safe)
-- [ ] P0 Refund/chargeback handling
+- [x] P0 Refund/chargeback handling
 - [ ] P0 Out-of-order + duplicate event handling
 - [ ] P0 Frontend redirect never creates license
 

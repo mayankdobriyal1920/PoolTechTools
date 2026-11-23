@@ -20,14 +20,14 @@ export function timingSafeEqual(a: string, b: string): boolean {
 
 
 export async function signEntitlementToken(payload: Record<string, unknown>): Promise<string> {
-  const { sign, getPublicKey } = await import("@noble/ed25519");
+  const { signAsync, getPublicKeyAsync } = await import("@noble/ed25519");
   const privB64 = process.env.ED25519_PRIVATE_KEY || "";
   const privBytes = Buffer.from(privB64, "base64");
   if (privBytes.length !== 32) throw new Error("ED25519_PRIVATE_KEY must be base64 of 32 raw bytes");
   const header = Buffer.from(JSON.stringify({ alg: "EdDSA", typ: "JWT", kid: (payload.kid as string) || "key-1" })).toString("base64url");
   const body = Buffer.from(JSON.stringify(payload)).toString("base64url");
   const signingInput = `${header}.${body}`;
-  const sig = sign(new TextEncoder().encode(signingInput), privBytes);
+  const sig = await signAsync(new TextEncoder().encode(signingInput), privBytes);
   return `${signingInput}.${Buffer.from(sig).toString("base64url")}`;
 }
 

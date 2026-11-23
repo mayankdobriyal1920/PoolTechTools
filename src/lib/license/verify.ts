@@ -1,5 +1,5 @@
 // src/lib/license/verify.ts — client-side Ed25519 token verification
-import { verify } from "@noble/ed25519";
+import { verifyAsync } from "@noble/ed25519";
 
 export interface EntitlementPayload {
   sub: string;
@@ -25,7 +25,7 @@ export async function verifyToken(token: string): Promise<{ valid: boolean; payl
     const pubBytes = Uint8Array.from(atob(pubB64), (c) => c.charCodeAt(0));
     const sigBytes = Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));
     const msgBytes = new TextEncoder().encode(`${h}.${b}`);
-    const ok = verify(sigBytes, msgBytes, pubBytes);
+    const ok = await verifyAsync(sigBytes, msgBytes, pubBytes);
     if (!ok) return { valid: false, payload: null, reason: "bad signature" };
     const payload = JSON.parse(atob(b.replace(/-/g, "+").replace(/_/g, "/"))) as EntitlementPayload;
     if (payload.aud !== "ptt-client") return { valid: false, payload, reason: "bad audience" };
