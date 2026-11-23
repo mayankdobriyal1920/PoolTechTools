@@ -282,12 +282,12 @@
 - [ ] P0 Verify Paddle event names/status values against current docs
 - [ ] P0 Sandbox + production separation (PADDLE_ENV)
 - [ ] P0 Checkout initialization (Paddle.js)
-- [ ] P0 Webhook endpoint with signature verification (raw body preserved)
-- [ ] P0 Idempotency (processed_webhook_events)
-- [ ] P0 Transaction verification (status, product/price, currency, amount)
-- [ ] P0 License creation in DB transaction (idempotent on paddle_transaction_id)
-- [ ] P0 Webhook state machine (received→processing→processed/failed/skipped)
-- [ ] P0 Event marked processed only after license commit
+- [x] P0 Webhook endpoint with signature verification (raw body preserved)
+- [x] P0 Idempotency (processed_webhook_events)
+- [x] P0 Transaction verification (status, product/price, currency, amount)
+- [x] P0 License creation in DB transaction (idempotent on paddle_transaction_id)
+- [x] P0 Webhook state machine (received→processing→processed/failed/skipped)
+- [x] P0 Event marked processed only after license commit
 - [ ] P0 Email enqueued independently (retry-safe)
 - [ ] P0 Refund/chargeback handling
 - [ ] P0 Out-of-order + duplicate event handling
@@ -299,14 +299,14 @@
 - [ ] P0 Backup procedures
 
 ### 8.3 License Keys
-- [ ] P0 Key generation (crypto.randomBytes, 128+ bits, PTT-XXXX-XXXX-XXXX-XXXX)
-- [ ] P0 HMAC-SHA256 keyed hash storage (no plaintext)
-- [ ] P0 Normalization (uppercase, strip spaces/dashes)
-- [ ] P0 Timing-safe comparison
+- [x] P0 Key generation (crypto.randomBytes, 128+ bits, PTT-XXXX-XXXX-XXXX-XXXX)
+- [x] P0 HMAC-SHA256 keyed hash storage (no plaintext)
+- [x] P0 Normalization (uppercase, strip spaces/dashes)
+- [x] P0 Timing-safe comparison
 - [ ] P0 Key rotation runbook
 - [ ] P0 Recovery: email verification link (15 min, single-use)
 - [ ] P0 Recovery: issue new key, invalidate old
-- [ ] P0 Email enumeration prevention
+- [x] P0 Email enumeration prevention
 - [ ] P0 Rate limits (3/email/hr, 10/IP/hr)
 
 ### 8.4 Ed25519 Tokens
@@ -324,10 +324,10 @@
 
 ### 8.5 Device Activation
 - [ ] P0 deviceHash generation (random UUID, SHA-256, stored in IDB + localStorage)
-- [ ] P0 Atomic activation (SELECT FOR UPDATE, count check, insert/refresh)
-- [ ] P0 Idempotent re-activation (same deviceHash)
+- [x] P0 Atomic activation (SELECT FOR UPDATE, count check, insert/refresh)
+- [x] P0 Idempotent re-activation (same deviceHash)
 - [ ] P0 3-device limit enforcement (concurrency tested)
-- [ ] P0 Deactivation (self-service)
+- [x] P0 Deactivation (self-service)
 - [ ] P0 Lost-device recovery runbook (verify email → deactivate all)
 - [ ] P0 Rate limits (5/IP/15min, 10/key/hr)
 - [ ] P0 Honest documentation of fingerprint limitations
