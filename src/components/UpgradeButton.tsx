@@ -14,7 +14,24 @@ export function UpgradeButton() {
   useEffect(() => {
     const token = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
     if (!token) return;
-    initializePaddle({ token, environment: process.env.NEXT_PUBLIC_PADDLE_ENV === "production" ? "production" : "sandbox" })
+    initializePaddle({
+      token,
+      environment: process.env.NEXT_PUBLIC_PADDLE_ENV === "production" ? "production" : "sandbox",
+      eventCallback: (event: any) => {
+        if (event?.name === "checkout.completed") {
+          alert(
+            "Thank you for your purchase! 🎉\n\n" +
+            "Your license key has been sent to your email.\n\n" +
+            "To activate Pro:\n" +
+            "1. Check your email for your license key (PTT-XXXX-XXXX-XXXX-XXXX).\n" +
+            "2. Go to pooltechkit.online/pro/activate\n" +
+            "3. Enter your license key and a device name.\n" +
+            "4. Click Activate — Pro features will unlock instantly.\n\n" +
+            "You can activate on up to 3 devices."
+          );
+        }
+      },
+    })
       .then((p) => setPaddle(p))
       .catch(() => {});
   }, []);
