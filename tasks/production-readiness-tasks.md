@@ -303,7 +303,7 @@
 - [x] P0 HMAC-SHA256 keyed hash storage (no plaintext)
 - [x] P0 Normalization (uppercase, strip spaces/dashes)
 - [x] P0 Timing-safe comparison
-- [ ] P0 Key rotation runbook
+- [x] P0 Key rotation runbook
 - [x] P0 Recovery: email verification link (15 min, single-use)
 - [x] P0 Recovery: issue new key, invalidate old
 - [x] P0 Email enumeration prevention
