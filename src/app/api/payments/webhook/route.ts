@@ -30,10 +30,10 @@ async function fetchCustomerEmail(customerId: string): Promise<string | null> {
     const data = JSON.parse(resText);
     console.log("[EMAIL] Customer data parsed:", {
       customerId,
-      customer_email: data.customer_email,
+      customer_email: data.data?.email,
       raw: data,
     });
-    return data.customer_email || null;
+    return data.data?.email || null;
   } catch (err: any) {
     console.error("[EMAIL] Error fetching customer", customerId, ":", err?.message);
     return null;
