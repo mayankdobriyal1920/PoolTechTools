@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
               [transactionId, res.success ? "sent" : "failed"]);
           } else {
             console.log("[EMAIL] Skipping email - no customer email available for transaction:", transactionId);
-            await client.query("UPDATE licenses SET email_delivery_status='skipped', email_sent_at=NOW() WHERE paddle_transaction_id=$1",
+            await client.query("UPDATE licenses SET email_delivery_status='failed', email_sent_at=NOW() WHERE paddle_transaction_id=$1",
               [transactionId]);
           }
         } catch (e: any) {
