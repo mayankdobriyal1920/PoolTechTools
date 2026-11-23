@@ -10,11 +10,31 @@ export async function POST(req: NextRequest) {
   const sig = req.headers.get("paddle-signature") || "";
   const secret = process.env.PADDLE_WEBHOOK_SECRET || "";
 
+  console.log("[WEBHOOK] Received request", {
+    method: req.method,
+    url: req.url,
+    hasSignature: !!sig,
+    signatureLength: sig.length,
+    hasSecret: !!secret,
+    secretLength: secret.length,
+    secretPrefix: secret ? secret.slice(0, 8) + "..." : "none",
+  });
+
+  if (!secret) {
+    console.error("[WEBHOOK] PADDLE_WEBHOOK_SECRET environment variable is not set");
+    return NextResponse.json({ error: { code: "CONFIG_ERROR", message: "Webhook secret not configured" } }, { status: 500 });
+  }
+
   let event: any;
   try {
     event = await new Webhooks().unmarshal(rawBody, secret, sig);
+    console.log("[WEBHOOK] Signature verified", {
+      eventId: event?.eventId || event?.id,
+      eventType: event?.eventType || event?.type,
+    });
   } catch (err: any) {
-    return NextResponse.json({ error: { code: "INVALID_SIGNATURE", message: err?.message || "Bad signature" } }, { status: 400 });
+    console.error("[WEBHOOK] Signature verification failed:", err?.message);
+    return NextResponse.json({ error: { code: "INVALID_SIGNATURE", message: "Paddle webhook signature verification failed" } }, { status: 400 });
   }
 
   const eventId = event?.eventId || event?.id;
