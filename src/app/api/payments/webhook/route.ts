@@ -101,6 +101,7 @@ export async function POST(req: NextRequest) {
             const emailSvc = getEmailService();
             const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "";
             const res = await emailSvc.sendPurchaseConfirmation(customerEmail, { licenseKey: key, activationUrl: `${appUrl}/pro/activate` });
+            console.log("[EMAIL] Send result:", JSON.stringify(res));
             await client.query("UPDATE licenses SET email_delivery_status=$2, email_sent_at=NOW(), email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1",
               [transactionId, res.success ? "sent" : "failed"]);
           } else {
@@ -109,6 +110,7 @@ export async function POST(req: NextRequest) {
               [transactionId]);
           }
         } catch (e: any) {
+          console.error("[EMAIL] Send failed:", e?.message);
           await client.query("UPDATE licenses SET email_delivery_status='failed', email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1", [transactionId]).catch(() => {});
         }
       }
