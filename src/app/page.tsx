@@ -128,24 +128,15 @@ export default function Home() {
               <li>✓ 100% ad-free</li>
             </ul>
             <div className="mt-8 w-full">
-              {loading || !isPro ? (
-                <UpgradeButton />
-              ) : (
-                <div className="flex items-center justify-center py-4">
-                  <span className="inline-flex items-center rounded-full bg-brand-500/20 border border-brand-500/30 px-4 py-2 text-sm font-semibold text-brand-800">
-                    Pro Active ✓
-                  </span>
+              <div className="flex flex-col items-center justify-center py-4">
+                <div className="rounded-full bg-brand-500/20 border border-brand-500/30 px-4 py-2 text-sm font-semibold text-brand-800">
+                  Pro Active ✓
                 </div>
-              )}
+              </div>
             </div>
-            <p className="mt-3 text-center text-xs text-brand-800">
-              Already purchased? <a href="/pro/activate" className="font-semibold text-brand-700 underline">Activate your license</a>
-            </p>
-          </div>
+            </div>
         </div>
       </section>
-
-      {/* FAQ */}
       <section id="faq" className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold text-brand-800">Frequently asked questions</h2>
