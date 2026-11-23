@@ -1,5 +1,6 @@
 // src/lib/backup/import.ts
 import { getDB } from "@/lib/db";
+import { z } from "zod";
 import JSZip from "jszip";
 
 export interface ImportPreview {
@@ -7,6 +8,27 @@ export interface ImportPreview {
   missingAttachments: string[];
   manifest: any;
 }
+
+
+const BackupDataSchema = z.object({
+  settings: z.array(z.any()).optional().default([]),
+  customers: z.array(z.any()).optional().default([]),
+  pools: z.array(z.any()).optional().default([]),
+  reports: z.array(z.any()).optional().default([]),
+  waterTests: z.array(z.any()).optional().default([]),
+  templates: z.array(z.any()).optional().default([]),
+  maintenanceTasks: z.array(z.any()).optional().default([]),
+});
+
+const ManifestSchema = z.object({
+  format: z.literal("PoolTechBackupV1"),
+  schemaVersion: z.number().int().positive(),
+  appVersion: z.string(),
+  createdAt: z.string(),
+  counts: z.record(z.string(), z.number()).optional(),
+  totalSizeBytes: z.number().optional(),
+  files: z.array(z.object({ path: z.string(), sha256: z.string(), sizeBytes: z.number() })).optional(),
+});
 
 export async function previewImport(file: File): Promise<ImportPreview> {
   if (file.name.endsWith(".json")) {
@@ -62,8 +84,22 @@ export async function performImport(file: File, mode: "merge" | "replace"): Prom
     }
   }
 
-  // validate in memory first (basic)
+  // validate in memory first
   if (!data || typeof data !== "object") throw new Error("Invalid backup data");
+  const parsed = BackupDataSchema.safeParse(data);
+  if (!parsed.success) throw new Error("Invalid backup data: " + parsed.error.issues.map((i) => i.message).join(", "));
+  data = parsed.data;
+
+  // version check
+  if (file.name.endsWith(".zip")) {
+    const zip = await JSZip.loadAsync(file);
+    const manifestText = await zip.file("manifest.json")?.async("string");
+    if (manifestText) {
+      const manifestParsed = ManifestSchema.safeParse(JSON.parse(manifestText));
+      if (!manifestParsed.success) throw new Error("Invalid manifest");
+      if (manifestParsed.data.schemaVersion > 1) throw new Error("Unsupported backup version: " + manifestParsed.data.schemaVersion);
+    }
+  }
 
   // staged commit
   const tx = db.transaction(
@@ -87,6 +123,12 @@ export async function performImport(file: File, mode: "merge" | "replace"): Prom
       await tx.objectStore("attachments").put({ id, reportId: "", blob, filename: id + ".jpg", mimeType: "image/jpeg", sizeBytes: blob.size, createdAt: new Date().toISOString() });
     }
     await tx.done;
+
+    // post-import verification: check counts
+    const reportCount = await db.count("reports");
+    if (reportCount < (data.reports || []).length && mode === "replace") {
+      console.warn("Import count mismatch");
+    }
   } catch (e) {
     tx.abort();
     throw e;
