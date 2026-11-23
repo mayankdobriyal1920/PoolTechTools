@@ -15,8 +15,10 @@ function verifyPaddleSignature(rawBody: string, signatureHeader: string | null, 
   const h1 = h1Part.slice(3);
   const signedPayload = `${ts}:${rawBody}`;
   const expected = crypto.createHmac("sha256", trimmedSecret).update(signedPayload).digest("hex");
-  if (expected.length !== h1.length) return false;
-  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(h1, "hex"));
+  const expectedBuf = Buffer.from(expected, "hex");
+  const h1Buf = Buffer.from(h1, "hex");
+  if (expectedBuf.length !== h1Buf.length) return false;
+  return crypto.timingSafeEqual(expectedBuf, h1Buf);
 }
 
 export async function POST(req: NextRequest) {
