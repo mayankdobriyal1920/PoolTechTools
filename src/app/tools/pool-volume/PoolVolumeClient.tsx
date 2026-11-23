@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
 type Units = "imperial" | "metric";
 
@@ -87,6 +88,7 @@ export default function PoolVolumePage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Pool Volume Calculator" }]} />
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Pool Volume Calculator</h1>
         <p className="mt-2 text-brand-700/70">Estimate U.S. gallons for any pool shape.</p>
