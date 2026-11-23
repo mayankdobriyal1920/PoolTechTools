@@ -260,7 +260,7 @@
 
 ## Phase 7 — PWA & Offline
 
-- [ ] P0 @serwist/next setup (verify Next.js 16 compat)
+- [x] P0 @serwist/next setup (verify Next.js 16 compat)
 - [x] P0 Web app manifest (name, icons, display, theme)
 - [x] P0 Service worker with caching strategies (Cache-First app shell, Network-Only API, SWR pages)
 - [x] P0 Cache versioning via build hash + purge old
