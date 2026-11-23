@@ -14,7 +14,7 @@ export function Input({ label, error, hint, className, id, ...rest }: InputProps
       {label && <label htmlFor={inputId} className="text-sm font-medium text-brand-800">{label}</label>}
       <input id={inputId} className={cn("input", error && "border-red-500", className)} {...rest} />
       {error && <p className="text-xs text-red-600">{error}</p>}
-      {hint && !error && <p className="text-xs text-brand-700/60">{hint}</p>}
+      {hint && !error && <p className="text-xs text-brand-700">{hint}</p>}
     </div>
   );
 }

@@ -12,7 +12,7 @@ export function OfflineBanner() {
   }, []);
   if (!offline) return null;
   return (
-    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-full bg-amber-500 px-4 py-2 text-sm font-medium text-white shadow-lg">
+    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-full bg-amber-700 px-4 py-2 text-sm font-medium text-white shadow-lg">
       You're offline — changes saved locally.
     </div>
   );

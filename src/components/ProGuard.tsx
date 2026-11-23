@@ -17,13 +17,13 @@ export function ProGuard({ children }: { children: React.ReactNode }) {
       <div className="mx-auto max-w-xl px-4 py-16 text-center">
         <Card>
           <h2 className="text-2xl font-bold text-brand-800">Pro Feature</h2>
-          <p className="mt-3 text-brand-700/80">
+          <p className="mt-3 text-brand-800">
             Customer &amp; pool management, service history, templates, and branding require a Pro license.
           </p>
           <div className="mt-6">
             <Link href="/#pricing" className="btn-primary inline-block">Upgrade to Pro ($29)</Link>
           </div>
-          <p className="mt-4 text-xs text-brand-700/60">
+          <p className="mt-4 text-xs text-brand-700">
             Your data is safe and exportable even without Pro.
           </p>
         </Card>

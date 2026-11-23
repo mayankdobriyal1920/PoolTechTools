@@ -51,7 +51,7 @@ export default function Home() {
             <h1 className="animate-fadeup text-4xl font-extrabold tracking-tight sm:text-6xl">
               <span className="text-gradient">Pool care,</span> simplified.
             </h1>
-            <p className="animate-fadeup mt-5 max-w-2xl text-lg text-brand-800/80 sm:text-xl">
+            <p className="animate-fadeup mt-5 max-w-2xl text-lg text-brand-800 sm:text-xl">
               Volume math, label-rate chemical scaling, maintenance checklists, water test logs, and pro-grade service reports —
               fast, mobile-first, and fully offline-capable.
             </p>
@@ -59,7 +59,7 @@ export default function Home() {
               <a href="/tools/pool-volume" className="btn-primary">Open Calculators</a>
               <a href="/tools/service-report" className="btn-ghost">Create Service Report</a>
             </div>
-            <div className="mt-6 flex items-center gap-2 text-sm text-brand-700/70">
+            <div className="mt-6 flex items-center gap-2 text-sm text-brand-800">
               <span className="inline-block h-2 w-2 rounded-full bg-poolgreen-500" />
               Works offline · No account required · Free to start
             </div>
@@ -71,14 +71,14 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold text-brand-800">Everything you need, in your pocket</h2>
-          <p className="mt-3 text-brand-700/70">Built for pool owners and independent technicians.</p>
+          <p className="mt-3 text-brand-800">Built for pool owners and independent technicians.</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <div key={f.title} className="glass-card p-6">
               <div className="mb-3 text-3xl">{f.icon}</div>
               <h3 className="text-lg font-semibold text-brand-800">{f.title}</h3>
-              <p className="mt-2 text-sm text-brand-700/70">{f.desc}</p>
+              <p className="mt-2 text-sm text-brand-800">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -88,29 +88,29 @@ export default function Home() {
       <section id="pricing" className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-bold text-brand-800">Simple, honest pricing</h2>
-          <p className="mt-3 text-brand-700/70">Free forever for essentials. Pro is a one-time $29 lifetime license.</p>
+          <p className="mt-3 text-brand-800">Free forever for essentials. Pro is a one-time $29 lifetime license.</p>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           <div className="glass-card p-8">
             <h3 className="text-xl font-bold text-brand-800">Free</h3>
             <div className="mt-2 text-4xl font-extrabold text-brand-700">$0</div>
-            <p className="mt-1 text-sm text-brand-700/70">Forever</p>
-            <ul className="mt-6 space-y-2 text-sm text-brand-800/80">
+            <p className="mt-1 text-sm text-brand-800">Forever</p>
+            <ul className="mt-6 space-y-2 text-sm text-brand-800">
               <li>✓ All calculators (volume, chemical, chlorine)</li>
               <li>✓ Maintenance schedules</li>
               <li>✓ Water test logs + CSV export</li>
               <li>✓ Service reports + PDF export &amp; sharing</li>
               <li>✓ Manual JSON + ZIP backup/restore</li>
-              <li className="text-brand-700/50">✗ Ads shown (AdSense)</li>
+              <li className="text-brand-700">✗ Ads shown (AdSense)</li>
             </ul>
             <a href="/tools/pool-volume" className="btn-ghost mt-8 w-full text-center">Get Started Free</a>
           </div>
           <div className="glass-strong relative overflow-hidden p-8 ring-2 ring-brand-500">
-            <span className="absolute right-4 top-4 rounded-full bg-brand-500 px-3 py-1 text-xs font-semibold text-white">Best Value</span>
+            <span className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-xs font-semibold text-white">Best Value</span>
             <h3 className="text-xl font-bold text-brand-800">Pro</h3>
             <div className="mt-2 text-4xl font-extrabold text-brand-700">$29</div>
-            <p className="mt-1 text-sm text-brand-700/70">One-time · Lifetime</p>
-            <ul className="mt-6 space-y-2 text-sm text-brand-800/80">
+            <p className="mt-1 text-sm text-brand-800">One-time · Lifetime</p>
+            <ul className="mt-6 space-y-2 text-sm text-brand-800">
               <li>✓ Everything in Free</li>
               <li>✓ Saved customer &amp; pool profiles</li>
               <li>✓ Service history &amp; 1-tap cloning</li>
@@ -120,8 +120,8 @@ export default function Home() {
               <li>✓ 100% ad-free</li>
             </ul>
             <div className="mt-8 w-full"><UpgradeButton /></div>
-            <p className="mt-3 text-center text-xs text-brand-700/70">
-              Already purchased? <a href="/pro/activate" className="font-semibold text-brand-600 underline">Activate your license</a>
+            <p className="mt-3 text-center text-xs text-brand-800">
+              Already purchased? <a href="/pro/activate" className="font-semibold text-brand-700 underline">Activate your license</a>
             </p>
           </div>
         </div>
@@ -137,9 +137,9 @@ export default function Home() {
             <details key={f.q} className="glass-card group p-5">
               <summary className="cursor-pointer list-none font-semibold text-brand-800">
                 {f.q}
-                <span className="float-right text-brand-500 transition group-open:rotate-180">▾</span>
+                <span className="float-right text-brand-700 transition group-open:rotate-180">▾</span>
               </summary>
-              <p className="mt-3 text-sm text-brand-700/80">{f.a}</p>
+              <p className="mt-3 text-sm text-brand-800">{f.a}</p>
             </details>
           ))}
         </div>

@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { TemplatesManager } from "@/components/TemplatesManager";
 
 export default function CustomersClient() {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -104,7 +105,7 @@ export default function CustomersClient() {
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Customers &amp; Pools</h1>
-        <p className="mt-2 text-brand-700/70">Pro feature — manage client records and pool profiles locally.</p>
+        <p className="mt-2 text-brand-800">Pro feature — manage client records and pool profiles locally.</p>
         <Badge tone="warning">Pro</Badge>
       </div>
 
@@ -129,7 +130,7 @@ export default function CustomersClient() {
         <Card>
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold text-brand-800">Customers ({customers.length})</h2>
-            <label className="flex items-center gap-2 text-xs text-brand-700/70 cursor-pointer">
+            <label className="flex items-center gap-2 text-xs text-brand-800 cursor-pointer">
               <input type="checkbox" checked={showArchived} onChange={(e) => { setShowArchived(e.target.checked); load(); }} />
               Show archived
             </label>
@@ -139,15 +140,15 @@ export default function CustomersClient() {
               <div key={c.id} className={`glass flex cursor-pointer items-center justify-between rounded-lg p-3 ${selectedCustomer === c.id ? "ring-2 ring-brand-500" : ""}`} onClick={() => setSelectedCustomer(c.id)}>
                 <div>
                   <div className="font-medium text-brand-800">{c.name}</div>
-                  <div className="text-xs text-brand-700/60">{c.serviceAddress || c.phone || c.email || "—"}</div>
+                  <div className="text-xs text-brand-700">{c.serviceAddress || c.phone || c.email || "—"}</div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="text-xs text-brand-600" onClick={(e) => { e.stopPropagation(); setForm({ name: c.name, phone: c.phone || "", email: c.email || "", serviceAddress: c.serviceAddress || "", notes: c.notes || "" }); setEditingCustomerId(c.id); }}>Edit</button>
-                  <button className="text-xs text-red-500" onClick={(e) => { e.stopPropagation(); deleteCustomer(c.id); }}>Archive</button>
+                  <button className="text-xs text-brand-700" onClick={(e) => { e.stopPropagation(); setForm({ name: c.name, phone: c.phone || "", email: c.email || "", serviceAddress: c.serviceAddress || "", notes: c.notes || "" }); setEditingCustomerId(c.id); }}>Edit</button>
+                  <button className="text-xs text-red-700" onClick={(e) => { e.stopPropagation(); deleteCustomer(c.id); }}>Archive</button>
                 </div>
               </div>
             ))}
-            {customers.length === 0 && <p className="text-sm text-brand-700/60">No customers yet.</p>}
+            {customers.length === 0 && <p className="text-sm text-brand-700">No customers yet.</p>}
           </div>
         </Card>
       </div>
@@ -156,16 +157,16 @@ export default function CustomersClient() {
       {selectedCustomer && (
         <Card className="mt-6">
           <h2 className="text-lg font-bold text-brand-800">Service History</h2>
-          <p className="mt-1 text-xs text-brand-700/60">Past reports for this customer (most recent first).</p>
+          <p className="mt-1 text-xs text-brand-700">Past reports for this customer (most recent first).</p>
           <div className="mt-4 space-y-2">
             {(() => {
               const custReports = reports.filter((r) => r.customerId === selectedCustomer).sort((a, b) => b.visitDate.localeCompare(a.visitDate));
-              if (custReports.length === 0) return <p className="text-sm text-brand-700/60">No service history yet.</p>;
+              if (custReports.length === 0) return <p className="text-sm text-brand-700">No service history yet.</p>;
               return custReports.map((r) => (
                 <div key={r.id} className="glass flex items-center justify-between rounded-lg p-3">
                   <div>
                     <div className="font-medium text-brand-800">{r.reportNumber}</div>
-                    <div className="text-xs text-brand-700/60">{new Date(r.visitDate).toLocaleDateString()} · {r.tasks.length} tasks</div>
+                    <div className="text-xs text-brand-700">{new Date(r.visitDate).toLocaleDateString()} · {r.tasks.length} tasks</div>
                   </div>
                   <Button variant="ghost" size="sm" onClick={() => { loadReport(r); }}>Clone</Button>
                 </div>
@@ -209,15 +210,16 @@ export default function CustomersClient() {
               <div key={p.id} className="glass flex items-center justify-between rounded-lg p-3">
                 <div>
                   <div className="font-medium text-brand-800">{p.name}</div>
-                  <div className="text-xs text-brand-700/60">{p.shape} · {p.volumeGallons.toLocaleString()} gal · {p.surfaceType}</div>
+                  <div className="text-xs text-brand-700">{p.shape} · {p.volumeGallons.toLocaleString()} gal · {p.surfaceType}</div>
                 </div>
-                <button className="text-xs text-red-500" onClick={() => deletePool(p.id)}>Archive</button>
+                <button className="text-xs text-red-700" onClick={() => deletePool(p.id)}>Archive</button>
               </div>
             ))}
-            {customerPools.length === 0 && <p className="text-sm text-brand-700/60">No pools yet.</p>}
+            {customerPools.length === 0 && <p className="text-sm text-brand-700">No pools yet.</p>}
           </div>
         </Card>
       )}
+      <div className="mt-6"><TemplatesManager /></div>
     </div>
   );
 }

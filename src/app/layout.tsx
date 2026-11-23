@@ -7,6 +7,8 @@ import { OfflineBanner } from "@/components/states/OfflineBanner";
 import { ProLockBanner } from "@/components/ProLockBanner";
 import { TokenRefresh } from "@/components/TokenRefresh";
 import { UpdateBanner } from "@/components/UpdateBanner";
+import { NetworkStatus } from "@/components/NetworkStatus";
+import { ToastProvider } from "@/components/ui/Toast";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -52,9 +54,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+      <NetworkStatus />
+      <ToastProvider>
       <Script id="consent-mode" strategy="beforeInteractive">
         {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied"});`}
-      </Script><WaterBackground /><SwRegister /><OfflineBanner /><ProLockBanner /><TokenRefresh /><UpdateBanner />{children}</body>
+      </Script><WaterBackground /><SwRegister /><OfflineBanner /><ProLockBanner /><TokenRefresh /><UpdateBanner />{children}</ToastProvider>
+    </body>
     </html>
   );
 }

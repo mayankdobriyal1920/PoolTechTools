@@ -30,7 +30,7 @@ export default function ChlorineClient() {
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Chlorine Calculator</h1>
-        <p className="mt-2 text-brand-700/70">Combined chlorine from free &amp; total chlorine readings.</p>
+        <p className="mt-2 text-brand-800">Combined chlorine from free &amp; total chlorine readings.</p>
       </div>
 
       <Card>
@@ -51,15 +51,15 @@ export default function ChlorineClient() {
           <h2 className="text-xl font-bold text-brand-800">Readings</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
             <div>
-              <div className="text-sm text-brand-700/70">Free Chlorine</div>
+              <div className="text-sm text-brand-800">Free Chlorine</div>
               <div className="text-2xl font-extrabold text-brand-700">{fcN.toFixed(2)} ppm</div>
             </div>
             <div>
-              <div className="text-sm text-brand-700/70">Total Chlorine</div>
+              <div className="text-sm text-brand-800">Total Chlorine</div>
               <div className="text-2xl font-extrabold text-brand-700">{tcN.toFixed(2)} ppm</div>
             </div>
             <div>
-              <div className="text-sm text-brand-700/70">Combined Chlorine</div>
+              <div className="text-sm text-brand-800">Combined Chlorine</div>
               {cc.invalid ? (
                 <div className="text-2xl font-extrabold text-red-600">—</div>
               ) : (
@@ -74,12 +74,12 @@ export default function ChlorineClient() {
             </div>
           )}
           {targetFc.trim() && !isNaN(parseFloat(targetFc)) && (
-            <div className="mt-4 text-sm text-brand-700/80">
+            <div className="mt-4 text-sm text-brand-800">
               Target FC: {parseFloat(targetFc).toFixed(2)} ppm — current is{" "}
               {fcN < parseFloat(targetFc) ? "below" : fcN > parseFloat(targetFc) ? "above" : "at"} target (informational only).
             </div>
           )}
-          <p className="mt-4 text-xs text-brand-700/60">
+          <p className="mt-4 text-xs text-brand-700">
             Chlorine calculations do not replace product labels or professional water testing. Follow product labels and consult a pool professional.
           </p>
         </Card>

@@ -11,7 +11,7 @@ export function ProLockBanner() {
   const expired = reason === "expired" || reason === "clock rollback";
 
   return (
-    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-xl bg-amber-500 px-5 py-3 text-sm font-medium text-white shadow-lg">
+    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-xl bg-amber-800 px-5 py-3 text-sm font-medium text-white shadow-lg">
       <div className="flex items-center gap-3">
         <span>🔒</span>
         <div>

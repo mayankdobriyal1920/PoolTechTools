@@ -74,7 +74,7 @@ export default function MaintenanceClient() {
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Maintenance Schedule</h1>
-        <p className="mt-2 text-brand-700/70">Track daily, weekly, monthly &amp; seasonal tasks.</p>
+        <p className="mt-2 text-brand-800">Track daily, weekly, monthly &amp; seasonal tasks.</p>
       </div>
 
       <Card className="mb-6">
@@ -116,24 +116,24 @@ export default function MaintenanceClient() {
       </Card>
 
       <div className="mb-4 flex flex-wrap gap-2">
-        <button onClick={() => setFilter("all")} className={`rounded-full px-3 py-1 text-xs font-medium ${filter === "all" ? "bg-brand-500 text-white" : "bg-white/60 text-brand-700"}`}>All</button>
+        <button onClick={() => setFilter("all")} className={`rounded-full px-3 py-1 text-xs font-medium ${filter === "all" ? "bg-brand-700 text-white" : "bg-white/60 text-brand-700"}`}>All</button>
         {CATEGORIES.map((c) => (
-          <button key={c} onClick={() => setFilter(c)} className={`rounded-full px-3 py-1 text-xs font-medium capitalize ${filter === c ? "bg-brand-500 text-white" : "bg-white/60 text-brand-700"}`}>{c}</button>
+          <button key={c} onClick={() => setFilter(c)} className={`rounded-full px-3 py-1 text-xs font-medium capitalize ${filter === c ? "bg-brand-700 text-white" : "bg-white/60 text-brand-700"}`}>{c}</button>
         ))}
       </div>
 
       <div className="space-y-2">
         {filtered.map((t) => (
           <div key={t.id} className="glass-card flex items-center gap-3 p-4">
-            <input type="checkbox" checked={!!t.completedAt} onChange={() => toggle(t)} className="h-5 w-5 rounded border-brand-400 text-brand-600" />
+            <input type="checkbox" checked={!!t.completedAt} onChange={() => toggle(t)} className="h-5 w-5 rounded border-brand-400 text-brand-600" aria-label={t.title} />
             <div className="flex-1">
-              <div className={`font-medium ${t.completedAt ? "line-through text-brand-700/50" : "text-brand-800"}`}>{t.title}</div>
+              <div className={`font-medium ${t.completedAt ? "line-through text-brand-700" : "text-brand-800"}`}>{t.title}</div>
               <Badge tone="info">{t.category}</Badge>
             </div>
-            <button onClick={() => remove(t)} className="text-xs text-red-500 hover:text-red-700">Delete</button>
+            <button onClick={() => remove(t)} className="text-xs text-red-700 hover:text-red-800">Delete</button>
           </div>
         ))}
-        {filtered.length === 0 && <p className="text-center text-sm text-brand-700/60">No tasks in this category.</p>}
+        {filtered.length === 0 && <p className="text-center text-sm text-brand-700">No tasks in this category.</p>}
       </div>
 
       <div className="mt-6 text-center">

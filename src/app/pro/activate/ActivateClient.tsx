@@ -121,7 +121,7 @@ export default function ActivateClient() {
     <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Activate Pro</h1>
-        <p className="mt-2 text-brand-700/70">Enter your license key to unlock Pro features.</p>
+        <p className="mt-2 text-brand-800">Enter your license key to unlock Pro features.</p>
         {isPro && <Badge tone="success">Pro active</Badge>}
       </div>
 
@@ -130,7 +130,7 @@ export default function ActivateClient() {
           <Input label="License key" value={licenseKey} onChange={(e) => setLicenseKey(e.target.value)} placeholder="PTT-XXXX-XXXX-XXXX-XXXX" />
           <Input label="Device name" value={deviceName} onChange={(e) => setDeviceName(e.target.value)} placeholder="e.g. Sam's iPhone" />
           <Button onClick={handleActivate} loading={loading}>Activate</Button>
-          {status && <p className="text-sm text-brand-700/80">{status}</p>}
+          {status && <p className="text-sm text-brand-800">{status}</p>}
         </div>
       </Card>
 
@@ -143,7 +143,7 @@ export default function ActivateClient() {
               <div key={d.activation_id} className="glass flex items-center justify-between rounded-lg p-3">
                 <div>
                   <div className="font-medium text-brand-800">{d.device_name}</div>
-                  <div className="text-xs text-brand-700/60">{d.status} · activated {new Date(d.activated_at).toLocaleDateString()}</div>
+                  <div className="text-xs text-brand-700">{d.status} · activated {new Date(d.activated_at).toLocaleDateString()}</div>
                 </div>
                 {d.status === "active" && (
                   <button className="text-xs text-red-500 hover:text-red-700" onClick={() => deactivate(d.activation_id, d.device_name)}>
@@ -152,18 +152,18 @@ export default function ActivateClient() {
                 )}
               </div>
             ))}
-            {devices.length === 0 && <p className="text-sm text-brand-700/60">No devices loaded. Click "Load Devices".</p>}
+            {devices.length === 0 && <p className="text-sm text-brand-700">No devices loaded. Click "Load Devices".</p>}
           </div>
         </Card>
       )}
 
       <Card>
         <h2 className="text-lg font-bold text-brand-800">Lost Your License Key?</h2>
-        <p className="mt-2 text-sm text-brand-700/70">Enter your purchase email to receive recovery instructions.</p>
+        <p className="mt-2 text-sm text-brand-800">Enter your purchase email to receive recovery instructions.</p>
         <div className="mt-4 space-y-3">
           <Input label="Email" type="email" value={recoveryEmail} onChange={(e) => setRecoveryEmail(e.target.value)} placeholder="you@example.com" />
           <Button variant="ghost" onClick={requestRecovery}>Send Recovery Email</Button>
-          {recoveryStatus && <p className="text-sm text-brand-700/80">{recoveryStatus}</p>}
+          {recoveryStatus && <p className="text-sm text-brand-800">{recoveryStatus}</p>}
         </div>
       </Card>
     </div>

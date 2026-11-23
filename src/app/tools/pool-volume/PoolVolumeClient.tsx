@@ -91,7 +91,7 @@ export default function PoolVolumePage() {
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tools", href: "/" }, { label: "Pool Volume Calculator" }]} />
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Pool Volume Calculator</h1>
-        <p className="mt-2 text-brand-700/70">Estimate U.S. gallons for any pool shape.</p>
+        <p className="mt-2 text-brand-800">Estimate U.S. gallons for any pool shape.</p>
       </div>
 
       <Card>
@@ -157,20 +157,20 @@ export default function PoolVolumePage() {
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
             <div>
-              <div className="text-sm text-brand-700/70">U.S. Gallons</div>
+              <div className="text-sm text-brand-800">U.S. Gallons</div>
               <div className="text-3xl font-extrabold text-brand-700">{displayGallons(result.gallons)}</div>
-              <div className="text-xs text-brand-700/50">exact: {result.gallons.toFixed(2)}</div>
+              <div className="text-xs text-brand-700">exact: {result.gallons.toFixed(2)}</div>
             </div>
             <div>
-              <div className="text-sm text-brand-700/70">Liters</div>
+              <div className="text-sm text-brand-800">Liters</div>
               <div className="text-3xl font-extrabold text-brand-700">{Math.round(result.liters).toLocaleString()}</div>
             </div>
             <div>
-              <div className="text-sm text-brand-700/70">Cubic Feet</div>
+              <div className="text-sm text-brand-800">Cubic Feet</div>
               <div className="text-3xl font-extrabold text-brand-700">{result.cubicFeet.toFixed(2)}</div>
             </div>
           </div>
-          <div className="mt-4 rounded-lg bg-brand-50/60 p-3 text-xs text-brand-800/80">
+          <div className="mt-4 rounded-lg bg-brand-50/60 p-3 text-xs text-brand-800">
             <div className="font-semibold">Formula</div>
             <div className="mt-1 font-mono">{result.formula}</div>
             {result.warnings.length > 0 && (
@@ -179,7 +179,7 @@ export default function PoolVolumePage() {
               </ul>
             )}
           </div>
-          <p className="mt-4 text-xs text-brand-700/60">
+          <p className="mt-4 text-xs text-brand-700">
             Pool volume results are mathematical calculations based on the dimensions you entered. Real-world water capacity depends on construction tolerances, floor contours, steps, benches, and water level. For chemical dosing, verify against the pool&apos;s actual fill line and product label.
           </p>
         </Card>

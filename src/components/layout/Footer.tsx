@@ -5,11 +5,11 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div>
             <h4 className="mb-3 font-semibold text-brand-700">PoolTechTools</h4>
-            <p className="text-sm text-brand-800/70">Fast, mobile-first, offline-capable pool care toolkit.</p>
+            <p className="text-sm text-brand-800">Fast, mobile-first, offline-capable pool care toolkit.</p>
           </div>
           <div>
             <h4 className="mb-3 font-semibold text-brand-700">Tools</h4>
-            <ul className="space-y-2 text-sm text-brand-800/70">
+            <ul className="space-y-2 text-sm text-brand-800">
               <li>Pool Volume Calculator</li>
               <li>Chemical Calculator</li>
               <li>Chlorine Calculator</li>
@@ -19,7 +19,7 @@ export function Footer() {
           </div>
           <div>
             <h4 className="mb-3 font-semibold text-brand-700">Pro</h4>
-            <ul className="space-y-2 text-sm text-brand-800/70">
+            <ul className="space-y-2 text-sm text-brand-800">
               <li>Customer &amp; Pool Management</li>
               <li>Service History &amp; Cloning</li>
               <li>Report Templates</li>
@@ -28,14 +28,14 @@ export function Footer() {
           </div>
           <div>
             <h4 className="mb-3 font-semibold text-brand-700">Legal</h4>
-            <ul className="space-y-2 text-sm text-brand-800/70">
+            <ul className="space-y-2 text-sm text-brand-800">
               <li>Privacy Policy</li>
               <li>Terms of Service</li>
               <li>Chemical Disclaimer</li>
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t border-white/40 pt-6 text-center text-xs text-brand-800/60">
+        <div className="mt-8 border-t border-white/40 pt-6 text-center text-xs text-brand-700">
           © 2026 PoolTechTools. All calculations are mathematical scaling of user-entered label instructions.
         </div>
       </div>

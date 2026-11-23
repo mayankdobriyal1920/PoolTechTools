@@ -79,10 +79,10 @@
 
 ### 2.1 Validation Schemas (src/lib/validation)
 - [x] P0 Zod schema: volume input (shape-specific required fields)
-- [ ] P0 Zod schema: chemical input
-- [ ] P0 Zod schema: chlorine input
-- [ ] P0 Zod schema: customer, pool, report, water test, template, maintenance task
-- [ ] P0 Zod schema: file/photo validation
+- [x] P0 Zod schema: chemical input
+- [x] P0 Zod schema: chlorine input
+- [x] P0 Zod schema: customer, pool, report, water test, template, maintenance task
+- [x] P0 Zod schema: file/photo validation
 - [x] P0 Range validation (imperial/metric conversion before check)
 
 ### 2.2 Pool Volume Calculator
@@ -94,7 +94,7 @@
 - [x] P0 Print results view
 - [x] P0 Accuracy disclaimer text
 - [x] P0 Kidney cross-section input UI (trapezoidal) + validation
-- [ ] P0 Kidney two-semicircle alternative method
+- [x] P0 Kidney two-semicircle alternative method
 - [x] P0 Irregular surface-area input
 - [ ] P1 Calculation history (optional, local)
 
@@ -105,21 +105,21 @@
 - [x] P0 Scaled amount output + unit equivalents
 - [x] P0 Safety warning box
 - [x] P0 "Add to Service Report" handoff
-- [ ] P0 User-provided density input (optional) for cross-dim conversion
+- [x] P0 User-provided density input (optional) for cross-dim conversion
 - [ ] P1 Fractional output formatting (<0.01 handling)
 - [ ] P1 Large dose warning (>1000 units)
 
 ### 2.4 Chlorine Calculator
 - [x] P0 FC, TC, CC auto-calc (CC = TC - FC)
 - [x] P0 TC < FC → variance warning, preserve originals, no coercion
-- [ ] P0 Label-rate scaling (reuse chemical engine)
+- [x] P0 Label-rate scaling (reuse chemical engine)
 - [x] P0 Optional target comparison (informational only)
-- [ ] P0 Disclaimers
+- [x] P0 Disclaimers
 
 ### 2.5 Unit Conversion
-- [ ] P0 Conversion table (ft/in/m/cm, gal/L, cuft/gal, oz/lbs, g/kg, fl oz/cups, qt/gal)
+- [x] P0 Conversion table (ft/in/m/cm, gal/L, cuft/gal, oz/lbs, g/kg, fl oz/cups, qt/gal)
 - [x] P0 Conversion utilities in src/lib/utils
-- [ ] P0 Round-trip tests (1e-9 tolerance)
+- [x] P0 Round-trip tests (1e-9 tolerance)
 
 ---
 
@@ -188,7 +188,7 @@
 - [x] P0 Font handling (Helvetica + optional brand font fallback)
 - [x] P0 Business header (Pro logo + brand color)
 - [x] P0 Customer info, visit metadata, task checklist, water readings, chemicals, customer summary, photos, footer with page numbers
-- [ ] P0 Pagination (auto page breaks, repeat header)
+- [x] P0 Pagination (auto page breaks, repeat header)
 - [x] P0 Empty sections omitted
 - [x] P0 Missing info → "—" or omit
 - [x] P0 `PublicReportView` type excludes `privateNotes` (type-level guarantee)
@@ -201,7 +201,7 @@
 - [x] P0 AbortError handled silently
 - [x] P0 Print
 - [x] P0 Copy SMS Summary (no private notes)
-- [ ] P0 Export JSON backup (report-level)
+- [x] P0 Export JSON backup (report-level)
 - [ ] P1 Private note exclusion tests (PDF bytes, SMS, share payload, analytics)
 
 ---
@@ -213,8 +213,8 @@
 - [x] P0 Pool CRUD per customer (create/edit/delete soft)
 - [x] P0 Service history timeline per pool
 - [x] P0 1-tap report cloning from history
-- [ ] P0 Reusable report templates (CRUD)
-- [ ] P0 Business branding (logo upload, brand color)
+- [x] P0 Reusable report templates (CRUD)
+- [x] P0 Business branding (logo upload, brand color)
 - [x] P0 Soft delete + "Show archived" toggle
 - [x] P0 customerNameSnapshot / poolNameSnapshot on reports
 - [x] P0 Entitlement-loss: read-only mode + banner, no data deletion
@@ -227,10 +227,10 @@
 ### 6.1 Persistence & Snapshots (Pro)
 - [x] P0 Transactional persistence for all writes
 - [x] P0 Debounced form updates (2s)
-- [ ] P0 Recovery snapshots (controlled triggers, max 5 FIFO)
-- [ ] P0 Snapshot payload excludes photo blobs (metadata only)
-- [ ] P0 Storage quota check before snapshot
-- [ ] P0 Snapshot restore UI (Pro)
+- [x] P0 Recovery snapshots (controlled triggers, max 5 FIFO)
+- [x] P0 Snapshot payload excludes photo blobs (metadata only)
+- [x] P0 Storage quota check before snapshot
+- [x] P0 Snapshot restore UI (Pro)
 - [ ] P1 Backup reminders ("Last backup: X days ago")
 
 ### 6.2 Manual Export
@@ -245,16 +245,16 @@
 - [x] P0 File type + size validation (500 MB max)
 - [x] P0 ZIP safety (bomb ratio, path traversal, size limits, symlinks, dupes)
 - [x] P0 Manifest + hash verification
-- [ ] P0 Zod validation of data.json
-- [ ] P0 Version check + migration of older backups
-- [ ] P0 Reject unknown newer versions
+- [x] P0 Zod validation of data.json
+- [x] P0 Version check + migration of older backups
+- [x] P0 Reject unknown newer versions
 - [x] P0 Preview before import (counts, warnings, missing attachments)
 - [x] P0 Merge vs Replace choice
-- [ ] P0 Storage quota preflight
-- [ ] P0 Staged import (validate all in memory first)
+- [x] P0 Storage quota preflight
+- [x] P0 Staged import (validate all in memory first)
 - [x] P0 Transactional commit with rollback
-- [ ] P0 Missing attachment handling (fail or skip with confirmation)
-- [ ] P0 Post-import verification + summary
+- [x] P0 Missing attachment handling (fail or skip with confirmation)
+- [x] P0 Post-import verification + summary
 
 ---
 
@@ -288,15 +288,15 @@
 - [x] P0 License creation in DB transaction (idempotent on paddle_transaction_id)
 - [x] P0 Webhook state machine (received→processing→processed/failed/skipped)
 - [x] P0 Event marked processed only after license commit
-- [ ] P0 Email enqueued independently (retry-safe)
+- [x] P0 Email enqueued independently (retry-safe)
 - [x] P0 Refund/chargeback handling
 - [x] P0 Out-of-order + duplicate event handling
 - [x] P0 Frontend redirect never creates license
 
 ### 8.2 PostgreSQL
-- [ ] P0 Run migration in dev + prod
-- [ ] P0 Connection pooling (Neon/Supabase guidance)
-- [ ] P0 Backup procedures
+- [x] P0 Run migration in dev + prod
+- [x] P0 Connection pooling (Neon/Supabase guidance)
+- [x] P0 Backup procedures
 
 ### 8.3 License Keys
 - [x] P0 Key generation (crypto.randomBytes, 128+ bits, PTT-XXXX-XXXX-XXXX-XXXX)
@@ -304,10 +304,10 @@
 - [x] P0 Normalization (uppercase, strip spaces/dashes)
 - [x] P0 Timing-safe comparison
 - [ ] P0 Key rotation runbook
-- [ ] P0 Recovery: email verification link (15 min, single-use)
-- [ ] P0 Recovery: issue new key, invalidate old
+- [x] P0 Recovery: email verification link (15 min, single-use)
+- [x] P0 Recovery: issue new key, invalidate old
 - [x] P0 Email enumeration prevention
-- [ ] P0 Rate limits (3/email/hr, 10/IP/hr)
+- [x] P0 Rate limits (3/email/hr, 10/IP/hr)
 
 ### 8.4 Ed25519 Tokens
 - [x] P0 Verify library (@noble/ed25519 vs Web Crypto)
@@ -326,10 +326,10 @@
 - [x] P0 deviceHash generation (random UUID, SHA-256, stored in IDB + localStorage)
 - [x] P0 Atomic activation (SELECT FOR UPDATE, count check, insert/refresh)
 - [x] P0 Idempotent re-activation (same deviceHash)
-- [ ] P0 3-device limit enforcement (concurrency tested)
+- [x] P0 3-device limit enforcement (concurrency tested)
 - [x] P0 Deactivation (self-service)
-- [ ] P0 Lost-device recovery runbook (verify email → deactivate all)
-- [ ] P0 Rate limits (5/IP/15min, 10/key/hr)
+- [x] P0 Lost-device recovery runbook (verify email → deactivate all)
+- [x] P0 Rate limits (5/IP/15min, 10/key/hr)
 - [x] P0 Honest documentation of fingerprint limitations
 
 ### 8.6 Email Delivery
@@ -353,8 +353,8 @@
 ## Phase 9 — SEO & AdSense
 
 ### 9.1 SEO
-- [ ] P0 Keyword research + intent mapping
-- [ ] P0 Page hierarchy (Home → Tools → Guides → FAQ)
+- [x] P0 Keyword research + intent mapping
+- [x] P0 Page hierarchy (Home → Tools → Guides → FAQ)
 - [x] P0 URL strategy
 - [x] P0 Metadata (title, description, canonical, OG, Twitter) per page
 - [x] P0 XML sitemap
@@ -397,19 +397,19 @@
 - [ ] P0 ZIP bomb rejection
 - [ ] P0 Path traversal rejection
 - [ ] P0 Photo compression (size/dim, corrupt)
-- [ ] P0 PDF generation + private note exclusion (bytes assertion with sentinel)
-- [ ] P0 SMS summary exclusion of private notes
+- [x] P0 PDF generation + private note exclusion (bytes assertion with sentinel)
+- [x] P0 SMS summary exclusion of private notes
 
 ### 10.3 E2E Tests (Playwright)
 - [ ] P0 Service report full flow (<60s on mobile)
-- [ ] P0 Draft auto-save + recovery
+- [x] P0 Draft auto-save + recovery
 - [ ] P0 Offline feature matrix on 5 browsers
 - [ ] P0 SW update flow
 - [ ] P0 Paddle sandbox checkout
 - [ ] P0 Webhook signature + replay + duplicate + out-of-order
-- [ ] P0 License activation + 3-device enforcement (concurrency)
-- [ ] P0 License recovery flow (email verification)
-- [ ] P0 Token expiry → graceful lock
+- [x] P0 License activation + 3-device enforcement (concurrency)
+- [x] P0 License recovery flow (email verification)
+- [x] P0 Token expiry → graceful lock
 - [ ] P0 Rate limit tests
 - [ ] P0 Email retry tests
 
@@ -417,7 +417,7 @@
 - [x] P0 CSP headers configured (AdSense/Paddle/fonts/monitoring)
 - [x] P0 Security headers (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS)
 - [x] P0 Input validation (Zod client + server)
-- [ ] P0 File validation (MIME + magic bytes + size)
+- [x] P0 File validation (MIME + magic bytes + size)
 - [x] P0 Rate limiting on license endpoints
 - [x] P0 Secret management (env vars, .gitignore, no NEXT_PUBLIC_ secrets)
 - [x] P0 Logging restrictions (no keys/emails/report contents)
@@ -429,9 +429,9 @@
 - [ ] P0 axe-core in E2E (clean)
 - [x] P0 Keyboard navigation + focus indicators
 - [x] P0 Screen reader labels
-- [ ] P0 44px touch targets
-- [ ] P0 16px input font size (no iOS zoom)
-- [ ] P0 Reduced-motion support
+- [x] P0 44px touch targets
+- [x] P0 16px input font size (no iOS zoom)
+- [x] P0 Reduced-motion support
 - [x] P0 WCAG AA contrast
 
 ### 10.6 Performance
@@ -459,12 +459,12 @@
 - [x] P0 Error states (message + retry)
 - [x] P0 Network failure states
 - [x] P0 Offline indicator banner
-- [ ] P0 Form autosave indicator
-- [ ] P0 Unsaved changes prompt
-- [ ] P0 Double-click protection
+- [x] P0 Form autosave indicator
+- [x] P0 Unsaved changes prompt
+- [x] P0 Double-click protection
 - [x] P0 Storage quota exhaustion handling
-- [ ] P0 Invalid IndexedDB record handling
-- [ ] P0 App update while report open
+- [x] P0 Invalid IndexedDB record handling
+- [x] P0 App update while report open
 - [x] P0 Data export before destructive ops
 - [ ] P0 Mobile touch behavior
 - [x] P0 Responsive layouts (all breakpoints)
@@ -492,7 +492,7 @@
 - [x] P0 idb current API
 - [x] P0 @react-pdf/renderer current API
 - [x] P0 Web Crypto Ed25519 browser support matrix
-- [ ] P0 Neon/Supabase connection pooling guidance
+- [x] P0 Neon/Supabase connection pooling guidance
 - [ ] P1 Google AdSense policy requirements
 - [ ] P1 Certified CMP requirements for target regions
 - [ ] P2 CompressionStream / pako availability for snapshots

@@ -328,7 +328,7 @@ export default function ReportClient() {
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Service Report Maker</h1>
-        <p className="mt-2 text-brand-700/70">Build a professional service report in seconds.</p>
+        <p className="mt-2 text-brand-800">Build a professional service report in seconds.</p>
       </div>
 
       <Card className="mb-6">
@@ -354,7 +354,7 @@ export default function ReportClient() {
         <div className="mt-3 flex flex-wrap gap-2">
           {STANDARD_TASKS.map((t) => (
             <button key={t} type="button" onClick={() => toggleTask(t)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${tasks.includes(t) ? "bg-brand-500 text-white" : "bg-white/60 text-brand-700 hover:bg-brand-100"}`}>
+              className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${tasks.includes(t) ? "bg-brand-700 text-white" : "bg-white/60 text-brand-700 hover:bg-brand-100"}`}>
               {tasks.includes(t) ? "✓ " : ""}{t}
             </button>
           ))}
@@ -418,12 +418,12 @@ export default function ReportClient() {
           </div>
           <div>
             <label className="text-sm font-medium text-brand-800">Photos (max {MAX_PHOTOS})</label>
-            <input type="file" accept="image/*" multiple className="mt-2 block w-full text-sm" onChange={handlePhotoUpload} />
+            <input type="file" accept="image/*" multiple className="mt-2 block w-full text-sm" onChange={handlePhotoUpload} aria-label="Upload photos" />
             <div className="mt-3 flex flex-wrap gap-3">
               {photos.map((p) => (
                 <div key={p.id} className="relative">
                   <img src={p.url} alt={p.name} className="h-24 w-24 rounded-lg object-cover" />
-                  <button onClick={() => setPhotos((prev) => prev.filter((x) => x.id !== p.id))} className="absolute -right-2 -top-2 rounded-full bg-red-500 px-1.5 text-xs text-white">×</button>
+                  <button onClick={() => setPhotos((prev) => prev.filter((x) => x.id !== p.id))} className="absolute -right-2 -top-2 rounded-full bg-red-700 px-1.5 text-xs text-white">×</button>
                 </div>
               ))}
             </div>
@@ -431,7 +431,7 @@ export default function ReportClient() {
         </div>
       </Card>
 
-      <div className="mb-4 flex items-center gap-3 text-xs text-brand-700/70">
+      <div className="mb-4 flex items-center gap-3 text-xs text-brand-800">
         {lastSavedAt && <span>Saved {lastSavedAt}</span>}
         {isDirty && <span className="text-amber-600">Unsaved changes</span>}
       </div>
@@ -452,7 +452,7 @@ export default function ReportClient() {
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <div className="font-semibold text-brand-800">{r.reportNumber} — {r.customerNameSnapshot}</div>
-                  <div className="text-xs text-brand-700/60">{new Date(r.visitDate).toLocaleString()} · {r.tasks.length} tasks</div>
+                  <div className="text-xs text-brand-700">{new Date(r.visitDate).toLocaleString()} · {r.tasks.length} tasks</div>
                 </div>
                 <div className="flex gap-2">
                   <Button variant="ghost" size="sm" onClick={() => loadReport(r)}>Edit</Button>
@@ -462,7 +462,7 @@ export default function ReportClient() {
               </div>
             </Card>
           ))}
-          {reports.length === 0 && <p className="text-center text-sm text-brand-700/60">No saved reports yet.</p>}
+          {reports.length === 0 && <p className="text-center text-sm text-brand-700">No saved reports yet.</p>}
         </div>
       </div>
     </div>

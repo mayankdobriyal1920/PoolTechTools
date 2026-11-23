@@ -6,6 +6,7 @@ import { createSnapshot, listSnapshots, restoreSnapshot, deleteSnapshot } from "
 import type { Snapshot } from "@/lib/db/types";
 import { previewImport, performImport } from "@/lib/backup/import";
 import { Card } from "@/components/ui/Card";
+import { BrandingManager } from "@/components/BrandingManager";
 import { Button } from "@/components/ui/Button";
 
 export default function SettingsPage() {
@@ -74,29 +75,29 @@ export default function SettingsPage() {
         <h2 className="text-lg font-bold text-brand-800">Storage Usage</h2>
         {quota ? (
           <div className="mt-3">
-            <div className="text-sm text-brand-700/80">{(quota.used / 1024 / 1024).toFixed(2)} MB used of {(quota.total / 1024 / 1024).toFixed(0)} MB</div>
+            <div className="text-sm text-brand-800">{(quota.used / 1024 / 1024).toFixed(2)} MB used of {(quota.total / 1024 / 1024).toFixed(0)} MB</div>
             <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-brand-100">
               <div className="h-full bg-brand-500" style={{ width: `${Math.min(100, (quota.used / quota.total) * 100)}%` }} />
             </div>
             {(quota.used / quota.total) > 0.8 && <p className="mt-2 text-xs text-amber-700">Storage is over 80% full. Consider exporting and cleaning up.</p>}
-            <p className="mt-2 text-xs text-brand-700/60">Persistent storage: {persisted === null ? "checking…" : persisted ? "granted ✅" : "not granted (browser may evict under pressure)"}</p>
+            <p className="mt-2 text-xs text-brand-700">Persistent storage: {persisted === null ? "checking…" : persisted ? "granted ✅" : "not granted (browser may evict under pressure)"}</p>
           </div>
-        ) : <p className="mt-2 text-sm text-brand-700/60">Storage estimate unavailable.</p>}
+        ) : <p className="mt-2 text-sm text-brand-700">Storage estimate unavailable.</p>}
       </Card>
 
       <Card className="mb-6">
         <h2 className="text-lg font-bold text-brand-800">Recovery Snapshots (Pro)</h2>
-        <p className="mt-2 text-sm text-brand-700/70">Rolling local snapshots (max 5). Photos are not included in snapshots.</p>
+        <p className="mt-2 text-sm text-brand-800">Rolling local snapshots (max 5). Photos are not included in snapshots.</p>
         <div className="mt-4 flex gap-3">
           <Button variant="ghost" size="sm" onClick={async () => { setSnapStatus("Creating…"); await createSnapshot("milestone"); await loadSnapshots(); setSnapStatus("Snapshot created."); }}>Create Snapshot</Button>
         </div>
-        {snapStatus && <p className="mt-2 text-xs text-brand-700/80">{snapStatus}</p>}
+        {snapStatus && <p className="mt-2 text-xs text-brand-800">{snapStatus}</p>}
         <div className="mt-4 space-y-2">
           {snapshots.map((sn) => (
             <div key={sn.id} className="glass flex items-center justify-between rounded-lg p-3 text-sm">
               <div>
                 <div className="font-medium text-brand-800">{new Date(sn.createdAt).toLocaleString()}</div>
-                <div className="text-xs text-brand-700/60">{sn.reason} · {(sn.sizeBytes / 1024).toFixed(1)} KB</div>
+                <div className="text-xs text-brand-700">{sn.reason} · {(sn.sizeBytes / 1024).toFixed(1)} KB</div>
               </div>
               <div className="flex gap-2">
                 <Button variant="ghost" size="sm" onClick={async () => { if (confirm("Restore this snapshot? Current data will be replaced.")) { await restoreSnapshot(sn.id!); setSnapStatus("Restored."); } }}>Restore</Button>
@@ -104,23 +105,25 @@ export default function SettingsPage() {
               </div>
             </div>
           ))}
-          {snapshots.length === 0 && <p className="text-sm text-brand-700/60">No snapshots yet.</p>}
+          {snapshots.length === 0 && <p className="text-sm text-brand-700">No snapshots yet.</p>}
         </div>
       </Card>
 
+      <div className="mb-6"><BrandingManager /></div>
+
       <Card className="mb-6">
         <h2 className="text-lg font-bold text-brand-800">Export Data</h2>
-        <p className="mt-2 text-sm text-brand-700/70">Backup files contain private notes and customer data — store securely.</p>
+        <p className="mt-2 text-sm text-brand-800">Backup files contain private notes and customer data — store securely.</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Button onClick={handleExportJSON}>Export JSON (no photos)</Button>
           <Button variant="ghost" onClick={handleExportZIP}>Export ZIP (with photos)</Button>
         </div>
-        {status && <p className="mt-3 text-sm text-brand-700/80">{status}</p>}
+        {status && <p className="mt-3 text-sm text-brand-800">{status}</p>}
       </Card>
 
       <Card>
         <h2 className="text-lg font-bold text-brand-800">Import Data</h2>
-        <p className="mt-2 text-sm text-brand-700/70">Restore from a JSON or ZIP backup. Preview before importing.</p>
+        <p className="mt-2 text-sm text-brand-800">Restore from a JSON or ZIP backup. Preview before importing.</p>
         <div className="mt-4">
           <input type="file" accept=".json,.zip" onChange={handleFileChange} className="block w-full text-sm" />
         </div>

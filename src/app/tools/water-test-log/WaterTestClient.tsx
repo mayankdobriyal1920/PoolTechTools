@@ -97,7 +97,7 @@ export default function WaterTestClient() {
       <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
         <div>
           <h1 className="text-3xl font-bold text-brand-800">Water Test Log</h1>
-          <p className="mt-1 text-brand-700/70">Record and track water chemistry readings.</p>
+          <p className="mt-1 text-brand-800">Record and track water chemistry readings.</p>
         </div>
         <Button variant="ghost" onClick={exportCSV}>Export CSV</Button>
       </div>
@@ -112,7 +112,7 @@ export default function WaterTestClient() {
           <Input label="Notes" value={form.notes || ""} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
         </div>
         <div className="mt-3 flex items-center gap-3">
-          <span className="text-sm text-brand-700/70">Combined Chlorine: <strong>{cc}</strong> ppm</span>
+          <span className="text-sm text-brand-800">Combined Chlorine: <strong>{cc}</strong> ppm</span>
           <Button onClick={save}>{editingId ? "Update" : "Add Reading"}</Button>
           {editingId && <Button variant="ghost" onClick={() => { setForm({}); setEditingId(null); }}>Cancel</Button>}
         </div>
@@ -129,7 +129,7 @@ export default function WaterTestClient() {
                     <Badge key={k} tone={Number.isFinite(v) ? badgeTone(k, v) : "info"}>{k}: {Number.isFinite(v) ? v.toFixed(2) : "—"}{k === "temperature" ? "°" : ""}</Badge>
                   ))}
                 </div>
-                {t.notes && <p className="mt-2 text-sm text-brand-700/70">{t.notes}</p>}
+                {t.notes && <p className="mt-2 text-sm text-brand-800">{t.notes}</p>}
               </div>
               <div className="flex gap-2">
                 <Button variant="ghost" size="sm" onClick={() => edit(t)}>Edit</Button>
@@ -138,7 +138,7 @@ export default function WaterTestClient() {
             </div>
           </Card>
         ))}
-        {tests.length === 0 && <p className="text-center text-sm text-brand-700/60">No readings yet.</p>}
+        {tests.length === 0 && <p className="text-center text-sm text-brand-700">No readings yet.</p>}
       </div>
     </div>
   );

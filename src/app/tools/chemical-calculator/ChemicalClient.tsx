@@ -62,7 +62,7 @@ export default function ChemicalClient() {
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-brand-800">Chemical Calculator</h1>
-        <p className="mt-2 text-brand-700/70">Label-rate scaling — mathematically scale a product label dose to your pool.</p>
+        <p className="mt-2 text-brand-800">Label-rate scaling — mathematically scale a product label dose to your pool.</p>
       </div>
 
       <Card>
@@ -100,12 +100,12 @@ export default function ChemicalClient() {
             <Badge tone="info">{isMass ? "mass" : "fluid"}</Badge>
           </div>
           <div className="mt-4">
-            <div className="text-sm text-brand-700/70">Required dose</div>
+            <div className="text-sm text-brand-800">Required dose</div>
             <div className="text-3xl font-extrabold text-brand-700">{result.amount.toFixed(4)} {result.unit}</div>
           </div>
-          <div className="mt-3 text-xs font-mono text-brand-800/80">{result.formula}</div>
+          <div className="mt-3 text-xs font-mono text-brand-800">{result.formula}</div>
           {result.equivalents.length > 0 && (
-            <div className="mt-3 text-sm text-brand-700/70">
+            <div className="mt-3 text-sm text-brand-800">
               <span className="font-semibold">Equivalents:</span> {result.equivalents.join(" · ")}
             </div>
           )}
