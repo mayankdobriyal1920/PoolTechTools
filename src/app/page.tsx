@@ -106,6 +106,9 @@ export default function Home() {
               <li>✓ 100% ad-free</li>
             </ul>
             <div className="mt-8 w-full"><UpgradeButton /></div>
+            <p className="mt-3 text-center text-xs text-brand-700/70">
+              Already purchased? <a href="/pro/activate" className="font-semibold text-brand-600 underline">Activate your license</a>
+            </p>
           </div>
         </div>
       </section>
