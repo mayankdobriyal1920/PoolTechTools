@@ -1,8 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connection } from "next/server";
 import { getPool } from "@/lib/server/db";
-import { Webhooks } from "@paddle/paddle-node-sdk";
+import crypto from "node:crypto";
 import { generateLicenseKey, hashLicenseKey } from "@/lib/server/license";
+
+function verifyPaddleSignature(rawBody: string, signatureHeader: string | null, secret: string): boolean {
+  if (!signatureHeader) return false;
+  const trimmedSecret = secret.trim();
+  const parts = signatureHeader.split(";").map((p) => p.trim());
+  const tsPart = parts.find((p) => p.startsWith("ts="));
+  const h1Part = parts.find((p) => p.startsWith("h1="));
+  if (!tsPart || !h1Part) return false;
+  const ts = tsPart.slice(3);
+  const h1 = h1Part.slice(3);
+  const signedPayload = `${ts}:${rawBody}`;
+  const expected = crypto.createHmac("sha256", trimmedSecret).update(signedPayload).digest("hex");
+  if (expected.length !== h1.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(h1, "hex"));
+}
 
 export async function POST(req: NextRequest) {
   await connection();
@@ -19,6 +34,7 @@ export async function POST(req: NextRequest) {
     hasSecret: !!secret,
     secretPrefix: secret ? secret.slice(0, 20) + "..." + secret.slice(-20) : "none",
     secretLength: secret.length,
+    trimmedSecretLength: secret.trim().length,
     hasPaddleApiKey: !!process.env.PADDLE_API_KEY,
     paddleApiKeyPrefix: process.env.PADDLE_API_KEY ? process.env.PADDLE_API_KEY.slice(0, 10) + "..." : "none",
   });
@@ -28,20 +44,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: { code: "CONFIG_ERROR", message: "Webhook secret not configured" } }, { status: 500 });
   }
 
-  let event: any;
-  try {
-    event = await new Webhooks().unmarshal(rawBody, secret, sig);
-    console.log("[WEBHOOK] Signature verified", {
-      eventId: event?.eventId || event?.id,
-      eventType: event?.eventType || event?.type,
-    });
-  } catch (err: any) {
-    console.error("[WEBHOOK] Signature verification failed:", err?.message);
+  const isValid = verifyPaddleSignature(rawBody, sig, secret);
+  console.log("[WEBHOOK] Signature verification result:", isValid);
+
+  if (!isValid) {
+    console.error("[WEBHOOK] Signature verification failed");
     return NextResponse.json({ error: { code: "INVALID_SIGNATURE", message: "Paddle webhook signature verification failed" } }, { status: 400 });
   }
 
-  const eventId = event?.eventId || event?.id;
-  const eventType = event?.eventType || event?.type;
+  let event: any;
+  try {
+    event = JSON.parse(rawBody);
+  } catch {
+    return NextResponse.json({ error: { code: "INVALID_JSON", message: "Invalid JSON body" } }, { status: 400 });
+  }
+
+  const eventId = event?.event_id;
+  const eventType = event?.event_type;
   if (!eventId || !eventType) return NextResponse.json({ error: { code: "INVALID_EVENT", message: "Missing event id/type" } }, { status: 400 });
 
   const pool = getPool();
@@ -61,13 +80,12 @@ export async function POST(req: NextRequest) {
       const txn: any = event?.data || {};
       const status = txn?.status;
       const items = txn?.items || [];
-      const currency = txn?.currencyCode || txn?.currency;
+      const currency = txn?.currency_code || txn?.currency;
       const total = txn?.details?.totals?.total || txn?.total;
       const transactionId = txn?.id;
-      const customerId = txn?.customerId;
+      const customerId = txn?.customer_id;
       const customerEmail = txn?.customer?.email;
-      const productId = items?.[0]?.productId || items?.[0]?.priceId;
-      const priceId = items?.[0]?.priceId;
+      const priceId = items?.[0]?.price?.id || items?.[0]?.price_id;
 
       if (status !== "completed") throw new Error("Transaction not completed");
       if (currency && currency !== "USD") throw new Error("Invalid currency");
@@ -77,23 +95,18 @@ export async function POST(req: NextRequest) {
         const key = generateLicenseKey();
         const hash = hashLicenseKey(key);
         await client.query(
-          `INSERT INTO licenses (license_key_hash, customer_email, paddle_transaction_id, paddle_customer_id, product_id, price_id, amount_cents, currency, status, email_delivery_status)
+          `INSERT INTO licenses (license_key_hash, customer_email, paddle_transaction_id, paddle_customer_id, price_id, amount_cents, currency, status, email_delivery_status)
            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'active','pending')`,
-          [hash, customerEmail || "unknown", transactionId, customerId, productId, priceId, parseInt(total || "2900", 10), currency || "USD"]
+          [hash, customerEmail || "unknown", transactionId, customerId, priceId, parseInt(total || "2900", 10), currency || "USD"]
         );
-        // Send purchase email (retry-safe; failure does not fail the webhook)
         try {
           const { getEmailService } = await import("@/lib/server/email");
           const emailSvc = getEmailService();
-          const serviceName = emailSvc.constructor.name;
-          console.log("[EMAIL] Service:", serviceName, "| Has API Key:", !!process.env.EMAIL_PROVIDER_API_KEY, "| From:", process.env.EMAIL_FROM_ADDRESS);
           const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "";
           const res = await emailSvc.sendPurchaseConfirmation(customerEmail || "unknown", { licenseKey: key, activationUrl: `${appUrl}/pro/activate` });
-          console.log("[EMAIL] Result:", JSON.stringify(res));
           await client.query("UPDATE licenses SET email_delivery_status=$2, email_sent_at=NOW(), email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1",
             [transactionId, res.success ? "sent" : "failed"]);
         } catch (e: any) {
-          console.error("[EMAIL] Send failed:", e?.message, e?.stack);
           await client.query("UPDATE licenses SET email_delivery_status='failed', email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1", [transactionId]).catch(() => {});
         }
       }
