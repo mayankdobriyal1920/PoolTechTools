@@ -62,7 +62,11 @@ export function Navbar() {
               <Link href="#pricing" className="text-white text-lg font-medium">Pricing</Link>
               <Link href="#faq" className="text-white text-lg font-medium">FAQ</Link>
               <hr className="w-full border-white/20 my-4" />
-              <Link href="/pro/activate" className="text-brand-500 text-lg font-bold">Upgrade to Pro</Link>
+              {loading || !isPro ? (
+                <Link href="/pro/activate" className="text-brand-500 text-lg font-bold">Upgrade to Pro</Link>
+              ) : (
+                <span className="text-sm font-medium text-white/90 px-4 py-2 rounded-full bg-brand-500/20 border border-brand-500/30">Pro User</span>
+              )}
             </nav>
           </div>
         </div>
