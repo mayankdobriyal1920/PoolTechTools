@@ -18,13 +18,24 @@ export function timingSafeEqual(a: string, b: string): boolean {
   return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
 }
 
-export function signEntitlementToken(payload: Record<string, unknown>): string {
+
+export async function signEntitlementToken(payload: Record<string, unknown>): Promise<string> {
+  const { sign, getPublicKey } = await import("@noble/ed25519");
   const privB64 = process.env.ED25519_PRIVATE_KEY || "";
-  const privDer = Buffer.from(privB64, "base64");
-  const key = crypto.createPrivateKey({ key: privDer, format: "der", type: "pkcs8" });
+  const privBytes = Buffer.from(privB64, "base64");
+  if (privBytes.length !== 32) throw new Error("ED25519_PRIVATE_KEY must be base64 of 32 raw bytes");
   const header = Buffer.from(JSON.stringify({ alg: "EdDSA", typ: "JWT", kid: (payload.kid as string) || "key-1" })).toString("base64url");
   const body = Buffer.from(JSON.stringify(payload)).toString("base64url");
   const signingInput = `${header}.${body}`;
-  const sig = crypto.sign(null, Buffer.from(signingInput), key);
-  return `${signingInput}.${sig.toString("base64url")}`;
+  const sig = sign(new TextEncoder().encode(signingInput), privBytes);
+  return `${signingInput}.${Buffer.from(sig).toString("base64url")}`;
+}
+
+export function getPublicKeyBase64(): string {
+  // Derive public key from private seed at runtime (server only)
+  const { getPublicKey } = require("@noble/ed25519");
+  const privB64 = process.env.ED25519_PRIVATE_KEY || "";
+  const privBytes = Buffer.from(privB64, "base64");
+  const pub = getPublicKey(privBytes);
+  return Buffer.from(pub).toString("base64");
 }

@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     await client.query("COMMIT");
     const { signEntitlementToken } = await import("@/lib/server/license");
     const now = Math.floor(Date.now() / 1000);
-    const token = signEntitlementToken({
+    const token = await signEntitlementToken({
       sub: license.license_id,
       iss: process.env.NEXT_PUBLIC_APP_URL || "pooltechtools",
       aud: "ptt-client",

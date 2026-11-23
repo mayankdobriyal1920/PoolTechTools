@@ -208,7 +208,7 @@
 
 ## Phase 5 — Customer & Pool Management (Pro)
 
-- [ ] P0 Pro gating (useEntitlement hook, route guards)
+- [x] P0 Pro gating (useEntitlement hook, route guards)
 - [x] P0 Customer CRUD (create/edit/delete soft)
 - [x] P0 Pool CRUD per customer (create/edit/delete soft)
 - [ ] P0 Service history timeline per pool
@@ -310,17 +310,17 @@
 - [ ] P0 Rate limits (3/email/hr, 10/IP/hr)
 
 ### 8.4 Ed25519 Tokens
-- [ ] P0 Verify library (@noble/ed25519 vs Web Crypto)
-- [ ] P0 Private key in server env only (never client bundle)
-- [ ] P0 Public key in NEXT_PUBLIC_ env
-- [ ] P0 Token structure (iss, aud, sub, pro, iat, exp, ver, kid, dev, act, pid)
-- [ ] P0 Client signature verification
-- [ ] P0 14-day grace period
+- [x] P0 Verify library (@noble/ed25519 vs Web Crypto)
+- [x] P0 Private key in server env only (never client bundle)
+- [x] P0 Public key in NEXT_PUBLIC_ env
+- [x] P0 Token structure (iss, aud, sub, pro, iat, exp, ver, kid, dev, act, pid)
+- [x] P0 Client signature verification
+- [x] P0 14-day grace period
 - [ ] P0 Online validation refresh
 - [ ] P0 Graceful lock with banner after expiry
-- [ ] P0 lastSeenAt clock-manipulation best-effort check
+- [x] P0 lastSeenAt clock-manipulation best-effort check
 - [ ] P0 Key rotation (multiple public keys by kid, 30-day overlap)
-- [ ] P0 Document offline revocation limitation
+- [x] P0 Document offline revocation limitation
 
 ### 8.5 Device Activation
 - [ ] P0 deviceHash generation (random UUID, SHA-256, stored in IDB + localStorage)
@@ -333,16 +333,16 @@
 - [ ] P0 Honest documentation of fingerprint limitations
 
 ### 8.6 Email Delivery
-- [ ] P0 EmailService interface (provider-abstracted)
+- [x] P0 EmailService interface (provider-abstracted)
 - [ ] P0 Choose provider (Resend/Postmark/SendGrid) + verify docs
-- [ ] P0 Templates (purchase, activation, recovery, revocation) with variables
+- [x] P0 Templates (purchase, activation, recovery, revocation) with variables
 - [ ] P0 Retry transient failures (backoff, max 5)
-- [ ] P0 Track delivery status in licenses table
-- [ ] P0 Idempotent re-send
-- [ ] P0 No key exposure in logs/analytics
+- [x] P0 Track delivery status in licenses table
+- [x] P0 Idempotent re-send
+- [x] P0 No key exposure in logs/analytics
 
 ### 8.7 Activation UI
-- [ ] P0 /pro/activate page (key input, device name, flow)
+- [x] P0 /pro/activate page (key input, device name, flow)
 - [ ] P0 Status display + device list
 - [ ] P0 Deactivate device button
 - [ ] P0 Recovery link flow

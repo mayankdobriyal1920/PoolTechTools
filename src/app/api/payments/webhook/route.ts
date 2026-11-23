@@ -58,8 +58,18 @@ export async function POST(req: NextRequest) {
            VALUES ($1,$2,$3,$4,$5,$6,$7,$8,'active','pending')`,
           [hash, customerEmail || "unknown", transactionId, customerId, productId, priceId, parseInt(total || "2900", 10), currency || "USD"]
         );
-        // TODO: send purchase email with key (retry-safe). Store key in a secure way? Key is only in email now.
-        console.log("License created for", customerEmail, "key:", key);
+        // Send purchase email (retry-safe; failure does not fail the webhook)
+        try {
+          const { getEmailService } = await import("@/lib/server/email");
+          const emailSvc = getEmailService();
+          const appUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "";
+          const res = await emailSvc.sendPurchaseConfirmation(customerEmail || "unknown", { licenseKey: key, activationUrl: `${appUrl}/pro/activate` });
+          await client.query("UPDATE licenses SET email_delivery_status=$2, email_sent_at=NOW(), email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1",
+            [transactionId, res.success ? "sent" : "failed"]);
+        } catch (e: any) {
+          await client.query("UPDATE licenses SET email_delivery_status='failed', email_attempts=email_attempts+1 WHERE paddle_transaction_id=$1", [transactionId]).catch(() => {});
+          console.error("Email send failed:", e?.message);
+        }
       }
     }
 
