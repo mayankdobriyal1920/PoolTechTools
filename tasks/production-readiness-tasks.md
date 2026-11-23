@@ -209,14 +209,14 @@
 ## Phase 5 — Customer & Pool Management (Pro)
 
 - [ ] P0 Pro gating (useEntitlement hook, route guards)
-- [ ] P0 Customer CRUD (create/edit/delete soft)
-- [ ] P0 Pool CRUD per customer (create/edit/delete soft)
+- [x] P0 Customer CRUD (create/edit/delete soft)
+- [x] P0 Pool CRUD per customer (create/edit/delete soft)
 - [ ] P0 Service history timeline per pool
 - [ ] P0 1-tap report cloning from history
 - [ ] P0 Reusable report templates (CRUD)
 - [ ] P0 Business branding (logo upload, brand color)
 - [ ] P0 Soft delete + "Show archived" toggle
-- [ ] P0 customerNameSnapshot / poolNameSnapshot on reports
+- [x] P0 customerNameSnapshot / poolNameSnapshot on reports
 - [ ] P0 Entitlement-loss: read-only mode + banner, no data deletion
 - [ ] P1 Template application to new report
 
@@ -225,8 +225,8 @@
 ## Phase 6 — Backup & Restore
 
 ### 6.1 Persistence & Snapshots (Pro)
-- [ ] P0 Transactional persistence for all writes
-- [ ] P0 Debounced form updates (2s)
+- [x] P0 Transactional persistence for all writes
+- [x] P0 Debounced form updates (2s)
 - [ ] P0 Recovery snapshots (controlled triggers, max 5 FIFO)
 - [ ] P0 Snapshot payload excludes photo blobs (metadata only)
 - [ ] P0 Storage quota check before snapshot
@@ -234,25 +234,25 @@
 - [ ] P1 Backup reminders ("Last backup: X days ago")
 
 ### 6.2 Manual Export
-- [ ] P0 Format A: JSON-only export (no photos) with warning
-- [ ] P0 Format B: Complete ZIP backup (data + photos)
-- [ ] P0 ZIP directory structure (manifest.json, data.json, attachments/)
-- [ ] P0 Manifest schema with SHA-256 per file
-- [ ] P0 Private data warning on export
-- [ ] P0 Download trigger
+- [x] P0 Format A: JSON-only export (no photos) with warning
+- [x] P0 Format B: Complete ZIP backup (data + photos)
+- [x] P0 ZIP directory structure (manifest.json, data.json, attachments/)
+- [x] P0 Manifest schema with SHA-256 per file
+- [x] P0 Private data warning on export
+- [x] P0 Download trigger
 
 ### 6.3 Import
-- [ ] P0 File type + size validation (500 MB max)
-- [ ] P0 ZIP safety (bomb ratio, path traversal, size limits, symlinks, dupes)
-- [ ] P0 Manifest + hash verification
+- [x] P0 File type + size validation (500 MB max)
+- [x] P0 ZIP safety (bomb ratio, path traversal, size limits, symlinks, dupes)
+- [x] P0 Manifest + hash verification
 - [ ] P0 Zod validation of data.json
 - [ ] P0 Version check + migration of older backups
 - [ ] P0 Reject unknown newer versions
-- [ ] P0 Preview before import (counts, warnings, missing attachments)
-- [ ] P0 Merge vs Replace choice
+- [x] P0 Preview before import (counts, warnings, missing attachments)
+- [x] P0 Merge vs Replace choice
 - [ ] P0 Storage quota preflight
 - [ ] P0 Staged import (validate all in memory first)
-- [ ] P0 Transactional commit with rollback
+- [x] P0 Transactional commit with rollback
 - [ ] P0 Missing attachment handling (fail or skip with confirmation)
 - [ ] P0 Post-import verification + summary
 
@@ -261,16 +261,16 @@
 ## Phase 7 — PWA & Offline
 
 - [ ] P0 @serwist/next setup (verify Next.js 16 compat)
-- [ ] P0 Web app manifest (name, icons, display, theme)
-- [ ] P0 Service worker with caching strategies (Cache-First app shell, Network-Only API, SWR pages)
+- [x] P0 Web app manifest (name, icons, display, theme)
+- [x] P0 Service worker with caching strategies (Cache-First app shell, Network-Only API, SWR pages)
 - [ ] P0 Cache versioning via build hash + purge old
 - [ ] P0 Update notification banner (non-blocking)
-- [ ] P0 Safe SW activation (skipWaiting after confirm)
-- [ ] P0 Failed install recovery (keep old SW)
+- [x] P0 Safe SW activation (skipWaiting after confirm)
+- [x] P0 Failed install recovery (keep old SW)
 - [ ] P0 navigator.storage.persist() request + status in Settings
 - [ ] P0 Offline feature matrix verified (all 13 rows)
 - [ ] P0 Offline indicator banner
-- [ ] P0 First-visit requires internet (documented)
+- [x] P0 First-visit requires internet (documented)
 - [ ] P1 Browser compatibility tests (iOS Safari, Android Chrome, Desktop Chrome/Safari, Edge)
 - [ ] P1 Document iOS Safari limitations
 
@@ -356,9 +356,9 @@
 - [ ] P0 Keyword research + intent mapping
 - [ ] P0 Page hierarchy (Home → Tools → Guides → FAQ)
 - [ ] P0 URL strategy
-- [ ] P0 Metadata (title, description, canonical, OG, Twitter) per page
-- [ ] P0 XML sitemap
-- [ ] P0 robots.txt
+- [x] P0 Metadata (title, description, canonical, OG, Twitter) per page
+- [x] P0 XML sitemap
+- [x] P0 robots.txt
 - [ ] P0 Internal linking + breadcrumbs
 - [ ] P0 Structured data (SoftwareApplication, FAQPage, HowTo)
 - [ ] P0 10+ indexable pages with original content (no thin pages)
