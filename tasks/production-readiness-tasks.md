@@ -40,30 +40,30 @@
 ## Phase 1 — Foundation & Design System
 
 ### 1.1 Design Tokens & Theme
-- [ ] P0 Define color tokens (brand blue, aqua, neutrals, semantic) in Tailwind config
-- [ ] P0 Implement dark mode (prefers-color-scheme + manual toggle)
-- [ ] P0 Typography: Inter via next/font, min 16px body
-- [ ] P0 Spacing/shadow/blur/radius tokens
-- [ ] P0 Glassmorphism card style with solid input backgrounds
-- [ ] P1 Reduced-motion support (prefers-reduced-motion)
+- [x] P0 Define color tokens (brand blue, aqua, neutrals, semantic) in Tailwind config
+- [x] P0 Implement dark mode (prefers-color-scheme + manual toggle)
+- [x] P0 Typography: Inter via next/font, min 16px body
+- [x] P0 Spacing/shadow/blur/radius tokens
+- [x] P0 Glassmorphism card style with solid input backgrounds
+- [x] P1 Reduced-motion support (prefers-reduced-motion)
 
 ### 1.2 Component Library (src/components/ui)
-- [ ] P0 Button (primary/secondary/ghost, loading state, disabled)
-- [ ] P0 Input (text/number, error state, aria)
-- [ ] P0 Select, Checkbox, Radio
+- [x] P0 Button (primary/secondary/ghost, loading state, disabled)
+- [x] P0 Input (text/number, error state, aria)
+- [x] P0 Select, Checkbox, Radio
 - [ ] P0 Dialog/Modal with focus trap
 - [ ] P0 Toast (success/error/info)
-- [ ] P0 Card, Badge, Chip
+- [x] P0 Card, Badge, Chip
 - [ ] P0 Empty state, Loading skeleton, Error state
 - [ ] P0 Table (responsive)
 - [ ] P1 Chart (trend visualization)
 
 ### 1.3 Layout & Navigation
-- [ ] P0 Root layout with metadata, viewport, theme
-- [ ] P0 Mobile bottom nav + desktop sidebar/top nav
-- [ ] P0 Skip-to-content link
-- [ ] P0 44px min touch targets
-- [ ] P0 Focus indicators (visible)
+- [x] P0 Root layout with metadata, viewport, theme
+- [x] P0 Mobile bottom nav + desktop sidebar/top nav
+- [x] P0 Skip-to-content link
+- [x] P0 44px min touch targets
+- [x] P0 Focus indicators (visible)
 - [ ] P1 Breadcrumbs
 
 ### 1.4 Global Providers
@@ -78,7 +78,7 @@
 ## Phase 2 — Calculators & Validation Engine
 
 ### 2.1 Validation Schemas (src/lib/validation)
-- [ ] P0 Zod schema: volume input (shape-specific required fields)
+- [x] P0 Zod schema: volume input (shape-specific required fields)
 - [ ] P0 Zod schema: chemical input
 - [ ] P0 Zod schema: chlorine input
 - [ ] P0 Zod schema: customer, pool, report, water test, template, maintenance task
@@ -86,39 +86,39 @@
 - [ ] P0 Range validation (imperial/metric conversion before check)
 
 ### 2.2 Pool Volume Calculator
-- [ ] P0 UI: shape selector, unit toggle, inputs, outputs
-- [ ] P0 Wire calc engine to UI
-- [ ] P0 Inline validation errors
-- [ ] P0 Handoff to chemical calculator via `?vol=` (full precision)
-- [ ] P0 Display rounding (nearest 10 gal) with internal precision retained
+- [x] P0 UI: shape selector, unit toggle, inputs, outputs
+- [x] P0 Wire calc engine to UI
+- [x] P0 Inline validation errors
+- [x] P0 Handoff to chemical calculator via `?vol=` (full precision)
+- [x] P0 Display rounding (nearest 10 gal) with internal precision retained
 - [ ] P0 Print results view
-- [ ] P0 Accuracy disclaimer text
-- [ ] P0 Kidney cross-section input UI (trapezoidal) + validation
+- [x] P0 Accuracy disclaimer text
+- [x] P0 Kidney cross-section input UI (trapezoidal) + validation
 - [ ] P0 Kidney two-semicircle alternative method
-- [ ] P0 Irregular surface-area input
+- [x] P0 Irregular surface-area input
 - [ ] P1 Calculation history (optional, local)
 
 ### 2.3 Chemical Calculator
-- [ ] P0 UI: volume, product name, label dose, ref volume, unit selector, safety checkbox
-- [ ] P0 Dimension enforcement (mass vs fluid) — block invalid conversions
-- [ ] P0 Label verification checkbox gates result
-- [ ] P0 Scaled amount output + unit equivalents
-- [ ] P0 Safety warning box
-- [ ] P0 "Add to Service Report" handoff
+- [x] P0 UI: volume, product name, label dose, ref volume, unit selector, safety checkbox
+- [x] P0 Dimension enforcement (mass vs fluid) — block invalid conversions
+- [x] P0 Label verification checkbox gates result
+- [x] P0 Scaled amount output + unit equivalents
+- [x] P0 Safety warning box
+- [x] P0 "Add to Service Report" handoff
 - [ ] P0 User-provided density input (optional) for cross-dim conversion
 - [ ] P1 Fractional output formatting (<0.01 handling)
 - [ ] P1 Large dose warning (>1000 units)
 
 ### 2.4 Chlorine Calculator
-- [ ] P0 FC, TC, CC auto-calc (CC = TC - FC)
-- [ ] P0 TC < FC → variance warning, preserve originals, no coercion
+- [x] P0 FC, TC, CC auto-calc (CC = TC - FC)
+- [x] P0 TC < FC → variance warning, preserve originals, no coercion
 - [ ] P0 Label-rate scaling (reuse chemical engine)
-- [ ] P0 Optional target comparison (informational only)
+- [x] P0 Optional target comparison (informational only)
 - [ ] P0 Disclaimers
 
 ### 2.5 Unit Conversion
 - [ ] P0 Conversion table (ft/in/m/cm, gal/L, cuft/gal, oz/lbs, g/kg, fl oz/cups, qt/gal)
-- [ ] P0 Conversion utilities in src/lib/utils
+- [x] P0 Conversion utilities in src/lib/utils
 - [ ] P0 Round-trip tests (1e-9 tolerance)
 
 ---
