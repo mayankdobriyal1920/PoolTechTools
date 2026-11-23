@@ -10,6 +10,24 @@ import { Badge } from "@/components/ui/Badge";
 
 const FIELDS = ["freeChlorine", "totalChlorine", "ph", "totalAlkalinity", "calciumHardness", "cya", "salt", "temperature"] as const;
 
+const RANGE_THRESHOLDS: Record<string, { low: number; high: number }> = {
+  freeChlorine: { low: 1, high: 3 },
+  totalChlorine: { low: 1, high: 3 },
+  ph: { low: 7.2, high: 7.8 },
+  totalAlkalinity: { low: 80, high: 120 },
+  calciumHardness: { low: 200, high: 400 },
+  cya: { low: 30, high: 50 },
+  salt: { low: 2700, high: 3400 },
+  temperature: { low: 70, high: 85 },
+};
+
+function badgeTone(key: string, val: number): "info" | "success" | "warning" | "error" {
+  const t = RANGE_THRESHOLDS[key];
+  if (!t) return "info";
+  if (val < t.low || val > t.high) return "warning";
+  return "success";
+}
+
 export default function WaterTestClient() {
   const [tests, setTests] = useState<WaterTest[]>([]);
   const [form, setForm] = useState<Record<string, string>>({});
@@ -108,7 +126,7 @@ export default function WaterTestClient() {
                 <div className="font-semibold text-brand-800">{new Date(t.recordedAt).toLocaleString()}</div>
                 <div className="mt-1 flex flex-wrap gap-2 text-xs">
                   {Object.entries(t.readings).map(([k, v]) => (
-                    <Badge key={k} tone="info">{k}: {Number.isFinite(v) ? v.toFixed(2) : "—"}{k === "temperature" ? "°" : ""}</Badge>
+                    <Badge key={k} tone={Number.isFinite(v) ? badgeTone(k, v) : "info"}>{k}: {Number.isFinite(v) ? v.toFixed(2) : "—"}{k === "temperature" ? "°" : ""}</Badge>
                   ))}
                 </div>
                 {t.notes && <p className="mt-2 text-sm text-brand-700/70">{t.notes}</p>}
