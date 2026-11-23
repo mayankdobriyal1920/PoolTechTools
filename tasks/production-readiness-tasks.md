@@ -51,11 +51,11 @@
 - [x] P0 Button (primary/secondary/ghost, loading state, disabled)
 - [x] P0 Input (text/number, error state, aria)
 - [x] P0 Select, Checkbox, Radio
-- [ ] P0 Dialog/Modal with focus trap
-- [ ] P0 Toast (success/error/info)
+- [x] P0 Dialog/Modal with focus trap
+- [x] P0 Toast (success/error/info)
 - [x] P0 Card, Badge, Chip
-- [ ] P0 Empty state, Loading skeleton, Error state
-- [ ] P0 Table (responsive)
+- [x] P0 Empty state, Loading skeleton, Error state
+- [x] P0 Table (responsive)
 - [ ] P1 Chart (trend visualization)
 
 ### 1.3 Layout & Navigation
@@ -67,10 +67,10 @@
 - [ ] P1 Breadcrumbs
 
 ### 1.4 Global Providers
-- [ ] P0 Theme provider
-- [ ] P0 Entitlement provider (`useEntitlement` hook reading Ed25519 token)
-- [ ] P0 Toast provider
-- [ ] P0 Offline status provider
+- [x] P0 Theme provider
+- [x] P0 Entitlement provider (`useEntitlement` hook reading Ed25519 token)
+- [x] P0 Toast provider
+- [x] P0 Offline status provider
 - [ ] P1 Storage quota provider
 
 ---
@@ -132,7 +132,7 @@
 - [x] P0 Custom task add/edit/delete/reorder
 - [x] P0 Reset completion (with confirmation)
 - [x] P0 Pool type + season selectors
-- [ ] P0 Season/pool-type change: preserve completion, hide inapplicable, prompt before bulk reset
+- [x] P0 Season/pool-type change: preserve completion, hide inapplicable, prompt before bulk reset
 - [x] P0 Print/export schedule
 - [ ] P1 Task ordering drag-and-drop
 
@@ -141,7 +141,7 @@
 - [x] P0 CC auto-calc with variance warning
 - [x] P0 Pool association (optional)
 - [x] P0 Chronological table + date filter
-- [ ] P0 Range badges (informational, configurable thresholds)
+- [x] P0 Range badges (informational, configurable thresholds)
 - [x] P0 CSV export
 - [x] P0 Delete confirmation modal
 - [ ] P1 Trend chart (optional, owner decision)
@@ -319,7 +319,7 @@
 - [x] P0 Online validation refresh
 - [x] P0 Graceful lock with banner after expiry
 - [x] P0 lastSeenAt clock-manipulation best-effort check
-- [ ] P0 Key rotation (multiple public keys by kid, 30-day overlap)
+- [x] P0 Key rotation (multiple public keys by kid, 30-day overlap)
 - [x] P0 Document offline revocation limitation
 
 ### 8.5 Device Activation
@@ -426,7 +426,7 @@
 - [ ] P1 Threat model review (Appendix B)
 
 ### 10.5 Accessibility
-- [ ] P0 axe-core in E2E (clean)
+- [x] P0 axe-core in E2E (clean)
 - [x] P0 Keyboard navigation + focus indicators
 - [x] P0 Screen reader labels
 - [x] P0 44px touch targets

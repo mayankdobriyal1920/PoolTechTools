@@ -20,7 +20,16 @@ export async function verifyToken(token: string): Promise<{ valid: boolean; payl
     const parts = token.split(".");
     if (parts.length !== 3) return { valid: false, payload: null, reason: "malformed" };
     const [h, b, s] = parts;
-    const pubB64 = process.env.NEXT_PUBLIC_ED25519_PUBLIC_KEY || "";
+    // Support multiple public keys by kid (for key rotation)
+    let pubB64 = process.env.NEXT_PUBLIC_ED25519_PUBLIC_KEY || "";
+    const multiKeys = process.env.NEXT_PUBLIC_ED25519_PUBLIC_KEYS;
+    if (multiKeys) {
+      try {
+        const map = JSON.parse(multiKeys);
+        const header = JSON.parse(atob(h.replace(/-/g, "+").replace(/_/g, "/")));
+        if (map[header.kid]) pubB64 = map[header.kid];
+      } catch {}
+    }
     if (!pubB64) return { valid: false, payload: null, reason: "no public key" };
     const pubBytes = Uint8Array.from(atob(pubB64), (c) => c.charCodeAt(0));
     const sigBytes = Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (c) => c.charCodeAt(0));

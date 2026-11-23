@@ -6,6 +6,8 @@ import { WaterBackground } from "@/components/layout/WaterBackground";
 import { OfflineBanner } from "@/components/states/OfflineBanner";
 import { ProLockBanner } from "@/components/ProLockBanner";
 import { TokenRefresh } from "@/components/TokenRefresh";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { OfflineStatusProvider } from "@/components/OfflineStatusProvider";
 import { UpdateBanner } from "@/components/UpdateBanner";
 import { NetworkStatus } from "@/components/NetworkStatus";
 import { ToastProvider } from "@/components/ui/Toast";
@@ -54,11 +56,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+      <ThemeProvider>
+      <OfflineStatusProvider>
       <NetworkStatus />
       <ToastProvider>
       <Script id="consent-mode" strategy="beforeInteractive">
         {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied"});`}
       </Script><WaterBackground /><SwRegister /><OfflineBanner /><ProLockBanner /><TokenRefresh /><UpdateBanner />{children}</ToastProvider>
+      </OfflineStatusProvider>
+      </ThemeProvider>
     </body>
     </html>
   );
