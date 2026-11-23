@@ -9,6 +9,7 @@ import { TokenRefresh } from "@/components/TokenRefresh";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { OfflineStatusProvider } from "@/components/OfflineStatusProvider";
 import { UpdateBanner } from "@/components/UpdateBanner";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { NetworkStatus } from "@/components/NetworkStatus";
 import { ToastProvider } from "@/components/ui/Toast";
 import Script from "next/script";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+      <AdSenseScript />
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6C9SR8T" height="0" width="0" style={{display:"none",visibility:"hidden"}} /></noscript>
       <ThemeProvider>
       <OfflineStatusProvider>

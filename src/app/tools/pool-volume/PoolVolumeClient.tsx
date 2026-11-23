@@ -10,6 +10,7 @@ import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { AdSlot } from "@/components/AdSlot";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 
 type Units = "imperial" | "metric";
@@ -185,6 +186,7 @@ export default function PoolVolumePage() {
           </p>
         </Card>
       )}
+      <AdSlot slot="tool-result-banner" className="mt-6" />
     </div>
   );
 }

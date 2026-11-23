@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 interface AdSlotProps {
   slot: string;
-  format?: "auto" | "rectangle" | "horizontal";
+  format?: "auto" | "rectangle" | "horizontal" | "vertical" | "square";
   className?: string;
 }
 
