@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {

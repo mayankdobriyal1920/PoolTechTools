@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -7,9 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function PoolMaintenanceGuide() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Guides", href: "/" }, { label: "Maintenance Schedule", href: "/guides/pool-maintenance" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">Pool Maintenance Schedule</h1>
+      <PageHeader title="Pool Maintenance Schedule" subtitle="Daily, weekly, monthly, and seasonal pool maintenance tasks." breadcrumbs={breadcrumbs} />
       <p className="mt-3 text-brand-800">A consistent routine keeps your pool clean and safe. Here's a practical schedule.</p>
       <h2 className="mt-6 text-xl font-bold text-brand-800">Daily</h2>
       <ul className="mt-2 list-disc pl-5 text-brand-800"><li>Skim surface debris</li><li>Empty skimmer baskets</li><li>Check water level</li></ul>

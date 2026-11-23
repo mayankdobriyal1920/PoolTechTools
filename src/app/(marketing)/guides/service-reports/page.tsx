@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -7,9 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function ServiceReportsGuide() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Guides", href: "/" }, { label: "Service Reports", href: "/guides/service-reports" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">Professional Pool Service Reports</h1>
+      <PageHeader title="Professional Pool Service Reports" subtitle="Create branded PDF service reports with tasks, water readings, chemicals, and photos." breadcrumbs={breadcrumbs} />
       <p className="mt-3 text-brand-800">Create customer-ready PDF service reports in under 60 seconds on your phone.</p>
       <h2 className="mt-6 text-xl font-bold text-brand-800">Features</h2>
       <ul className="mt-2 list-disc pl-5 text-brand-800">

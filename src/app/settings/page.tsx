@@ -6,11 +6,13 @@ import { createSnapshot, listSnapshots, restoreSnapshot, deleteSnapshot } from "
 import type { Snapshot } from "@/lib/db/types";
 import { previewImport, performImport } from "@/lib/backup/import";
 import { Card } from "@/components/ui/Card";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { BrandingManager } from "@/components/BrandingManager";
 import { Button } from "@/components/ui/Button";
 
 export default function SettingsPage() {
   const [status, setStatus] = useState("");
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Settings", href: "/settings" }];
   const [quota, setQuota] = useState<{ used: number; total: number } | null>(null);
   const [persisted, setPersisted] = useState<boolean | null>(null);
   const [snapshots, setSnapshots] = useState<Snapshot[]>([]);
@@ -69,7 +71,7 @@ export default function SettingsPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-      <h1 className="mb-6 text-3xl font-bold text-brand-800">Settings &amp; Backup</h1>
+      <PageHeader title="Settings &amp; Backup" subtitle="Manage your app data, backups, and business branding." breadcrumbs={breadcrumbs} />
 
       <Card className="mb-6">
         <h2 className="text-lg font-bold text-brand-800">Storage Usage</h2>

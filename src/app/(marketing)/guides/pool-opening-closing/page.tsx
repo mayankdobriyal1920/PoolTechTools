@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -7,9 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function PoolOpeningClosingGuide() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Guides", href: "/" }, { label: "Opening &amp; Closing", href: "/guides/pool-opening-closing" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">Pool Opening &amp; Closing Checklist</h1>
+      <PageHeader title="Pool Opening &amp; Closing Checklist" subtitle="Step-by-step pool opening and closing procedures for seasonal maintenance." breadcrumbs={breadcrumbs} />
       <h2 className="mt-6 text-xl font-bold text-brand-800">Opening (Spring)</h2>
       <ul className="mt-2 list-disc pl-5 text-brand-800">
         <li>Remove and clean cover</li><li>Reconnect equipment</li><li>Fill to proper level</li>

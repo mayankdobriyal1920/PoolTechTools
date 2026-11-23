@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Terms of Service — PoolTechTools",
@@ -6,9 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Terms of Service", href: "/terms" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">Terms of Service</h1>
+      <PageHeader title="Terms of Service" subtitle="Terms of use for PoolTechTools." breadcrumbs={breadcrumbs} />
       <p className="mt-4 text-brand-800">Last updated: 2026.</p>
 
       <h2 className="mt-6 text-xl font-bold text-brand-800">Use of the service</h2>

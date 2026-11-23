@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — PoolTechTools",
@@ -6,9 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Privacy Policy", href: "/privacy" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 prose prose-brand">
-      <h1 className="text-3xl font-bold text-brand-800">Privacy Policy</h1>
+      <PageHeader title="Privacy Policy" subtitle="How PoolTechTools handles your data." breadcrumbs={breadcrumbs} />
       <p className="mt-4 text-brand-800">Last updated: 2026.</p>
 
       <h2 className="mt-6 text-xl font-bold text-brand-800">Local-first data</h2>

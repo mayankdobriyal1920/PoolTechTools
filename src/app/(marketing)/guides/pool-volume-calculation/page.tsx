@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -8,9 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function PoolVolumeGuide() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Guides", href: "/" }, { label: "Pool Volume Calculation", href: "/guides/pool-volume-calculation" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">How to Calculate Pool Volume</h1>
+      <PageHeader title="How to Calculate Pool Volume" subtitle="Step-by-step guide to calculating pool volume in U.S. gallons for all shapes." breadcrumbs={breadcrumbs} />
       <p className="mt-3 text-brand-800">
         Knowing your pool&apos;s volume in U.S. gallons is the foundation of safe chemical dosing. This guide explains the math for every common pool shape.
       </p>

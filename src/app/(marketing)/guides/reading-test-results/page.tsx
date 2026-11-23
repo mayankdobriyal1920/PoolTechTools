@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -7,9 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function ReadingTestResultsGuide() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Guides", href: "/" }, { label: "Reading Test Results", href: "/guides/reading-test-results" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">How to Read Pool Water Test Results</h1>
+      <PageHeader title="How to Read Pool Water Test Results" subtitle="Interpret pool water test readings: free chlorine, pH, alkalinity, calcium hardness, CYA, and salt." breadcrumbs={breadcrumbs} />
       <p className="mt-3 text-brand-800">Understanding your test results is the first step to proper pool care.</p>
       <h2 className="mt-6 text-xl font-bold text-brand-800">Key Parameters</h2>
       <ul className="mt-2 list-disc pl-5 text-brand-800">

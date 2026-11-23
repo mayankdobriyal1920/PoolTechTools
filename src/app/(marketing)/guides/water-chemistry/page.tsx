@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { AdSlot } from "@/components/AdSlot";
 
 export const metadata: Metadata = {
@@ -7,9 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function WaterChemistryGuide() {
+  const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Guides", href: "/" }, { label: "Water Chemistry", href: "/guides/water-chemistry" }];
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold text-brand-800">Pool Water Chemistry Basics</h1>
+      <PageHeader title="Pool Water Chemistry Basics" subtitle="Understanding free chlorine, total chlorine, pH, alkalinity, and other pool water parameters." breadcrumbs={breadcrumbs} />
       <p className="mt-3 text-brand-800">Understanding key water parameters helps you maintain a safe, clear pool.</p>
       <h2 className="mt-6 text-xl font-bold text-brand-800">Free Chlorine (FC)</h2>
       <p className="mt-2 text-brand-800">The active sanitizer available to kill bacteria and algae.</p>
