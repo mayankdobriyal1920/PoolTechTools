@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { exportJSON, exportZIP } from "@/lib/backup/export";
 import { previewImport, performImport } from "@/lib/backup/import";
 import { Card } from "@/components/ui/Card";
@@ -8,6 +8,15 @@ import { Button } from "@/components/ui/Button";
 
 export default function SettingsPage() {
   const [status, setStatus] = useState("");
+  const [quota, setQuota] = useState<{ used: number; total: number } | null>(null);
+  useEffect(() => {
+    (async () => {
+      if (navigator.storage?.estimate) {
+        const est = await navigator.storage.estimate();
+        setQuota({ used: est.usage || 0, total: est.quota || 0 });
+      }
+    })();
+  }, []);
   const [preview, setPreview] = useState<any>(null);
   const [file, setFile] = useState<File | null>(null);
   const [mode, setMode] = useState<"merge" | "replace">("merge");
@@ -45,6 +54,19 @@ export default function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <h1 className="mb-6 text-3xl font-bold text-brand-800">Settings &amp; Backup</h1>
+
+      <Card className="mb-6">
+        <h2 className="text-lg font-bold text-brand-800">Storage Usage</h2>
+        {quota ? (
+          <div className="mt-3">
+            <div className="text-sm text-brand-700/80">{(quota.used / 1024 / 1024).toFixed(2)} MB used of {(quota.total / 1024 / 1024).toFixed(0)} MB</div>
+            <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-brand-100">
+              <div className="h-full bg-brand-500" style={{ width: `${Math.min(100, (quota.used / quota.total) * 100)}%` }} />
+            </div>
+            {(quota.used / quota.total) > 0.8 && <p className="mt-2 text-xs text-amber-700">Storage is over 80% full. Consider exporting and cleaning up.</p>}
+          </div>
+        ) : <p className="mt-2 text-sm text-brand-700/60">Storage estimate unavailable.</p>}
+      </Card>
 
       <Card className="mb-6">
         <h2 className="text-lg font-bold text-brand-800">Export Data</h2>

@@ -269,7 +269,7 @@
 - [x] P0 Failed install recovery (keep old SW)
 - [ ] P0 navigator.storage.persist() request + status in Settings
 - [ ] P0 Offline feature matrix verified (all 13 rows)
-- [ ] P0 Offline indicator banner
+- [x] P0 Offline indicator banner
 - [x] P0 First-visit requires internet (documented)
 - [ ] P1 Browser compatibility tests (iOS Safari, Android Chrome, Desktop Chrome/Safari, Edge)
 - [ ] P1 Document iOS Safari limitations
@@ -454,11 +454,11 @@
 
 ## Cross-Cutting / UX States
 
-- [ ] P0 Empty states (all screens)
-- [ ] P0 Loading states (skeletons)
-- [ ] P0 Error states (message + retry)
+- [x] P0 Empty states (all screens)
+- [x] P0 Loading states (skeletons)
+- [x] P0 Error states (message + retry)
 - [ ] P0 Network failure states
-- [ ] P0 Offline indicator banner
+- [x] P0 Offline indicator banner
 - [ ] P0 Form autosave indicator
 - [ ] P0 Unsaved changes prompt
 - [ ] P0 Double-click protection
