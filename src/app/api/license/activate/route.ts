@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse, connection } from "next/server";
 import { z } from "zod";
 import { getPool } from "@/lib/server/db";
+import { rateLimit, getClientIP } from "@/lib/server/rateLimit";
 import { hashLicenseKey, timingSafeEqual } from "@/lib/server/license";
 
 const Body = z.object({
@@ -16,6 +17,9 @@ export async function POST(req: NextRequest) {
   if (!parsed.success) return NextResponse.json({ error: { code: "INVALID_INPUT", message: "Invalid request", details: parsed.error.flatten() } }, { status: 400 });
 
   const { licenseKey, deviceName, deviceHash } = parsed.data;
+  const ip = getClientIP(req);
+  const rl = rateLimit(`activate:${ip}`, 5, 15 * 60 * 1000);
+  if (!rl.allowed) return NextResponse.json({ error: { code: "RATE_LIMITED", message: "Too many attempts. Try again later." } }, { status: 429 });
   const pool = getPool();
   const client = await pool.connect();
   try {

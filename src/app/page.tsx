@@ -24,6 +24,20 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "PoolTechTools",
+            applicationCategory: "UtilitiesApplication",
+            operatingSystem: "Web",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            description: "Pool volume calculator, chemical scaling, maintenance schedules, water test logs, and service reports.",
+          }),
+        }}
+      />
 
       {/* Hero */}
       <section className="relative overflow-hidden">

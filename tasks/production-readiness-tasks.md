@@ -83,7 +83,7 @@
 - [ ] P0 Zod schema: chlorine input
 - [ ] P0 Zod schema: customer, pool, report, water test, template, maintenance task
 - [ ] P0 Zod schema: file/photo validation
-- [ ] P0 Range validation (imperial/metric conversion before check)
+- [x] P0 Range validation (imperial/metric conversion before check)
 
 ### 2.2 Pool Volume Calculator
 - [x] P0 UI: shape selector, unit toggle, inputs, outputs
@@ -360,10 +360,10 @@
 - [x] P0 XML sitemap
 - [x] P0 robots.txt
 - [ ] P0 Internal linking + breadcrumbs
-- [ ] P0 Structured data (SoftwareApplication, FAQPage, HowTo)
+- [x] P0 Structured data (SoftwareApplication, FAQPage, HowTo)
 - [ ] P0 10+ indexable pages with original content (no thin pages)
 - [ ] P0 Calculation methodology pages
-- [ ] P0 noindex on private/app routes
+- [x] P0 noindex on private/app routes
 - [ ] P1 Core Web Vitals targets (LCP<2.5s, CLS<0.1, INP<200ms)
 - [ ] P1 Related tools sections
 
@@ -418,21 +418,21 @@
 - [x] P0 Security headers (X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS)
 - [x] P0 Input validation (Zod client + server)
 - [ ] P0 File validation (MIME + magic bytes + size)
-- [ ] P0 Rate limiting on license endpoints
+- [x] P0 Rate limiting on license endpoints
 - [x] P0 Secret management (env vars, .gitignore, no NEXT_PUBLIC_ secrets)
 - [x] P0 Logging restrictions (no keys/emails/report contents)
-- [ ] P0 Source maps disabled in prod (or verified no secrets)
+- [x] P0 Source maps disabled in prod (or verified no secrets)
 - [x] P0 Dependency audit (npm audit, lockfile)
 - [ ] P1 Threat model review (Appendix B)
 
 ### 10.5 Accessibility
 - [ ] P0 axe-core in E2E (clean)
-- [ ] P0 Keyboard navigation + focus indicators
-- [ ] P0 Screen reader labels
+- [x] P0 Keyboard navigation + focus indicators
+- [x] P0 Screen reader labels
 - [ ] P0 44px touch targets
 - [ ] P0 16px input font size (no iOS zoom)
 - [ ] P0 Reduced-motion support
-- [ ] P0 WCAG AA contrast
+- [x] P0 WCAG AA contrast
 
 ### 10.6 Performance
 - [ ] P0 Lighthouse: Perf ≥90, SEO ≥95, A11y ≥95
