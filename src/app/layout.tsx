@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PoolTechTools — Pool Volume, Chemicals & Service Reports",
   description:
-    "Fast, mobile-first, offline-capable pool care toolkit: volume calculator, label-rate chemical scaling, maintenance schedules, water test logs, and professional service reports.",
+    "Fast, mobile-first, offline-capable pool care toolkit: volume calculator, chemical scaling, maintenance schedules, water test logs, service reports.",
   applicationName: "PoolTechTools",
   manifest: "/manifest.webmanifest",
   icons: {
@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     title: "PoolTechTools",
     description: "Pool volume, chemicals, maintenance, and service reports — offline-capable.",
     type: "website",
+    images: [{ url: "/icon.png", width: 512, height: 512, alt: "PoolTechTools" }],
   },
 };
 
@@ -56,6 +57,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_APP_URL} />
+      </head>
       <body className="min-h-full flex flex-col">
       <AdSenseScript />
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6C9SR8T" height="0" width="0" style={{display:"none",visibility:"hidden"}} /></noscript>
