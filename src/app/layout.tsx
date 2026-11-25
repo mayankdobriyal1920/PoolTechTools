@@ -75,7 +75,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </Script>
       <Script id="gtm-datalayer" strategy="beforeInteractive">
         {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());`}
-      </Script><WaterBackground /><SwRegister /><OfflineBanner /><ProLockBanner /><TokenRefresh /><UpdateBanner />{children}</ToastProvider>
+      </Script>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-0VZ0E5J3M1" strategy="afterInteractive" />
+      <Script id="ga4-config" strategy="afterInteractive">
+        {`gtag('config', 'G-0VZ0E5J3M1');`}
+      </Script>
+      <WaterBackground /><SwRegister /><OfflineBanner /><ProLockBanner /><TokenRefresh /><UpdateBanner />{children}</ToastProvider>
       </OfflineStatusProvider>
       </ThemeProvider>
     </body>
